@@ -1,0 +1,23 @@
+extends dashbase
+
+block contentDash
+    script(src="./js/jquery-latest.js")
+    script(src="./js/forall.js")
+    .content
+        //- include _header
+        nav.navbar.navbar-expand.bg-light.navbar-light.sticky-top.px-4.py-0
+            a.sidebar-toggler.flex-shrink-0(href='#')
+                i.fa.fa-bars
+        // navigation ya aauxa
+
+        // Sale & Revenue Start
+        .container-fluid.pt-4.px-4.d-flex.align-items-center.justify-content-center
+            input#find-referral-user-email(type="email", name="" style="padding:.5rem; margin-right: .5rem; width: 30%" )
+            button.send-of-order#find-referral-user Check
+
+        .container-fluid.pt-4.px-4
+           
+
+    script(src="./js/jquery-latest.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.3/axios.min.js") 
+    script(src="./js/referral.js") 

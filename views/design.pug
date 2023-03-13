@@ -1,0 +1,584 @@
+<html>
+
+<head>
+    <meta charset="windows-1252">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="title" content="Start Designing Own Tshirt">
+    <meta property="og:image" content="https://teeshopper.in/img/banner.png" />
+    <meta property="og:title" content="Start Designing Own Tshirt" />
+    <meta property="og:description" content="Create your own design for t-shirts, hoodies, mobile cases in our designing studio and sell online without any hassles at zero cost." />
+    <meta property="og:image" content="https://teeshopper.in/img/banner.png" />
+    <meta property="og:image:secure_url" content="https://teeshopper.in/img/banner.png" />
+    //- <meta property="og:url" content="https://teeshopper.in/" />
+    <link rel="shortcut icon" type="image/png" href="img/icon.png" />
+    <link rel="image_src" type="image/png" href="https://teeshopper.in/img/banner.png" />
+    <meta name="theme-color" content="#ee2761" />
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Droid+Serif|Lora|Manuale|PT+Serif|Marko+One|Ultra&display=swap" rel="stylesheet">
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css')
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tags.css" type="text/css">
+    //- <!-- <link rel="manifest" href="/manifest.json" /> -->
+</head>
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Montserrat" rel="stylesheet">
+
+//- /js/jscolor.js
+<script src="/js/jquery-latest.js"></script>
+<title>Start Designing T-Shirts Online</title>
+
+<body style="padding-right: 0px;">
+    <div id="fb-root"></div>
+    include _header
+     
+    script(src="./js/jquery-latest.js")
+    script(src="./js/forall.js")
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4" style="padding-right:30px">
+                <div id="inputs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#text" style="">Add Text</a></li>
+                        <li><a data-toggle="tab" href="#img" style="">Browse Art</a></li>
+                    </ul>
+
+                    <div class="tab-content" style="margin-bottom:5px;">
+                        <div id="text" class="tab-pane fade in active">
+                            <br />
+                            <button id="addText" class="btn btn-primary btn-block">Add Text</button>
+                            <br />
+                            <input type="text" id="changeText" class="form-control" placeholder="Write Your Text Here" />
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-8 col-md-8">
+                                    <input type="color" id="colorChooser" class="form-control" value="000000" style="padding: 0; border: none;" >
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <select id="fontSize" class="form-control">
+                                        <option>12px</option>
+                                        <option>14px</option>
+                                        <option>16px</option>
+                                        <option>18px</option>
+                                        <option>20px</option>
+                                        <option>22px</option>
+                                        <option>24px</option>
+                                        <option>26px</option>
+                                        <option>28px</option>
+                                        <option>30px</option>
+                                        <option>32px</option>
+                                        <option>34px</option>
+                                        <option>36px</option>
+                                        <option>38px</option>
+                                        <option>40px</option>
+                                        <option>42px</option>
+                                        <option>44px</option>
+                                        <option>46px</option>
+                                        <option>48px</option>
+                                        <option>50px</option>
+                                        <option>55px</option>
+                                        <option>60px</option>
+                                        <option>65px</option>
+                                        <option>70px</option>
+                                        <option>75px</option>
+                                        <option>80px</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-8 col-md-8">
+                                    <div class="well well-sm" id="fontFamilySel">Font</div>
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <button id="bold" ontype="false" class="btn btn-default"><b>B</b></button>
+                                    <button id="italics" ontype="false" class="btn btn-default"><i>I</i></button>
+                                </div>
+                            </div>
+                            <div id="more_design_tool" class="collapse">
+                                <label for="textPadding" style="">Choose Background Color & Padding</label>
+                                <div class="row">
+                                    <div class="col-sm-8 col-md-8">
+                                        <select class="form-control" id="textPadding">
+                                            <option>No Background</option>
+                                            <option>0px</option>
+                                            <option>2px</option>
+                                            <option>3px</option>
+                                            <option>4px</option>
+                                            <option>5px</option>
+                                            <option>6px</option>
+                                            <option>7px</option>
+                                            <option>8px</option>
+                                            <option>9px</option>
+                                            <option>10px</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4">
+                                        <input type="color" id="backgroundColorChooser" class=" form-control" value="000000" style="padding:0; border: none;">
+                                    </div>
+                                </div>
+                                <br />
+                                <label for="slidecontainer" style="font-family: Source Sans Pro, sans-serif;">Rotate</label>
+                                <div class="row">
+                                    <div class="col-sm-8 col-md-8">
+                                        <div class="slidecontainer" id="slidecontainer" style="margin-top:10px;">
+                                            <input type="range" min="-180" max="180" value="0" class="slider" id="myRange">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4">
+                                        <input type="text" id="rotate_val" class="form-control range_value" value="0" />
+                                    </div>
+                                </div>
+                                <br />
+
+                                <label for="slidecontainer_textspacing" style="font-family: Source Sans Pro, sans-serif;">Letter Spacing</label>
+                                <div class="row">
+                                    <div class="col-sm-8 col-md-8">
+                                        <div class="slidecontainer" id="slidecontainer_textspacing" style="margin-top:10px;">
+                                            <input type="range" min="0" max="50" value="0" class="slider range_value" id="myRange_textspacing">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4">
+                                        <input type="text" id="rotate_val_textspacing" class="form-control" value="0" />
+                                    </div>
+                                </div>
+                                <br />
+
+                                <div class="row" style="display:none;">
+                                    <div class="col-sm-8 col-md-8">
+                                        <div style="margin-top: 20px;">
+                                            <label style="font-family: Source Sans Pro, sans-serif;">Snapping</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4" style="margin-top:20px;">
+                                        <select class="form-control" id="snapping_checkbox">
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br />
+
+                            </div>
+                            <center><a href="#more_design_tool" data-toggle="collapse" style="color:#ff3f6c; text-decoration:none;" id="more_design_tool_href"><span class="glyphicon glyphicon-chevron-down"></span> More Tools</a></center>
+                            <br />
+                        </div>
+                        <div id="img" class="tab-pane fade">
+                            <br />
+                            <input type="file" id="addImage" class="form-control"></input>
+                            <br />
+                            //- <center><button id="chooseArt" class="btn btn-success btn-block" data-toggle="modal" data-target="#artwork"><i class="glyphicon glyphicon-picture"></i> Browse Artwork</button></center> 
+                            <br /> 
+                            <label for="slidecontainer_textspacing" style="font-family: Source Sans Pro, sans-serif;">Image Size</label>
+                            <div class="row">
+                                <div class="col-sm-8 col-md-8">
+                                    <div class="slidecontainer" id="slidecontainer_textspacing" style="margin-top:10px;">
+                                        <input type="range" min="5" max="50" value="5" class="slider range_value" id="myRange_size">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <input type="text" id="rotate_val_size" class="form-control" value="5" />
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+
+                </div>
+                <button type="button" class="btn btn-danger" id="delElem" style="display: none; margin-bottom: 20px;">Delete <i style="color:#fff; margin-left:5px;" class="glyphicon glyphicon-trash"></i></button>
+                <button id="screenshot" style="display:none;">Screenshot</button>
+                <!-- design_sidebar -->
+
+            </div>
+            <div class="col-lg-5 col-md-5" id="product" style="position:relative; background-color: #ffffff; background-image: url('product_img/tshirt_front.png'); background-position: center center; background-repeat: no-repeat; height:600px; width:485px; background-size:cover;">
+                <hr style="top:40%; left:0%; width:100%; height:0.03em; position:absolute;" data-html2canvas-ignore="true">
+                </hr>
+                <hr style="top:-3%; left:50%; width:1px; height:100%; position:absolute;" data-html2canvas-ignore="true">
+                </hr>
+                <div id="productDiv" style="overflow:hidden; position:absolute; border:1px solid transparent; width:210px; height:270px; top:110px; left:135px;">
+
+                </div>
+            </div>
+
+            //- tshirt(height 300, top 110, width 219, left:115) | hoodie(height 200, top 150, width 210, left 120) | polo(height 280, top 180, width 210, left 130)
+            <div class="col-lg-3 col-md-3" style="padding-left:30px">
+                <div  style="user-select: none; display: flex; justify-content: space-between; align-items: center;" id="chooseProduct" class="form-control" onmousedown="(function(e){ e.preventDefault(); })(event, this)" onClick="javascript:$('#productModal').modal('show');">
+                    | Unisex T-Shirt <i class="bi bi-chevron-down"></i>
+                    
+                </div>
+                <br />
+                <div id="product_color_chooser">
+                    <div style="background:#ffffff; box-shadow: 0 0 0 1px #e8666d;"></div>
+                    <div style="background:#5f0202;"></div>
+                    <div style="background:#1e1f21;"></div>
+                    <div style="background:#787971;"></div>
+                    <div style="background:#2638b4;"></div>
+                    <div style="background:#ca1b2c;"></div>
+                    <div style="background:#87ceeb;"></div>
+                    <div style="background:#ffef77;"></div>
+                    <div style="background:#46c262;"></div>
+                    <div style="background:#232742;"></div>
+                    <div style="background:#f490b6"></div>
+                    <div style="background:#bdb0d0;"></div>
+                    <div style="background:#453E2F;"></div>
+                    <div style="background:#f0651b"></div>
+                    <div style="background:#22607C"></div>
+                </div>
+                <br />
+                <div class="btn-group" id="sideViewOpt">
+                    <button id="frontSide" class="btn changeView btn-toggle">Front</button>
+                    <button id="backSide"  class="btn changeView btn-default">Back</button>
+                </div>
+                <br /><br />
+                <h4 style="color:#808080; margin-bottom:0px;">Cost <a href="#" data-toggle="tooltip" title="You can sell this apparel above this base price. This Includes shipping cost."><span class="glyphicon glyphicon-info-sign" style="color:black;"></span></a></h4>
+                <p id="base_cost" style="margin-top:3px; font-size:20px;display:inline-block;">800</p>
+                <br>
+                <select onclick="clickChange()" id="cost-selector" style="width: 100%; padding: 0.5rem; width: 100%; padding: 0.5rem; outline: none; border-color: #cccccc; border-width: 2px; border-radius: 0.4rem;">
+                    each values in changePrice
+                        option(value=`${values.price}`)= values.type
+                </select>
+                <br>
+                <br>
+
+                if user
+                    if user.role === 'admin'
+                        <button id="sellThisAdmin" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#desc" style=" font-size:15px;">Proceed To Order</button>
+                        <div class="modal fade" id="desc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="product-details-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Product Details</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="ptitle">Title <a href="#" data-toggle="tooltip" title="A Good Title can rank up your design in Google search."><span class="glyphicon glyphicon-info-sign" style="color:black;"></span></a></label>
+                                        <input type="text" id="ptitle" class="form-control"  placeholder="Your Design Name | Half Sleeve T-Shirt" style="" />
+                                        <br />
+                                        <label for="pdescription">Description</label>
+                                        <textarea id="pdescription" class="form-control"  placeholder="Tell more about your design and product. It will be visible to buyer so make it interesting and catchy. (Max 400 letters, 2 Lines minimum)" style=""></textarea>
+                                        <br />
+                                        <label for="my-tag-list">Search Keywords (Max 5) <small>Press enter after writing your tag. <a  href="https://teeshopper.in/blog/how-to-add-tag-to-your-product-design/"  target="_blank">Help?</a></small></label>
+                                        <div id="my-tag-list" class="tag-list bootstrap-tags bootstrap-3" style="padding-bottom: 22px;">
+                                            <div class="tags"></div>
+                                            <input type="text" id='tags' class="form-control tags-input input-md"  placeholder="eg: anime,naruto,dragon-ball-Z,one-piece"  style="padding-left: 5px; padding-top: 0px; padding-right: 5px;">
+                                            <ul class="tags-suggestion-list dropdown-menu" style="display: none;"></ul>
+                                        </div>
+                                        <label for="choose_product_color">Choose Colors <a href="#" data-toggle="tooltip"  title="Choose colors for your product so that buyers can have multiple color option. You can select only one color also."><span class="glyphicon glyphicon-info-sign" style="color:black;"></span></a></label>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div id="choose_product_color">
+                                                    <div style="background:#ffffff;" choosen="false"></div>
+                                                    <div style="background:#7e273a;" choosen="false"></div>
+                                                    <div style="background:#1e1f21;" choosen="false"></div>
+                                                    <div style="background:#787971;" choosen="false"></div>
+                                                    <div style="background:#2638b4;" choosen="false"></div>
+                                                    <div style="background:#ca1b2c;" choosen="false"></div>
+                                                    <div style="background:#2995f8;" choosen="false"></div>
+                                                    <div style="background:#ffef77;" choosen="false"></div>
+                                                    <div style="background:#46c262;" choosen="false"></div>
+                                                    <div style="background:#232742;" choosen="false"></div>
+                                                    <div style="background:#f490b6;" choosen="false"></div>
+                                                    <div style="background:#bdb0d0;" choosen="false"></div>
+                                                    <div style="background:#453E2F;" choosen="false"></div>
+                                                    <div style="background:#F0651B;" choosen="false"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6" id="product_color_demo"> </div>
+                                        </div>
+                                        <br />
+                                        <label for="chooseUrlInput">Choose Your Product URL <a href="#" data-toggle="tooltip"  title="This will be the link where you will send buyers to view and buy product."><span  class="glyphicon glyphicon-info-sign" style="color:black;"></span></a></label>
+                                        <div class="input-group" id="chooseUrlInput">
+                                            <span class="input-group-addon">https://teeshopper.in/products/</span>
+                                            <input id="chooseUrl" type="text" class="form-control" placeholder="rockstar-tshirt-design" />
+                                            <span class="input-group-addon" id="urlOkey">&#x2717; Empty</span>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <tr>
+                                                            <td>Base Price</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p id="basePrice">&#8377;399/-</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <tr>
+                                                            <td>Markup Price <a href="#" data-toggle="tooltip" title="Set price as per your effort you put for this product design. Your profit will be whatever amount you set above base price that is (Markup Price - Base Price)."><span  class="glyphicon glyphicon-info-sign"  style="color:black;"></span></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="number" class="form-control"  placeholder="Write above Base Price" id="markupPrice" /></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <tr>
+                                                            <td>Selling Price <a href="#" data-toggle="tooltip"  title="This is final selling price (GST Inclusive). It will not affect your profit."><span class="glyphicon glyphicon-info-sign"  style="color:black;"></span></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p id="sellingPrice">&#8377;0/-</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <center>
+                                            <p id="profitEstimate">Your Profit estimate &#8377;0 per sale.</p>
+                                        </center>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <span class="form-control-static pull-left"><span id="statustxt1"></span></span>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="saveProductDesign">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    else 
+                        <button id="sellThis" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#desc" style=" font-size:15px;">Proceed To Order</button>
+                //- <!-- dispaly facebook -->
+                //- <div class="fb-page" data-href="https://www.facebook.com/TeeShopperIndia" data-small-header="false"
+                //- data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                //- <blockquote cite="https://www.facebook.com/TeeShopperIndia" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TeeShopperIndia">TeeShopper - Design &amp; Sell Online</a>
+                //- </blockquote>
+                //- </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="modal fade" id="fontModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="font-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Choose Font</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="fontFamily" class="form-control">
+                        <option>Serif</option>
+                        <option>Sans Serif</option>
+                        <option>Display</option>
+                        <option>Hand Writing</option>
+                        <option>Monospace</option>
+                    </select>
+                    <div style="padding:10px;" id="fontFamilyBox">
+                        <p style="font-family: Lora, serif;">Lora</p>
+                        <p style="font-family: Cinzel, serif;">Cinzel</p>
+                        <p style="font-family: Manuale, serif;">Manuale</p>
+                        <p style="font-family: PT Serif, serif;">PT Serif</p>
+                        <p style="font-family: Droid Serif, serif;">Droid Serif</p>
+                        <p style="font-family: Marko One, serif;">Mark One</p>
+                        <p style="font-family: Ultra, serif;">Ultra</p>
+                        <p style="font-family: Days28Later;">28 Days Later</p>
+                        <p style="font-family: Base02;">Base 02</p>
+                        <p style="font-family: Distress;">Distress</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="form-control-static pull-left"></span>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <center>
+            <div class="modal-dialog" role="document" style="width:100%; margin:0px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="choose-product-close close" data-dismiss="modal" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Choose Product</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container" style="padding-top:20px; padding-left:10px; padding-right:10px; padding-bottom:20px;">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/hsrn_tshirt_front.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">Unisex Half Sleeve T-Shirt</p>
+                                        <span style="font-size: 10px; color: #afafaf;">Slim fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="hsrn_tshirt">Select</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/women_tee_front.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">Women Half Sleeve T-Shirt</p>
+                                        <span style="font-size: 10px; color: #afafaf;">Slim fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="women_tee">Select</button>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/full_sleeve_front.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">Full Sleeve T-Shirt</p>
+                                        <span style="font-size: 10px; color: #afafaf;">Classic fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="full_sleeve">Select</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/women_full_sleeve_front.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">Women Full Sleeve T-Shirt</p>
+                                        <span style="font-size: 10px; color: #afafaf;">Classic fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="women_full_sleeve">Select</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/v_neck_front.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">V-Neck Half Sleeve T-Shirt</p>
+                                        <span style="font-size: 10px; color: #afafaf;">Slim fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="v_neck">Select</button>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/hoodie_front.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">Unisex Hoodie</p>
+                                        <span style="font-size: 10px; color: #afafaf;">Relaxed fit, 80% Combed Ringspun Cotton, Bio-wash</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="hoodie">Select</button>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/sweatshirt_front.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">Unisex Sweatshirt</p>
+                                        <span style="font-size: 10px; color: #afafaf;">Relaxed fit, 80% Combed Ringspun Cotton, Bio-wash</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="sweatshirt">Select</button>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/tank_front.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">Unisex Tank Top</p>
+                                        <span style="font-size: 10px; color: #afafaf;">Classic fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="tank">Select</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/kids_front.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">Kid Half Sleeve T-Shirt</p>
+                                        <span style="font-size: 10px; color: #afafaf;">Relaxed fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="kids">Select</button>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/oversize_tshirt_front.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">Oversized T-Shirt</p>
+                                        <span style="font-size: 10px; color: #afafaf;">Classic fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="oversize_tshirt">Select</button>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/joggers_front.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">Joggers</p>
+                                        <span style="font-size: 10px; color: #afafaf;">Regular fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="joggers">Select</button>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="productCard">
+                                        <center>
+                                            <img src="product_img/throw_pillow.png" style="width:200px;" />
+                                        </center>
+                                        <p style="margin:0 0 5px">Throw Pillow</p>
+                                        <span style="font-size: 10px; color: #afafaf;">100% Polyester</span><br />
+                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="throw_pillow">Select</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+</body>
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+//- <script type="text/javascript" src="js/html2canvas.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js" integrity="sha512-LUKzDoJKOLqnxGWWIBM4lzRBlxcva2ZTztO8bTcWPmDSpkErWx0bSP4pdsjNH8kiHAUPaT06UXcb+vOEZH+HpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="/js/jscolor.js"></script>
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/design.js"></script>
+
+
+</html>

@@ -1,0 +1,133 @@
+extends base
+
+block content
+    script(src="./js/jquery-latest.js")
+    script(src="./js/forall.js")
+    main.heroSection
+        .heroContent
+            div
+                p.design The easy way to design and sell t-shirts online
+                hr.main-hr
+                p.production
+                    | We do production, shipping and customer service -
+                    | and you keep the profit!
+
+                .button-div
+                    button(onclick="window.location.assign(`/design`)" style="cursor: pointer;").heroBtn GET STARTED
+        .heroImage
+            img(src='https://teeshopper.in/img/background-img.jpg' alt='')
+    section.made-by-creators
+        br
+        br
+        h1 Our Products
+        .made-by-creator-container
+            each productAdmin in adminDesign
+                .made-by-creators-div
+                    .product-image
+                        img(src=`./images/product/upload/tshirt/front/${productAdmin.front}.png` alt='')
+                    hr.hr
+                    .product-information
+                        br
+                        p= productAdmin.title
+                        br
+                        br
+                        .product-price-and-buy(style="display: flex; align-items: baseline;")
+                            //- - let price = &#x930;&#x941;&lrm
+                            p.price= productAdmin.price
+                            a(href=`product/${productAdmin.slug}`)
+                                button.buy-button BUY
+                        br
+
+
+    //- section.made-by-creators
+    //-     br
+    //-     br
+    //-     h1 Designed By User 
+    //-     .made-by-creator-container
+    //-         each product in productData
+    //-             .made-by-creators-div
+    //-                 .product-image
+    //-                     img(src=`./images/product/upload/tshirt/front/${product.front}.png` alt='')
+    //-                 hr.hr
+    //-                 .product-information
+    //-                     br
+    //-                     p= product.title
+    //-                     br
+    //-                     br
+    //-                     .product-price-and-buy(style="display: flex; align-items: baseline;")
+    //-                         //- - let price = &#x930;&#x941;&lrm
+    //-                         p.price= product.price
+    //-                         a(href=`product/${product.slug}`)
+    //-                             button.buy-button BUY
+    //-                     br
+
+    br
+    br
+    br
+    section.trust-section
+        br
+        .trust-text
+            p.trust-text Trusted by Millions
+        br
+        br
+        .trust-count
+            .merch
+                .numbers
+                    p 000+
+                .number-heading
+                    p Total Merch
+
+            .merch
+                .numbers
+                    p 000+
+                .number-heading
+                    p Might Be anything
+
+            .happy-user
+                .numbers
+                    - let totaluser = totalUsers.length;
+                    if totaluser<10 
+                        p= `00${totaluser}+`
+                    else if totaluser<100
+                        p= `0${totaluser}+`
+                    else
+                        p= `${totaluser}+`
+
+                .number-heading
+                    p Happy customer
+    br
+    br
+    br
+    br
+    section.fast-delivery-img
+        img(src='./../images/fast_delivery.png' alt='')
+    br
+    section.contact-us-today
+        p Contact Us Today!
+    section.contact-form
+        .location-information
+            .title-continer.Address(style= "width: fit-content; text-align:center;")
+                .contact-title(style= "margin-bottom: 2.5rem;") Contact Us 
+                .contact-sologon(style= "margin-bottom: 1.5rem; font-size: 17px; width: 26rem") We are ready to convert your dream into reality. Just get in Touch with us! 
+                .location-icon(style= "margin-bottom: 1.5rem;") <i class="bi bi-geo-alt-fill"></i>
+                .address-detail Salarpuria Tower -1, No. 22,
+                //- .address-house-no Salarpuria Tower -1, No. 22, 
+                .address-road Forum Mall, Hosur Rd, 7th Block,
+                .district Koramangala, Bengaluru,
+                .state Karnataka 560095
+                .whatsapp(onClick="window.location.assign('/')" style="cursor: pointer; margin-top: 2.5rem ") 
+                    i(class="bi bi-whatsapp" style="font-style:initial;") &nbsp +977 9800009000
+                .whatsapp(onClick="window.location.assign('/mail')" style="cursor: pointer; margin-bottom: 2.5rem") 
+                    | @teeshopper@mail.com
+
+
+        .form-section
+            .title-continer
+                p.form-title Leave a message
+            .information-fillup
+                input(type='text' name='' id='' placeholder='name' style="padding-left:.5rem;")
+                input(type='email' name='' id='' placeholder='email' style="padding-left:.5rem;")
+                input(type='number' name='' id='' placeholder='number' style="padding-left:.5rem;")
+                textarea(name='' id='' cols='30' rows='10' placeholder='message' style="height: 10vh; padding-left:.5rem;")
+                button.contact-submit(type='submit') Submit
+    script(src='./../js/index.js')

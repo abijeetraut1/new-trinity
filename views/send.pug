@@ -1,0 +1,27 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  title project-11
+  link(rel='preconnect' href='https://fonts.googleapis.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+  link(href='https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;800&display=swap' rel='stylesheet')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css' integrity='sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==' crossorigin='anonymous' referrerpolicy='no-referrer')
+  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css')
+  link(rel='stylesheet' href='./css/style.css')
+
+  include _header 
+  script(src="./js/jquery-latest.js")
+  script(src="./js/forall.js")
+  main.main(style="display:flex; align-items: center; justify-content:center;")
+    .send
+      .send__title(style="display:flex; align-items: center; justify-content:center; flex-direction:column; text-align:center;")
+        img#gifimage(src="./images/shipping.gif" alt="")
+
+        h2(style="color:#ababab; font-size:2.5rem;") 
+          | product is on the way 
+        div 
+          a(href="/" style="font-size:2.5rem;")  Home
+  script(src="./js/jquery-latest.js")
+  script(src="./js/index.js") 

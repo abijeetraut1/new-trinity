@@ -1,0 +1,54 @@
+extends base
+
+block content
+    script(src="./js/jquery-latest.js")
+    script(src="./js/forall.js")
+    .form-bg.form-color-primary
+        #loginDiv.form-card
+            h2.form-heading Login
+            .form-body
+                .form-switch
+                    span#btn-login.btn-login Login
+                    span#btn-signUp.btn-signUp Signup
+                form
+                    .css-form-control
+                        .form-control-icon
+                            i.fa-solid.fa-envelope
+                        input.form-input-text.login-email(type='email' id='email' name='email' placeholder='Email')
+                    .css-form-control
+                        .form-control-icon
+                            i.fa-solid.fa-lock
+                        input.form-input-text.login-password(type='password' id='password' name='password' placeholder='Password')
+                    .css-form-control
+                        input#remenber.form-input-checkbox(type='checkbox' name='remember')
+                        label(for='remember') Remember Me
+                    .css-form-control
+                        div.btn-form-submit.btn-success Login
+                    .css-form-control
+                        span
+                            a.form-color-primary(href='#') Forget Password
+
+        #signUpDiv.form-card
+            h2.form-heading Sign Up
+            .form-body
+                .form-switch
+                    span#toLogin.btn-login Login
+                    span#btn-signUp.btn-signUp Signup
+                form
+                    .css-form-control
+                        .form-control-icon
+                            i.fa-solid.fa-user
+                        input.form-input-text.signup-name(type='Name' id='name' name='name' placeholder='Name')
+                    .css-form-control
+                        .form-control-icon
+                            i.fa-solid.fa-envelope
+                        input.form-input-text.signup-email(type='email' id='email' name='email' placeholder='Email')
+                    .css-form-control
+                        .form-control-icon
+                            i.fa-solid.fa-lock
+                        input.form-input-text.signup-password(type='password' id='password' name='password' placeholder='Password')
+                    .css-form-control
+                        input#remenber.form-input-checkbox(type='checkbox' name='remember')
+                        label(for='remenber') Remember Me
+                    .css-form-control
+                        div.btn-form-submit.btn-success Sign Up

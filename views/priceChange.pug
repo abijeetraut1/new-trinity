@@ -1,0 +1,29 @@
+extends dashbase
+
+block contentDash
+    script(src="./js/jquery-latest.js")
+    script(src="./js/forall.js")
+    .content
+        //- include _header
+        nav.navbar.navbar-expand.bg-light.navbar-light.sticky-top.px-4.py-0
+            a.sidebar-toggler.flex-shrink-0(href='#')
+                i.fa.fa-bars
+        // navigation ya aauxa
+
+        // Sale & Revenue Start
+        .container-fluid.pt-4.px-4
+            each price in changePrice
+                .container-fluid.pt-4.px-4
+                    .row.pt-4.class-align-items.d-flex(style="padding : 0 2rem; font-size: 1.2rem;")
+                        .container-of-name-and-image.d-flex.align-items-center.justify-content-space-between
+                            .image-of-container
+                                h4#name(style="font-size: 1.1rem; ")= price.type
+
+                        .container-of-name-and-text.d-flex.justify-content-space-around
+                            .image-of-container.d-flex.justify-content-center.align-items-center(style='height: 15vh; padding: 1rem 1rem;')
+                                input.no-of-order#price-no(type="number" style="padding: 0 .5rem; font-size: 1.1rem;" value=`${price.price}`)
+
+                        .container-of-name-and-text.d-flex.justify-content-space-around
+                            .image-of-container.d-flex.justify-content-center.align-items-center(style='height: fit-content; padding: 1rem 1rem;')
+                                button.send-of-order#save-price Save Price
+                                p#item-id(style="display:none;")=price._id

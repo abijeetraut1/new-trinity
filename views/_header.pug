@@ -1,0 +1,75 @@
+header.header(style="z-index: 20")
+  .logo
+    img(src='https://icms-image.slatic.net/images/ims-web/458d4688-ae26-4e6d-8f39-c26194de228a.png' width='35%' alt='' onclick="window.location.assign(`/`)" style="cursor: pointer;")
+
+
+  nav.navBar
+    li.account(style="list-style: none; margin-right: 2rem;")
+      if !user
+        a(href='' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") 
+      else if user
+        span#userid(style="display:none;")= user.id
+        if user.role === 'admin'
+          a#for-admin-only(href='/dashboard-arrived' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Admin Pannel
+          //- a(href='/dashboard-arrived' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Admin Pannel
+    div
+      .content-border
+        input#search(type='text' name='search' placeholder='search' style='outline: none; border: transparent; padding-left: 1rem;')
+        button#search-button.button(style='cursor: pointer; height: 100%; width: fit-content; padding: 0 .5rem 0 .5rem;')
+          i.bi.bi-search
+    ol(style="margin-bottom: 0;")
+      li
+        a(href='/design' style="margin-left: 2rem; color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Design
+      li.account.display-logout-btn
+        if user
+          a#loged-in(style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;")= user.name 
+            i(class="bi bi-chevron-down" style=`margin-left:.5rem`)
+          div#logout.Logout.logout-active(style="cursor: pointer; text-align: center; padding:1rem;  color:#ff3f6c; position: absolute; backgroundColor: #f3f6f9; width: fit-content;" onclick="logout()") Log Out
+        else if(!user)
+          a(href='/login' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;") Account 
+            i(class="bi bi-chevron-down" style="margin-left:.5rem")
+
+      li.cart
+        a(href='/add-to-cart').add-cart
+          div(class="bulb" style="height: 11px;width: 11px;border-radius: 5rem; position: absolute;")
+          i.bi.bi-bag
+
+  .mobile-nav
+    .add-cart
+      i.bi.bi-bag
+    .ham-menu
+      i.bi.bi-list
+      div(class="bulb" style="height: 11px;width: 11px;border-radius: 5rem;position: absolute;")
+
+// display only clicked
+if user
+  if user.role === 'admin'
+    a#mobile-only(href='/dashboard-arrived' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;")
+      div Admin Pannel
+nav.hidden-part.isHidden(style="overflow:hidden;")
+  hr
+  .hidden-search(style='margin: 1rem; font-size: 2.2rem')
+    .content-border
+      input#search(type='text' name='search')
+      a(href="#") 
+        button.button(style='height: 100%; ')
+          i.bi.bi-search
+  hr
+  .hidden-account-text(style="padding-left: 2.5rem; ")
+    if !user 
+      a(style='height: 100%; margin: 1rem; ' href="/Login")  My Account
+      br
+    else if user
+      a#user-account(style='height: 100%; margin: 1rem; ')
+        div= user.name
+      br
+      a.display#logout(style='height: 100%; margin: 1rem;')
+        div Logout
+      br
+
+<div class="extracting-design" style="display:none; justify-content: center;" >
+  div(style="background-color:#ccd3cc; padding: .5rem 10%; border-radius: 1.2rem; position:absolute;top:0;" )
+    <p> please wait we're extracting your designs....</p>
+</div>
+
+script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js") 
