@@ -609,9 +609,9 @@ ol .cart {
 }
 
 @media screen and ((max-width: 800px)) {
-     * {
+    /* * {
         overflow-x: hidden;
-    } 
+    } */
 
     .bi-list,
     .bi-bag {
