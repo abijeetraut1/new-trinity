@@ -52,6 +52,26 @@ head
                         | class="size">XXL</div>
                 </div>
 
+                div.payment
+                    br
+                    .payment-container
+                        p.payment-text Summary
+                        hr
+                        .image-name-size-display.total-payable
+                            div
+                                img#designImageDisplay(src=`` alt=`cannot find the image` height='100vh')
+                                label#material(for='price')= `800` 
+                            .price-tag
+                                label#item-price(for='price')= 800
+                        
+                    .payment-container
+                        .delivery-section
+                            label(for='referralCode') Referral Code 
+                            input#referralCode(type="text", name="referralCode" style="padding-left: .4rem;  font-weight: bold; height: 3vh")
+                        div 
+                            button#apply-referral-code(type="submit" style=" cursor: pointer; letter-spacing: 1px; font-size: 1.1rem; border-radius: .4rem; background: #ff3f6c; border-top-color: transparent; border-left-color: transparent; transparent; width: 100%; color: white; height: 5vh") 
+                                | Apply Referral Code
+
 
             .checkout-product-display
                 label.bold-text Payment
@@ -60,24 +80,25 @@ head
                 br
                 .payment-container
                     p.payment-text Payment
-                    button.place-order#directDesignPlaceOrder Place Order
+                    hr
+                    p.payment-text Esewa
+                    img(src="./../../images/esewa.jpeg", alt="" style="height:80%; width:80%")
+                    
                 br
                 .payment-container
-                    p.payment-text Summary
-                    hr
-                    .image-name-size-display.total-payable
-                        div
-                            img#item-img(src=`` alt=`please reload` height='100vh')
-                        .price-tag
-                            label(for='material')= viewPrice.type
-                    hr
                     .delivery-section
-                        label(for='delivery-charge-text') Total Cost 
-                        label#material-price.price(for='price')= viewPrice.price
+                            label(for='delivery-charge-text') Delivery 
+                            label.price(for='price') Free
                     hr
-                    .delivery-section
-                        label(for='delivery-charge-text') Delivery 
-                        label.price(for='price') Free
+                    div
+                        label Payment Proof
+                        div 
+                            br
+                            input#payment-proof(type="file", name="")
+                    br
+                    hr
+                    .total-payable(style="display:flex")
+                            button.place-order#directDesignPlaceOrder(style="letter-spacing: 1px;") Place Order
 
 
 
