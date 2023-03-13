@@ -23,7 +23,8 @@ exports.homepage = async (req, res, next) => {
     const totalUsers = await user.find().limit(4);
     res.status(200).render('landing.pug', {
         adminDesign,
-        totalUsers
+        totalUsers,
+        title: 'home'
     });
 }
 
@@ -34,12 +35,15 @@ exports.buypage = async (req, res, next) => {
     });
     console.log(products)
     res.status(200).render('slugView.pug', {
-        products
+        products,
+        title: products.title
     });
 }
 
 exports.login = async (req, res, next) => {
-    res.status(200).render('loginFrom.pug');
+    res.status(200).render('loginFrom.pug', {
+        title: 'Account'
+    });
 }
 
 exports.orderPage = async (req, res, next) => {
@@ -132,7 +136,8 @@ exports.search = async (req, res, next) => {
     });
     // console.log('searched', searchItem)
     res.status(200).render('search.pug', {
-        searchDesign
+        searchDesign,
+        title:req.query.params
     })
 }
 
