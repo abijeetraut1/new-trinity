@@ -164,16 +164,29 @@ if ($('#apply-referral-code')[0]) {
         })
 
         if (applyRefer.data.status === 'success') {
-            if (count < 1) {
-                if (applyRefer.data.checkUser.activateReferral === true || applyRefer.data.checkUser.activateReferral) {
-                    $("#total-price")[0].innerText = ($("#total-price")[0].innerText * 1) - ($("#total-price")[0].innerText * 1 / 100 * applyRefer.data.checkUser.cutoff);
-                    $("#item-price")[0].innerText = ($("#item-price")[0].innerText * 1) - ($("#item-price")[0].innerText * 1 / 100 * applyRefer.data.checkUser.cutoff);
-                    count++;
+            if((window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[2] === "order")){
+                if (count < 1) {
+                    if (applyRefer.data.checkUser.activateReferral === true || applyRefer.data.checkUser.activateReferral) {
+                        $("#item-price")[0].innerText = ($("#item-price")[0].innerText * 1) - ($("#item-price")[0].innerText * 1 / 100 * applyRefer.data.checkUser.cutoff);
+                        count++;
+                    } else {
+                        alert("code did not matched");
+                    }
                 } else {
-                    alert("code did not matched");
+                    alert("already applied");
                 }
-            } else {
-                alert("already applied");
+            }else {
+                if (count < 1) {
+                    if (applyRefer.data.checkUser.activateReferral === true || applyRefer.data.checkUser.activateReferral) {
+                        $("#total-price")[0].innerText = ($("#total-price")[0].innerText * 1) - ($("#total-price")[0].innerText * 1 / 100 * applyRefer.data.checkUser.cutoff);
+                        $("#item-price")[0].innerText = ($("#item-price")[0].innerText * 1) - ($("#item-price")[0].innerText * 1 / 100 * applyRefer.data.checkUser.cutoff);
+                        count++;
+                    } else {
+                        alert("code did not matched");
+                    }
+                } else {
+                    alert("already applied");
+                }
             }
         } else {
             alert("code did not matched");
@@ -182,73 +195,72 @@ if ($('#apply-referral-code')[0]) {
     })
 }
 
-if ((window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[2] === "order")) {
+// if ((window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[2] === "order")) {
+//     // function to change color and remove the previous color 
+//     const choose_size = document.querySelectorAll('.size');
 
-    // function to change color and remove the previous color 
-    const choose_size = document.querySelectorAll('.size');
+//     buttonColor = (onlyClick, className) => {
+//         onlyClick.forEach(el => {
+//             el.addEventListener('click', e => {
+//                 onlyClick.forEach(ele => {
+//                     if (ele.classList.contains(className)) {
+//                         ele.classList.remove(className)
+//                     }
+//                 })
+//                 return el.classList.toggle(className);
+//             })
+//         })
+//     }
 
-    buttonColor = (onlyClick, className) => {
-        onlyClick.forEach(el => {
-            el.addEventListener('click', e => {
-                onlyClick.forEach(ele => {
-                    if (ele.classList.contains(className)) {
-                        ele.classList.remove(className)
-                    }
-                })
-                return el.classList.toggle(className);
-            })
-        })
-    }
+//     buttonColor(choose_size, 'changeColor');
+//     $('#designImageDisplay')[0].src = sessionStorage.getItem('designedFrontView');
 
-    buttonColor(choose_size, 'changeColor');
-    $('#item-img')[0].src = sessionStorage.getItem('designedFrontView')
+//     if ($("#directDesignPlaceOrder")) {
+//         $("#directDesignPlaceOrder")[0].addEventListener('click', async el => {
+//             const email = $('#order-email')[0].value;
+//             const number = $('#order-number')[0].value;
+//             const name = $('#order-username')[0].value;
+//             const area = $('#order-area')[0].value;
+//             const address = $('#order-address')[0].value;
+//             const city = $('#select')[0].value;
+//             const size = $(".changeColor")[0].innerText;
+//             const front = sessionStorage.getItem('designedFrontView');
+//             const back = sessionStorage.getItem('designedBackView');
+//             const sticker = sessionStorage.getItem('image');
+//             const material = sessionStorage.getItem('material');
 
-    if ($("#directDesignPlaceOrder")) {
-        $("#directDesignPlaceOrder")[0].addEventListener('click', async el => {
-            const email = $('#order-email')[0].value;
-            const number = $('#order-number')[0].value;
-            const name = $('#order-username')[0].value;
-            const area = $('#order-area')[0].value;
-            const address = $('#order-address')[0].value;
-            const city = $('#select')[0].value;
-            const size = $(".changeColor")[0].innerText;
-            const front = sessionStorage.getItem('designedFrontView');
-            const back = sessionStorage.getItem('designedBackView');
-            const sticker = sessionStorage.getItem('image');
-            const material = sessionStorage.getItem('material');
+//             let data = {
+//                 email: email,
+//                 number: number,
+//                 name: name,
+//                 area: area,
+//                 address: address,
+//                 city: city,
+//                 size: size,
+//                 front: front,
+//                 back: back,
+//                 material: material
+//             }
+//             if (sticker != null) {
+//                 data.sticker = sticker;
+//             }
 
-            let data = {
-                email: email,
-                number: number,
-                name: name,
-                area: area,
-                address: address,
-                city: city,
-                size: size,
-                front: front,
-                back: back,
-                material: material
-            }
-            if (sticker != null) {
-                data.sticker = sticker;
-            }
+//             const sendData = await axios({
+//                 method: 'POST',
+//                 url: '/api/v1/product/directorderrecord',
+//                 data
+//             })
 
-            const sendData = await axios({
-                method: 'POST',
-                url: '/api/v1/product/directorderrecord',
-                data
-            })
-
-            if (sendData.data.status === "success") {
-                alert('your order is on the way');
-                sessionStorage.clear();
-                window.location.assign('/');
-            } else {
-                alert('please fill the information carefully')
-            }
-        })
-    }
-}
+//             if (sendData.data.status === "success") {
+//                 alert('your order is on the way');
+//                 sessionStorage.clear();
+//                 window.location.assign('/');
+//             } else {
+//                 alert('please fill the information carefully')
+//             }
+//         })
+//     }
+// }
 
 if (window.innerWidth >= 700) {
     $("#mobile-only").css("display", "none");
@@ -274,7 +286,6 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
     // buttonColor(choose_size, 'changeColor');
 
     if ($("#place-the-order")) {
-
         $("#place-the-order")[0].addEventListener('click', async el => {
             if ($("#payment-proof")[0].files[0]) {
                 const email = $('#order-email')[0].value;
@@ -321,6 +332,80 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
     }
 }
 
+// wait
+if (window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[2] === "order") {
+    $('#designImageDisplay')[0].src = sessionStorage.getItem('designedFrontView');
+    $('#material')[0].innerText = sessionStorage.getItem('material');
+
+    // function to change color and remove the previous color 
+    const choose_size = document.querySelectorAll('.size');
+
+    // buttonColor = (onlyClick, className) => {
+    choose_size.forEach(el => {
+        el.addEventListener('click', e => {
+            choose_size.forEach(ele => {
+                if (ele.classList.contains('changeColor')) {
+                    ele.classList.remove('changeColor')
+                }
+            })
+            return el.classList.toggle('changeColor');
+        })
+    })
+    // }
+
+    // buttonColor(choose_size, 'changeColor');
+
+    if ($("#directDesignPlaceOrder")) {
+        $("#directDesignPlaceOrder")[0].addEventListener('click', async el => {
+            if ($("#payment-proof")[0].files[0]) {
+                const email = $('#order-email')[0].value;
+                const number = $('#order-number')[0].value;
+                const name = $('#order-username')[0].value;
+                const area = $('#order-area')[0].value;
+                const address = $('#order-address')[0].value;
+                const city = $('#select')[0].value;
+                const size = $(".changeColor")[0].innerText;
+                const front = sessionStorage.getItem('designedFrontView');
+                const back = sessionStorage.getItem('designedBackView');
+                const sticker = sessionStorage.getItem('image');
+                const material = sessionStorage.getItem('material');
+                const payment = $("#payment-proof")[0].files[0];
+                const reader = new FileReader();
+                reader.addEventListener('load', async function () {
+                    const base64String = reader.result;
+                    let data = {
+                        email: email,
+                        number: number,
+                        name: name,
+                        area: area,
+                        address: address,
+                        city: city,
+                        size: size,
+                        front: front,
+                        back: back,
+                        material: material,
+                        payment:base64String
+                    }
+                    const sendData = await axios({
+                        method: 'POST',
+                        url: '/api/v1/product/directorderrecord',
+                        data
+                    })
+                    if (sendData.data.status === "success") {
+                        sessionStorage.clear();
+                        window.location.assign('/delivered');
+                    } else {
+                        alert('please fill the information carefully');
+                    }
+                })
+                reader.readAsDataURL(payment);
+            } else {
+                alert("please send the payment proof");
+            }
+        })
+
+    }
+}
 
 if (window.innerWidth <= 700) {
     $("#choose_size").css("overflow", "auto");
