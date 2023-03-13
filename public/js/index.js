@@ -21,30 +21,32 @@ if (window.location.pathname === '/') {
 
 
 if (window.location.pathname === '/login') {
-    $(document).ready(function () {
-        $("#btn-signUp").click(function () {
-            $("#loginDiv").fadeOut(700);
-            $("#signUpDiv").fadeIn();
-        });
-        $("#toLogin").click(function () {
-            $("#signUpDiv").fadeOut(700);
-            $("#loginDiv").fadeIn();
-        });
-    });
+    // $(document).ready(function () {
+    //     $("#btn-signUp").click(function () {
+    //         $("#loginDiv").fadeOut(700);
+    //         $("#signUpDiv").fadeIn();
+    //     });
+    //     $("#toLogin").click(function () {
+    //         $("#signUpDiv").fadeOut(700);
+    //         $("#loginDiv").fadeIn();
+    //     });
+    // });
 
 
+    function changeLogin() {
+        alert("login");
+        $("#loginDiv").fadeOut(700);
+        $("#signUpDiv").fadeIn();
+    }
+    
+    function changeSignup() {
+        alert("signup");
+        $("#signUpDiv").fadeOut(700);
+        $("#loginDiv").fadeIn();
+    }
 
     if (window.innerWidth <= 800) {
 
-        function changeLogin() {
-            $("#loginDiv").fadeOut(700);
-            $("#signUpDiv").fadeIn();
-        }
-
-        function changeSignup() {
-            $("#signUpDiv").fadeOut(700);
-            $("#loginDiv").fadeIn();
-        }
         // document.querySelector(".form-switch").style.overflow = 'none'
         $(".form-switch").css("overflow-x", "none");
 
