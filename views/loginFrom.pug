@@ -4,7 +4,7 @@ block content
     script(src="./js/jquery-latest.js")
     script(src="./js/forall.js")
     .form-bg.form-color-primary
-        #loginDiv.form-card
+        #loginDiv.form-card(onclick="changeLogin()")
             h2.form-heading Login
             .form-body
                 .form-switch
@@ -28,7 +28,7 @@ block content
                         span
                             a.form-color-primary(href='#') Forget Password
 
-        #signUpDiv.form-card
+        #signUpDiv.form-card(onclick="changeSignup()")
             h2.form-heading Sign Up
             .form-body
                 .form-switch
@@ -52,4 +52,6 @@ block content
                         label(for='remenber') Remember Me
                     .css-form-control
                         div.btn-form-submit.btn-success Sign Up
+
+    script(src="./js/jquery-latest.js") 
     script(src="./js/index.js") 
