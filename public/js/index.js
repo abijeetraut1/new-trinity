@@ -13,9 +13,10 @@ if (window.innerWidth === 800) {
 //     margin-left: 0;
 // }
 
-if(window.location.pathname === '/'){
+if (window.location.pathname === '/') {
     // overflow-x: hidden;
     $("body").css("overflow-x", "hidden")
+    $(".form-switch").css("user-select", "none")
 }
 
 
@@ -31,7 +32,19 @@ if (window.location.pathname === '/login') {
         });
     });
 
+
+
     if (window.innerWidth <= 800) {
+
+        function changeLogin() {
+            $("#loginDiv").fadeOut(700);
+            $("#signUpDiv").fadeIn();
+        }
+
+        function changeSignup() {
+            $("#signUpDiv").fadeOut(700);
+            $("#loginDiv").fadeIn();
+        }
         // document.querySelector(".form-switch").style.overflow = 'none'
         $(".form-switch").css("overflow-x", "none");
 
@@ -39,7 +52,7 @@ if (window.location.pathname === '/login') {
         const n_menu = document.querySelector('.ham-menu');
         const hidden_part = document.querySelector('.hidden-part');
 
-    
+
         n_menu.addEventListener('click', function () {
             hidden_part.classList.toggle('isHidden')
         });
@@ -331,7 +344,7 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
 if (window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[2] === "order") {
     $('#designImageDisplay')[0].src = sessionStorage.getItem('designedFrontView');
     $('#material')[0].innerText = sessionStorage.getItem('material');
-    $('.bi-bag').css("font-size", "1.3rem") 
+    $('.bi-bag').css("font-size", "1.3rem")
 
     // function to change color and remove the previous color 
     const choose_size = document.querySelectorAll('.size');
@@ -365,8 +378,8 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
             const sticker = sessionStorage.getItem('image');
             const material = sessionStorage.getItem('material');
             const payment = $("#payment-proof")[0].files[0];
-            
-            if((email === '') && (number === '') && (name === '')  && (area === '') && (address === '') && (city === '') && (size === '')){
+
+            if ((email === '') && (number === '') && (name === '') && (area === '') && (address === '') && (city === '') && (size === '')) {
                 alert('please fill the information carefully');
             }
 
