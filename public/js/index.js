@@ -32,13 +32,22 @@ if (window.location.pathname === '/login') {
     //     });
     // });
 
+    document.getElementById('btn-signUp').addEventListener("click", el => {
+        $("#loginDiv").fadeOut(700);
+        $("#signUpDiv").fadeIn();
+    })
+
+    document.getElementById('toLogin').addEventListener("click", el => {
+        $("#signUpDiv").fadeOut(700);
+        $("#loginDiv").fadeIn();
+    })
 
     function changeLogin() {
         alert("login");
         $("#loginDiv").fadeOut(700);
         $("#signUpDiv").fadeIn();
     }
-    
+
     function changeSignup() {
         alert("signup");
         $("#signUpDiv").fadeOut(700);
