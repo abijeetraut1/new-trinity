@@ -16,6 +16,7 @@ if (window.innerWidth === 800) {
 
 
 if (window.location.pathname === '/login') {
+    alert("hey")
     $(document).ready(function () {
         $("#btn-signUp").click(function () {
             $("#loginDiv").fadeOut(700);
@@ -73,8 +74,6 @@ if (window.location.pathname === '/login') {
                     alert('WRONG PASSWORD OR EMAIL');
                 }
             }
-
-            // console.log('send', sendToDb);
         })
     })
 }
@@ -150,7 +149,7 @@ if ($('#place-the-order')[0]) {
     })
 }
 
-let count = 0;
+const countReferralClick = 0;
 if ($('#apply-referral-code')[0]) {
     $('#apply-referral-code')[0].addEventListener('click', async el => {
         const referralCode = $('#referralCode')[0].value;
@@ -164,23 +163,23 @@ if ($('#apply-referral-code')[0]) {
         })
 
         if (applyRefer.data.status === 'success') {
-            if((window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[2] === "order")){
-                if (count < 1) {
+            if ((window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[2] === "order")) {
+                if (countReferralClick < 1) {
                     if (applyRefer.data.checkUser.activateReferral === true || applyRefer.data.checkUser.activateReferral) {
                         $("#item-price")[0].innerText = ($("#item-price")[0].innerText * 1) - ($("#item-price")[0].innerText * 1 / 100 * applyRefer.data.checkUser.cutoff);
-                        count++;
+                        countReferralClick++;
                     } else {
                         alert("code did not matched");
                     }
                 } else {
                     alert("already applied");
                 }
-            }else {
-                if (count < 1) {
+            } else {
+                if (countReferralClick < 1) {
                     if (applyRefer.data.checkUser.activateReferral === true || applyRefer.data.checkUser.activateReferral) {
                         $("#total-price")[0].innerText = ($("#total-price")[0].innerText * 1) - ($("#total-price")[0].innerText * 1 / 100 * applyRefer.data.checkUser.cutoff);
                         $("#item-price")[0].innerText = ($("#item-price")[0].innerText * 1) - ($("#item-price")[0].innerText * 1 / 100 * applyRefer.data.checkUser.cutoff);
-                        count++;
+                        countReferralClick++;
                     } else {
                         alert("code did not matched");
                     }
@@ -315,13 +314,13 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
                         url: '/api/v1/product/directorderrecord',
                         data
                     })
-
                     if (sendData.data.status === "success") {
                         sessionStorage.clear();
                         window.location.assign('/delivered');
                     } else {
-                        alert('please fill the information carefully')
+                        alert('please fill the information carefully');
                     }
+
                 })
                 reader.readAsDataURL(payment);
             } else {
@@ -336,6 +335,7 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
 if (window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[2] === "order") {
     $('#designImageDisplay')[0].src = sessionStorage.getItem('designedFrontView');
     $('#material')[0].innerText = sessionStorage.getItem('material');
+    $('.bi-bag').css("font-size", "1.3rem") 
 
     // function to change color and remove the previous color 
     const choose_size = document.querySelectorAll('.size');
@@ -384,7 +384,7 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
                         front: front,
                         back: back,
                         material: material,
-                        payment:base64String
+                        payment: base64String
                     }
                     const sendData = await axios({
                         method: 'POST',
