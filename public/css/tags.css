@@ -1,0 +1,729 @@
+/* bootstrap-tags styles */
+.bootstrap-tags.bootstrap-3 .tag a {
+    margin: 0 0 0 .3em;
+}
+
+.bootstrap-tags.bootstrap-3 .glyphicon-white {
+    color: #fff;
+}
+
+.bootstrap-tags.bootstrap-2 .tag.md {
+    padding: .3em .4em .4em;
+}
+
+.bootstrap-tags.bootstrap-2 .tag.lg {
+    padding: .4em .4em .5em;
+}
+
+.bootstrap-tags {
+    position: relative;
+}
+
+.bootstrap-tags .tags {
+    width: inherit;
+    height: 0;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+}
+
+.bootstrap-tags .tag-data {
+    display: none;
+}
+
+.bootstrap-tags .tags-input {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 1.7em;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+}
+
+.bootstrap-tags .tag-list {
+    width: 280px;
+    height: auto;
+    min-height: 26px;
+    left: 2px;
+    top: 2px;
+    position: relative;
+}
+
+.bootstrap-tags .tag {
+    padding: .4em .4em .4em;
+    margin: 0 .1em;
+    float: left;
+}
+
+.bootstrap-tags .tag.sm {
+    padding: .4em .4em .5em;
+    font-size: 12px;
+}
+
+.bootstrap-tags .tag.md {
+    font-size: 14px;
+}
+
+.bootstrap-tags .tag.lg {
+    font-size: 18px;
+    padding: .4em .4em .4em;
+    margin: 0 .2em .2em 0;
+}
+
+.bootstrap-tags .tag a {
+    color: #bbb;
+    cursor: pointer;
+    opacity: .5;
+}
+
+.bootstrap-tags .tag .remove {
+    vertical-align: bottom;
+    top: 0;
+}
+
+.bootstrap-tags ul.tags-suggestion-list {
+    width: 300px;
+    height: auto;
+    list-style: none;
+    margin: 0;
+    z-index: 2;
+    max-height: 160px;
+    overflow: scroll;
+}
+
+.bootstrap-tags ul.tags-suggestion-list li.tags-suggestion {
+    padding: 3px 20px;
+    height: auto;
+}
+
+.bootstrap-tags ul.tags-suggestion-list li.tags-suggestion-highlighted {
+    color: white;
+    text-decoration: none;
+    background-color: #0081C2;
+    background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+    background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+    background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+    background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+}
+
+
+
+.modal.fade .modal-dialog {
+    -webkit-transition: -webkit-transform .3s ease-out;
+    -o-transition: -o-transform .3s ease-out;
+    transition: transform .3s ease-out;
+    -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    -o-transform: translate(0, -25%);
+    transform: translate(0, -25%)
+}
+
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0)
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.tshirt-text {
+    user-select: none;
+    width: fit-content;
+}
+
+.newImg {
+    position: absolute;
+    height: 20%;
+}
+
+.borderActive {
+    border: 2px solid #ccc;
+}
+
+.tshirt-text:hover {
+    cursor: all-scroll;
+}
+
+.tshirt-text.clicked-item {
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+}
+
+/* html css transferred */
+hr {
+    border: none;
+    color: #bfff80;
+    background-color: #bfff80;
+    display: none;
+}
+
+.btn:focus,
+.btn:active {
+    outline: none !important;
+}
+
+.btn-default:focus {
+    background-color: #fff !important;
+}
+
+#fontFamilyBox>p:hover {
+    background: #f2f2f2;
+    margin: 0px;
+    border-radius: 5px;
+}
+
+#fontFamilyBox>p {
+    padding: 5px;
+    font-size: 16px;
+    margin: 0px;
+}
+
+.DroidSerif {
+    font-family: Droid Serif, serif;
+}
+
+.Lora {
+    font-family: Lora, serif;
+}
+
+.Cinzel {
+    font-family: Cinzel, serif;
+}
+
+.Manuale {
+    font-family: Manuale, serif;
+}
+
+.PTSerif {
+    font-family: PT Serif, serif;
+}
+
+.DroidSerif {
+    font-family: Droid Serif, serif;
+}
+
+.Lato {
+    font-family: Lato, sans-serif;
+}
+
+.OpenSans {
+    font-family: Open Sans, sans-serif;
+}
+
+.Raleway {
+    font-family: Raleway, sans-serif;
+}
+
+.Anton {
+    font-family: Anton, sans-serif;
+}
+
+.Orbitron {
+    font-family: Orbitron, sans-serif;
+}
+
+.AbrilFatface {
+    font-family: Abril Fatface, cursive;
+}
+
+.Audiowide {
+    font-family: Audiowide, cursive;
+}
+
+.Comfortaa {
+    font-family: Comfortaa, cursive;
+}
+
+.Righteous {
+    font-family: Righteous, cursive;
+}
+
+.Frijole {
+    font-family: Frijole, cursive;
+}
+
+.GloriaHallelujah {
+    font-family: Gloria Hallelujah, cursive;
+}
+
+.PermanentMarker {
+    font-family: Permanent Marker, cursive;
+}
+
+.SedgwickAveDisplay {
+    font-family: Sedgwick Ave Display, cursive;
+}
+
+.RockSalt {
+    font-family: Rock Salt, cursive;
+}
+
+.CraftyGirls {
+    font-family: Crafty Girls, cursive;
+}
+
+.RobotoMono {
+    font-family: Roboto Mono, monospace;
+}
+
+.SourceCodePro {
+    font-family: Source Code Pro, monospace;
+}
+
+.ShareTechMono {
+    font-family: Share Tech Mono, monospace;
+}
+
+.NovaMono {
+    font-family: Nova Mono, monospace;
+}
+
+.UbuntuMono {
+    font-family: Ubuntu Mono, monospace;
+}
+
+.LondrinaOutline {
+    font-family: Londrina Outline, cursive;
+}
+
+.Monoton {
+    font-family: Monoton, cursive;
+}
+
+.Quicksand {
+    font-family: Quicksand, sans-serif;
+}
+
+.Rye {
+    font-family: Rye, cursive;
+}
+
+.FasterOne {
+    font-family: Faster One, cursive;
+}
+
+.Eater {
+    font-family: Eater, cursive;
+}
+
+.Nosifer {
+    font-family: Nosifer, cursive;
+}
+
+.Ewert {
+    font-family: Ewert, cursive;
+}
+
+.CinzelDecorative {
+    font-family: Cinzel Decorative, cursive;
+}
+
+.Economica {
+    font-family: Economica, cursive;
+}
+
+.JuliusSansOne {
+    font-family: Julius Sans One, cursive;
+}
+
+.BlackAndWhitePicture {
+    font-family: Black And White Picture, cursive;
+}
+
+.Notable {
+    font-family: Notable, cursive;
+}
+
+.MeriendaOne {
+    font-family: Merienda One, cursive;
+}
+
+.Bonbon {
+    font-family: Bonbon, cursive;
+}
+
+.MajorMonoDisplay {
+    font-family: Major Mono Display, monospace;
+}
+
+.VT323 {
+    font-family: VT323, monospace;
+}
+
+.Lobster {
+    font-family: Lobster, cursive;
+}
+
+.SeaweedScript {
+    font-family: Seaweed Script, cursive;
+}
+
+.UnifrakturMaguntia {
+    font-family: UnifrakturMaguntia, monospace;
+}
+
+.Butcherman {
+    font-family: Butcherman, monospace;
+}
+
+.Ultra {
+    font-family: Ultra, serif;
+}
+
+.MarkoOne {
+    font-family: Marko One, serif;
+}
+
+.Pattaya {
+    font-family: Pattaya, monospace;
+}
+
+.Timmana {
+    font-family: Timmana, serif;
+}
+
+.RumRaisin {
+    font-family: Rum Raisin, serif;
+}
+
+.MrDafoe {
+    font-family: Mr Dafoe, cursive;
+}
+
+.Base02 {
+    font-family: Base02;
+}
+
+.Days28Later {
+    font-family: Days28Later;
+}
+
+.Distress {
+    font-family: Distress;
+}
+
+.Montserrat {
+    font-family: Montserrat, sans-serif;
+}
+
+.RubikGlitch {
+    font-family: Rubik Glitch, cursive;
+}
+
+.x2 {
+    transform: scale(6, 6);
+}
+
+#product_color_chooser>div {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 5px;
+    border: 2px solid #fff;
+    position: relative;
+    box-shadow: 0 0 0 1px grey;
+}
+
+#choose_product_color>div {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 5px;
+    position: relative;
+    box-shadow: 0 0 0 1px grey;
+    border: 2px solid #fff;
+}
+
+.btn-toggle {
+    background: #737373;
+    color: #fff;
+}
+
+.btn-toggle:hover {
+    background: #737373;
+    color: #fff;
+}
+
+#addText {
+    background: #e8666d;
+    border-color: #e8666d;
+    font-size: 15px;
+}
+
+#addText:hover {
+    background: #de212b;
+    border-color: #de212b;
+}
+
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+#pdescription:focus,
+#chooseProduct:focus,
+.uneditable-input:focus {
+    border-color: rgba(232, 102, 109, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(232, 102, 109, 0.6);
+    outline: 0 none;
+}
+
+.inline_block {
+    display: inline-block;
+}
+
+.modal {
+    overflow: auto !important;
+}
+
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #de212b;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #de212b;
+    cursor: pointer;
+}
+
+.newText>p>font>span>span {
+    border-radius: 5px;
+}
+
+.art {
+    padding: 20px;
+    transition: transform 1s;
+}
+
+.art:hover {
+    -ms-transform: scale(1.3);
+    /* IE 9 */
+    -webkit-transform: scale(1.3);
+    /* Safari 3-8 */
+    transform: scale(1.3);
+}
+
+.productCard {
+    padding: 10px;
+    transition: transform 0.5s;
+    -webkit-box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.75);
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.productCard:hover {
+    -ms-transform: scale(1.05);
+    /* IE 9 */
+    -webkit-transform: scale(1.05);
+    /* Safari 3-8 */
+    transform: scale(1.05);
+}
+
+.select-product-btn {
+    width: 90%;
+    margin-top: 15px;
+    border: 1px solid #cccccc;
+    color: #333;
+    margin-bottom: 10px !important;
+}
+
+
+/* another line css */
+/* Dropdown Button */
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-menu li a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-size: 13px;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-menu li a:hover {
+    color: #ee2761
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #e5e5e5;
+}
+
+.navbar-default {
+    background-color: #FFF !important;
+    border-color: #E7E7E7 !important;
+}
+
+.dropdown>a,
+.dropdown-menu>li>a {
+    font-size: 14px;
+}
+
+.form-control:focus {
+    border-color: rgba(232, 102, 109, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(232, 102, 109, 0.6);
+    outline: 0 none;
+}
+
+.no-border:focus {
+    border-bottom: 1px solid #ee2761;
+    box-shadow: none;
+    outline: 0 none;
+}
+
+h3,
+h4,
+h5,
+h2,
+h1,
+p,
+a,
+button,
+label,
+input,
+textarea,
+select,
+td,
+th,
+li,
+li>a,
+div>a {
+    font-family: Montserrat, sans-serif;
+    letter-spacing: 1px;
+}
+
+.container {
+    margin-top: 5rem;
+}
+
+
+
+
+
+
+/* rotate image to back */
+.rotateImageBack {
+    animation-name: rotate;
+    animation-duration: 1.7s;
+    animation-fill-mode: ease;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotatey(0deg);
+    }
+
+    100% {
+        transform: rotatey(180deg);
+        /* display: none; */
+    }
+}
+
+/* rotate image to front */
+.rotateImageFront {
+    animation-name: rotatefront;
+    animation-duration: 1.7s;
+}
+
+@keyframes rotatefront {
+    0% {
+        transform: rotatey(0deg);
+    }
+
+    100% {
+        transform: rotatey(-180deg);
+        /* display: none; */
+    }
+}
+
+
+
+/* please wait we are extracting your design */
+.extracting-design {
+    padding: 1rem;
+}
+
+.extracting-design div p {
+    width: fit-content;
+    /* margin: 5rem; */
+    font-size: 1.5rem;
+
+}

@@ -1,0 +1,13 @@
+.isHidden{
+    background-color: orange;
+    animation: heightDec 5s linear 2s infinite alternate;
+}
+
+@keyframes heightDec {
+    0%{
+        height: 150px;
+    }
+    100%{
+        height: 0px;
+    }
+}
