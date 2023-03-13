@@ -13,10 +13,13 @@ if (window.innerWidth === 800) {
 //     margin-left: 0;
 // }
 
+if(window.location.pathname === '/'){
+    // overflow-x: hidden;
+    $("body").css("overflow-x", "hidden")
+}
 
 
 if (window.location.pathname === '/login') {
-    alert("hey")
     $(document).ready(function () {
         $("#btn-signUp").click(function () {
             $("#loginDiv").fadeOut(700);
@@ -27,6 +30,21 @@ if (window.location.pathname === '/login') {
             $("#loginDiv").fadeIn();
         });
     });
+
+    if (window.innerWidth <= 800) {
+        // document.querySelector(".form-switch").style.overflow = 'none'
+        $(".form-switch").css("overflow-x", "none");
+
+        // alert('sdfa')
+        const n_menu = document.querySelector('.ham-menu');
+        const hidden_part = document.querySelector('.hidden-part');
+
+    
+        n_menu.addEventListener('click', function () {
+            hidden_part.classList.toggle('isHidden')
+        });
+
+    }
 
     // extracting login and signin information
     const button = document.querySelectorAll('.btn-success');
