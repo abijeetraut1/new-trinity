@@ -86,26 +86,7 @@ $('#search-button')[0].addEventListener('click', el => {
     }
 })
 
-// const account = document.querySelector('.display-logout-btn');
-// if ($('.Logout')) {
 
-//     const logout = document.querySelector('.Logout');
-
-//     account.addEventListener('click', () => {
-//         logout.classList.toggle('active');
-//     })
-
-//     $('.Logout').addEventListener('click', async (el) => {
-//         const logout = await axios({
-//             method: 'GET',
-//             url: '/api/v1/user/logout',
-//         })
-
-//         console.log(logout);
-//     }).catch(err => {
-//         console.log('err')
-//     })
-// }
 
 
 // will be modified
@@ -280,9 +261,6 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
             return el.classList.toggle('changeColor');
         })
     })
-    // }
-
-    // buttonColor(choose_size, 'changeColor');
 
     if ($("#place-the-order")) {
         $("#place-the-order")[0].addEventListener('click', async el => {
@@ -357,19 +335,24 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
 
     if ($("#directDesignPlaceOrder")) {
         $("#directDesignPlaceOrder")[0].addEventListener('click', async el => {
+            const email = $('#order-email')[0].value;
+            const number = $('#order-number')[0].value;
+            const name = $('#order-username')[0].value;
+            const area = $('#order-area')[0].value;
+            const address = $('#order-address')[0].value;
+            const city = $('#select')[0].value;
+            const size = $(".changeColor")[0].innerText;
+            const front = sessionStorage.getItem('designedFrontView');
+            const back = sessionStorage.getItem('designedBackView');
+            const sticker = sessionStorage.getItem('image');
+            const material = sessionStorage.getItem('material');
+            const payment = $("#payment-proof")[0].files[0];
+            
+            if((email === '') && (number === '') && (name === '')  && (area === '') && (address === '') && (city === '') && (size === '')){
+                alert('please fill the information carefully');
+            }
+
             if ($("#payment-proof")[0].files[0]) {
-                const email = $('#order-email')[0].value;
-                const number = $('#order-number')[0].value;
-                const name = $('#order-username')[0].value;
-                const area = $('#order-area')[0].value;
-                const address = $('#order-address')[0].value;
-                const city = $('#select')[0].value;
-                const size = $(".changeColor")[0].innerText;
-                const front = sessionStorage.getItem('designedFrontView');
-                const back = sessionStorage.getItem('designedBackView');
-                const sticker = sessionStorage.getItem('image');
-                const material = sessionStorage.getItem('material');
-                const payment = $("#payment-proof")[0].files[0];
                 const reader = new FileReader();
                 reader.addEventListener('load', async function () {
                     const base64String = reader.result;
@@ -394,13 +377,11 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
                     if (sendData.data.status === "success") {
                         sessionStorage.clear();
                         window.location.assign('/delivered');
-                    } else {
-                        alert('please fill the information carefully');
                     }
                 })
                 reader.readAsDataURL(payment);
             } else {
-                alert("please send the payment proof");
+                alert("please fill the all the form carefully");
             }
         })
 
