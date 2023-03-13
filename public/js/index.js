@@ -20,7 +20,7 @@ if (window.location.pathname === '/') {
 }
 
 
-if (window.location.pathname === '/login') {
+if (window.location.pathname === '/login' || window.location.pathname === '/Login') {
     // $(document).ready(function () {
     //     $("#btn-signUp").click(function () {
     //         $("#loginDiv").fadeOut(700);
