@@ -45,12 +45,14 @@ async function logout (){
 }
 // })
 
-if (window.location.pathname === '/design' || window.location.pathname.split('/')[1] === "product") {
+if (window.location.pathname.split('/')[1] === "product" && window.location.pathname.split('/')[3] === "order") {
     $('.bi-list, .bi-bag', '#search-button i').css('font-size', '2.3rem');
-    if($('#place-the-order')[0].innerText === 'Place Order'){
-        $('#search-button i').css('font-size', '1.3rem');
-    }else {
-        $('#search-button i').css('font-size', '2.3rem');
+    if($('#place-the-order')){   
+        if($('#place-the-order')[0].innerText = 'Place Order'){
+            $('#search-button i').css('font-size', '1.3rem');
+        }else {
+            $('#search-button i').css('font-size', '2.3rem');
+        }
     }
     $('.add-cart, .ham-menu').css('overflow', 'hidden');
     $('.header').css('z-index', '25');
