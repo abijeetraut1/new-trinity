@@ -152,6 +152,10 @@
     border-radius: .5rem;
 }
 
+.form-switch{
+    user-select: none;
+}
+
 .product-image {
     display: flex;
     justify-content: center;
