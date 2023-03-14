@@ -501,6 +501,7 @@ var divToCapture = document.getElementById('product');
 if (!($("#for-admin-only")[0])) {
 
     document.querySelector('#sellThis').addEventListener('click', el => {
+        $('.extracting-design').css("z-index", ('50'));
         gsap.fromTo('.extracting-design', {
             display: 'flex',
             y: '-100'
