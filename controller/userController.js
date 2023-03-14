@@ -43,11 +43,16 @@ const jwtSignin = id => {
 
 exports.signup = catchAsync(async (req, res, next) => {
     console.log(req.body);
-    const signin = await user.create({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-    })
+     try{
+        const signin = await user.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+        })
+    } catch(err) {
+        console.log(err);
+    }
+    
     console.log('signin',signin);
     createCookies(signin, res, 200);
 });
