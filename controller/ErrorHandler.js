@@ -95,10 +95,21 @@ module.exports = (err, req, res, next) => {
     err.status = err.status || 'error';
 
     if (process.env.NODE_ENV = 'development') {
+        console.log(true)
+        let error = {
+            ...err
+        };
+        if (error.name === 'CastError') error = handleCastErrorDB(error);
+        // if (error.code === 11000) error = handleDuplicateFieldsDB(error);
+        if (error.name === 'ValidationError')
+            error = handleValidationErrorDB(error);
+        if (error.name === 'JsonWebTokenError') error = handleJWTError();
+        if (error.name === 'TokenExpiredError') error = handleJWTExpiredError();
 
-        sendErrorDev(err, req, res);
+        sendErrorDev(error, req, res);
     } else
     if (process.env.NODE_ENV = 'production') {
+        console.log(false)
 
 
         let error = {
