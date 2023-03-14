@@ -16,6 +16,8 @@ if (window.innerWidth === 800) {
 if (window.location.pathname === '/') {
     // overflow-x: hidden;
     $("*").css("overflow-x", "hidden")
+    $(".heroSection").css("overflow-x", "none")
+    
     $(".form-switch").css("user-select", "none")
 }
 
