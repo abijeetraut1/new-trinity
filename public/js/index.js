@@ -17,6 +17,7 @@ if (window.location.pathname === '/') {
     // overflow-x: hidden;
     $("*").css("overflow-x", "hidden")
     $(".heroSection").css("overflow-x", "none")
+    $(".heroImage").css("overflow-x", "none")
     
     $(".form-switch").css("user-select", "none")
 }
