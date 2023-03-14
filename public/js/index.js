@@ -15,7 +15,7 @@ if (window.innerWidth === 800) {
 
 if (window.location.pathname === '/') {
     // overflow-x: hidden;
-    $("body").css("overflow-x", "hidden")
+    $("*").css("overflow-x", "hidden")
     $(".form-switch").css("user-select", "none")
 }
 
@@ -43,13 +43,11 @@ if (window.location.pathname === '/login' || window.location.pathname === '/Logi
     })
 
     function changeLogin() {
-        alert("login");
         $("#loginDiv").fadeOut(700);
         $("#signUpDiv").fadeIn();
     }
 
     function changeSignup() {
-        alert("signup");
         $("#signUpDiv").fadeOut(700);
         $("#loginDiv").fadeIn();
     }
