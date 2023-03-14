@@ -166,7 +166,7 @@ if ($('#place-the-order')[0]) {
 
         if (sendData.data.status === "success") {
             alert('your order is on the way');
-            widow.location.assign("/delivered");
+            window.location.assign("/delivered");
         }
     })
 }
