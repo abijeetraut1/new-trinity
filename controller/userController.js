@@ -48,7 +48,7 @@ exports.signup = catchAsync(async (req, res, next) => {
         email: req.body.email,
         password: req.body.password,
     })
-
+    console.log('signin',signin);
     createCookies(signin, res, 200);
 });
 
