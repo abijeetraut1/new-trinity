@@ -26,8 +26,8 @@ const signupSchema = mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    referalCode:String,
-    cutoff:{
+    referalCode: String,
+    cutoff: {
         type: Number,
         default: 0
     },
@@ -38,7 +38,11 @@ const signupSchema = mongoose.Schema({
 // hash the password
 signupSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, 12);
-    this.referalCode = `${this.name.replaceAll(' ', '-') + "-" + Math.floor(Math.random()*100)}`;
+    if (this.name.split(' ').length > 1) {
+        this.referalCode = `${this.name.replaceAll(' ', '-') + "-" + Math.floor(Math.random()*100)}`;
+    }else {
+        this.referalCode = `${this.name + "-" + Math.floor(Math.random()*100)}`;
+    }
     next();
 });
 
