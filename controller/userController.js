@@ -43,18 +43,38 @@ const jwtSignin = id => {
 
 exports.signup = catchAsync(async (req, res, next) => {
     console.log(req.body);
-     try{
-        const signin = await user.create({
+    let signin;
+    try {
+        signin = await user.create({
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
         })
-    } catch(err) {
-        console.log(err);
-    }
-    
-    console.log('signin',signin);
+
     createCookies(signin, res, 200);
+
+    } catch (err) {
+        console.log(err.code);
+        console.log(err);
+        if (err.code === 11000) {
+            let value, message;
+            value = err.message.match(/(["'])(\\?.)*?\1/)[0];
+            message = `Duplicate field value: ${value}. Please use another value!`;
+
+            // return new AppError(message, 400);
+            res.status(200).json({
+                status: 'failed',
+                message
+            });
+        }
+    }
+
+    // const signin = await user.create({
+    //     name: req.body.name,
+    //     email: req.body.email,
+    //     password: req.body.password,
+    // })
+
 });
 
 exports.login = catchAsync(async (req, res, next) => {
