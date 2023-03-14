@@ -4,12 +4,12 @@ block content
     script(src="./js/jquery-latest.js")
     script(src="./js/forall.js")
     .form-bg.form-color-primary
-        #loginDiv.form-card(onclick="changeLogin()")
+        #loginDiv.form-card
             h2.form-heading Login
             .form-body
                 .form-switch
-                    span#btn-login.btn-login Login
-                    span#btn-signUp.btn-signUp Signup
+                    span#btn-login.btn-login(onclick="changeLogin()") Login
+                    span#btn-signUp.btn-signUp(onclick="changeSignup()") Signup
                 form
                     .css-form-control
                         .form-control-icon
@@ -28,12 +28,12 @@ block content
                         span
                             a.form-color-primary(href='#') Forget Password
 
-        #signUpDiv.form-card(onclick="changeSignup()")
+        #signUpDiv.form-card
             h2.form-heading Sign Up
             .form-body
                 .form-switch
-                    span#toLogin.btn-login Login
-                    span#btn-signUp.btn-signUp Signup
+                    span#toLogin.btn-login(onclick="changeLogin()") Login
+                    span#btn-signUp.btn-signUp(onclick="changeSignup()") Signup
                 form
                     .css-form-control
                         .form-control-icon
