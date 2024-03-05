@@ -18,7 +18,7 @@ if (window.location.pathname === '/') {
     $("*").css("overflow-x", "hidden")
     $(".heroSection").css("overflow-x", "initial")
     $(".heroImage").css("overflow-x", "initial")
-    
+
     $(".form-switch").css("user-select", "none")
 }
 
@@ -387,51 +387,44 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
             const address = $('#order-address')[0].value;
             const city = $('#select')[0].value;
             const size = $(".changeColor")[0].innerText;
-            const front = sessionStorage.getItem('designedFrontView');
-            const back = sessionStorage.getItem('designedBackView');
-            const sticker = sessionStorage.getItem('image');
-            const material = sessionStorage.getItem('material');
-            const payment = $("#payment-proof")[0].files[0];
-
+            // const front = sessionStorage.getItem('designedFrontView');
+            // const back = sessionStorage.getItem('designedBackView');
+            const sticker = $("#inserted-stickers")[0].files;
+            
+            
             if ((email === '') && (number === '') && (name === '') && (area === '') && (address === '') && (city === '') && (size === '')) {
                 alert('please fill the information carefully');
             }
 
-            if ($("#payment-proof")[0].files[0]) {
-                const reader = new FileReader();
-                reader.addEventListener('load', async function () {
-                    const base64String = reader.result;
-                    let data = {
-                        email: email,
-                        number: number,
-                        name: name,
-                        area: area,
-                        address: address,
-                        city: city,
-                        size: size,
-                        front: front,
-                        back: back,
-                        material: material,
-                        payment: base64String
-                    }
-                    const sendData = await axios({
-                        method: 'POST',
-                        url: '/api/v1/product/directorderrecord',
-                        data
-                    })
-                    if (sendData.data.status === "success") {
-                        sessionStorage.clear();
-                        window.location.assign('/delivered');
-                    }
-                })
-                reader.readAsDataURL(payment);
-            } else {
-                alert("please fill the all the form carefully");
+            const designs = new FormData();
+            designs.append("email", email);
+            designs.append("number", number);
+            designs.append("name", name);
+            designs.append("area", area);
+            designs.append("address", address);
+            designs.append("city", city);
+            designs.append("size", size);
+            
+            for (let index = 0; index < sticker.length; index++) {
+                console.log(sticker[index]);
+                designs.append("sticker", sticker[index]);
+            }
+            const sendData = await axios({
+                method: 'POST',
+                url: '/api/v1/product/directorderrecord',
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                data: designs
+            })
+            if (sendData.data.status === "success") {
+                sessionStorage.clear();
+                // window.location.assign('/delivered');
             }
         })
-
     }
 }
+
 
 if (window.innerWidth <= 700) {
     $("#choose_size").css("overflow", "auto");

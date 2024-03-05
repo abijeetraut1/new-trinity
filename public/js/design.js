@@ -270,9 +270,6 @@ parentElement.addEventListener('mouseover', el => {
     parentElement.style.border = '2px solid black';
 })
 
-const count = 0;
-let imageNameArray = [];
-const storeImageBase64Address = {};
 
 // let countSessionStorageSticker = 0;
 addImage.addEventListener('input', el => {
@@ -280,7 +277,6 @@ addImage.addEventListener('input', el => {
     const reader = new FileReader();
 
     reader.addEventListener('load', function () {
-        const imageKey = "image" + "-" + JSON.stringify(Date.now());
         const base64String = reader.result;
         const createImg = document.createElement('img');
         createImg.setAttribute("image-key", imageKey);
@@ -288,12 +284,7 @@ addImage.addEventListener('input', el => {
         createImg.src = base64String;
         parentElement.insertBefore(createImg, parentElement.children[1]);
 
-        imageNameArray.push(imageKey);
-        storeImageBase64Address[imageKey] = base64String;
-
-        // store image in the session storage
-        sessionStorage.setItem(imageKey, base64String);  
-
+        
         const newImg = document.querySelectorAll('.newImg');
         newImg.forEach((ele, i) => {
             // countSessionStorageSticker++;
@@ -648,18 +639,13 @@ if ($("#for-admin-only")[0]) {
 
 
 
-
-
 // deleting the item
 deleteElement.addEventListener('click', el => {
     parentElement.childNodes.forEach((ele, i) => {
         if (i == parentElement.children.length) return;
         if (parentElement.children[i].classList.contains('clicked-item')) {
-            imageNameArray = imageNameArray.filter(el => el !== parentElement.children[i].getAttribute("image-key"))
 
             // delete the key and value from object
-            delete storeImageBase64Address[parentElement.children[i].getAttribute("image-key")];
-            sessionStorage.removeItem(parentElement.children[i].getAttribute("image-key"));
             parentElement.removeChild(parentElement.children[i]);
         }
     })

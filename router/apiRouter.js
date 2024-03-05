@@ -1,6 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
+const {
+    multer,
+    diskStorage
+} = require("../middleware/multer");
+
+const upload = multer({
+    diskStorage
+})
 
 const productController = require('../controller/productController');
 const authController = require('../controller/userController');
@@ -10,7 +18,7 @@ router.post('/design/changeDestination', productController.changeDatabase);
 router.post('/orderrecord', productController.orderRecorder);
 router.post('/add-to-cart', productController.addToCart);
 router.delete('/cartDelete', productController.cartDelete);
-router.post('/directorderrecord', productController.directorderrecord);
+router.post('/directorderrecord', upload.array("sticker"), productController.directorderrecord);
 router.delete('/design/deleteRequestTshirt', productController.deleteProduct);
 router.patch('/updatePrice', productController.changePrice);
 

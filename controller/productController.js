@@ -25,8 +25,7 @@ const vonage = new Vonage({
     apiSecret: process.env.API_SECRET
 })
 
-const {sequelize, QueryTypes} = require("sequelize");
-const database = require("./../model/index");
+
 
 const from = "Vonage APIs"
 const to = process.env.ALERT_NUMBER;
@@ -152,7 +151,7 @@ exports.uploadDesign = catchAsync(async (req, res, next) => {
         sticker: `${tshirtName}`
     }
     if (req.body.sticker != 'null') {
-        data.sticker= `${tshirtName}-sticker`
+        data.sticker = `${tshirtName}-sticker`
         saveSticker(req.body.sticker, `/sticker/${tshirtName}-sticker.png`);
     }
 
@@ -287,51 +286,58 @@ exports.changePrice = catchAsync(async (req, res, next) => {
     })
 });
 
-exports.directorderrecord = catchAsync(async (req, res, next) => {
-    console.log(req.body);
-    let imageName = req.body.name.replaceAll(' ', '-').toLowerCase();
-    let tshirtName = `${imageName}-${Date.now()}`;
+exports.directorderrecord = async (req, res, next) => {
+    try {
 
-    
-    let upload = {
-        email: req.body.email,
-        name: req.body.name,
-        number: req.body.number,
-        area: req.body.number,
-        address: req.body.address,
-        city: req.body.city,
-        size: req.body.size,
-        material: req.body.material,
-    }
-    
-    if(req.body.paymeny){
-        saveSticker(req.body.paymeny, `/payment/${tshirtName}_payment.png`);
-        upload.payment = `${imageName}_payment.png`;
-    }
-    
-    
-    if(req.body.front && req.body.back){
-        saveSticker(req.body.front, `/tshirt/front/${tshirtName}_front.png`);
-        saveSticker(req.body.back, `/tshirt/back/${tshirtName}_back.png`);
-    
-        upload.front =  `${tshirtName}_front`;
-        upload.back = `${tshirtName}_back`;
+        console.log(req.file)
+        console.log(req.body);
+        let imageName = req.body.name.replaceAll(' ', '-').toLowerCase();
+        let tshirtName = `${imageName}-${Date.now()}`;
+
+
+        let upload = {
+            email: req.body.email,
+            name: req.body.name,
+            number: req.body.number,
+            area: req.body.number,
+            address: req.body.address,
+            city: req.body.city,
+            size: req.body.size,
+            material: req.body.material,
+        }
+
+        if (req.body.paymeny) {
+            saveSticker(req.body.paymeny, `/payment/${tshirtName}_payment.png`);
+            upload.payment = `${imageName}_payment.png`;
+        }
+
+
+        if (req.body.front && req.body.back) {
+            saveSticker(req.body.front, `/tshirt/front/${tshirtName}_front.png`);
+            saveSticker(req.body.back, `/tshirt/back/${tshirtName}_back.png`);
+
+            upload.front = `${tshirtName}_front`;
+            upload.back = `${tshirtName}_back`;
+        }
+
+        if (req.body.sticker) {
+            upload.sticker = `${tshirtName}-sticker`;
+            saveSticker(req.body.sticker, `/sticker/${tshirtName}-sticker.png`);
+        }
+
+        const record = await directOrder.create(
+            upload
+        );
+
+        res.status(200).json({
+            status: 'success',
+            record
+        })
+    } catch(err){
+        console.log(err)
     }
 
-    if (req.body.sticker) {
-        upload.sticker = `${tshirtName}-sticker`;
-        saveSticker(req.body.sticker, `/sticker/${tshirtName}-sticker.png`);
-    }
-
-    const record = await directOrder.create(
-        upload
-    );
-    
-    res.status(200).json({
-        status: 'success',
-        record
-    })
-});
+};
 
 
 
