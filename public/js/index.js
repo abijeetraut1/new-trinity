@@ -355,7 +355,8 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
 
 // wait
 if (window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[2] === "order") {
-    $('#designImageDisplay')[0].src = sessionStorage.getItem('designedFrontView');
+    $('#designImageDisplayBack')[0].src = sessionStorage.getItem('designedFrontView');
+    $('#designImageDisplayFront')[0].src = sessionStorage.getItem('designedBackView');
     $('#material')[0].innerText = sessionStorage.getItem('material');
     $('.bi-bag').css("font-size", "1.3rem")
 

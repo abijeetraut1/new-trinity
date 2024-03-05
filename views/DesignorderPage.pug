@@ -12,6 +12,27 @@ head
     link(rel='stylesheet' href='./../../css/style.css')
     link(rel='stylesheet' href='./../../css/productView.css')
 
+    style.
+        .input-file-style {
+            display: block;
+            width: fit-content;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        } 
+
+
     include _header
     script(src="./../../js/jquery-latest.js") 
     script(src="./../../js/forall.js") 
@@ -58,16 +79,35 @@ head
                         p.payment-text Summary
                         hr
                         .image-name-size-display.total-payable
-                            div
-                                img#designImageDisplay(src=`` alt=`cannot find the image` height='100vh')
-                                label#material(for='price')= `800` 
-                            .price-tag
-                                label#item-price(for='price')= 800
-                        
+                            table(style="width:100%" border=".5" borderColor="#b1afaf") 
+                                thead
+                                    tr
+                                        th Front Design 
+                                        th Back Design
+                                        th Material Price
+                                        th Item Price
+
+                                tbody
+                                    td  
+                                        img#designImageDisplayBack(src=`` alt=`cannot find the image` height='100vh')
+                                    td 
+                                        img#designImageDisplayFront(src=`` alt=`cannot find the image` height='100vh')
+                                    td(style='padding-left:10px')
+                                        label#material(for='price')= `800` 
+                                    td(style='padding-left:10px')
+                                        .price-tag
+                                            label#item-price(for='price')= 800
+
+                        hr
+                        br
+                        label Insert Designs
+                        input.input-file-style#inserted-stickers(type="file" name="sticker-name" accept="image/png, image/jpeg" multiple)
+                           
+
                     .payment-container
                         .delivery-section
                             label(for='referralCode') Referral Code 
-                            input#referralCode(type="text", name="referralCode" style="padding-left: .4rem;  font-weight: bold; height: 3vh")
+                            input#referralCode(type="text" name="referralCode" style="padding-left: .4rem;  font-weight: bold; height: 3vh")
                         div 
                             button#apply-referral-code(type="submit" style=" cursor: pointer; letter-spacing: 1px; font-size: 1.1rem; border-radius: .4rem; background: #ff3f6c; border-top-color: transparent; border-left-color: transparent; transparent; width: 100%; color: white; height: 5vh") 
                                 | Apply Referral Code
@@ -82,27 +122,27 @@ head
                     p.payment-text Payment
                     hr
                     p.payment-text Esewa
-                    img(src="./../../images/esewa.jpeg", alt="" style="height:80%; width:80%")
-                    
+                    img(src="./../../images/esewa.jpeg" alt="" style="height:80%; width:80%")
+
                 br
                 .payment-container
                     .delivery-section
-                            label(for='delivery-charge-text') Delivery 
-                            label.price(for='price') Free
+                        label(for='delivery-charge-text') Delivery 
+                        label.price(for='price') Free
                     hr
                     div
                         label Payment Proof
                         div 
                             br
-                            input#payment-proof(type="file", name="")
+                            input#payment-proof.input-file-style(type="file" name="")
                     br
                     hr
                     .total-payable(style="display:flex")
-                            button.place-order#directDesignPlaceOrder(style="letter-spacing: 1px;") Place Order
+                        button.place-order#directDesignPlaceOrder(style="letter-spacing: 1px;") Place Order
 
 
 
     script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js" integrity="sha512-LUKzDoJKOLqnxGWWIBM4lzRBlxcva2ZTztO8bTcWPmDSpkErWx0bSP4pdsjNH8kiHAUPaT06UXcb+vOEZH+HpQ==" crossorigin="anonymous" referrerpolicy="no-referrer")
 
     script(src="./../../js/jquery-latest.js")     
-    script(src="./../../js/index.js")    
+    script(src="./../../js/index.js")

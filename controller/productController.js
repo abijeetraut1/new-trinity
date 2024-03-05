@@ -9,7 +9,6 @@ const changePrice = require('../model/changePrice');
 const directOrder = require('../model/directDesignOrder');
 const AppError = require('../utils/appError');
 
-
 const jwt = require('jsonwebtoken');
 const {
     promisify
@@ -26,8 +25,11 @@ const vonage = new Vonage({
     apiSecret: process.env.API_SECRET
 })
 
+const {sequelize, QueryTypes} = require("sequelize");
+const database = require("./../model/index");
+
 const from = "Vonage APIs"
-const to = process.env.ALERT_NUMBER
+const to = process.env.ALERT_NUMBER;
 
 // multer configuration
 const multerStorage = multer.memoryStorage();
@@ -126,8 +128,6 @@ saveSticker = async (imageBase64, tshirtName) => {
 
 // when user gives the order 
 exports.uploadDesign = catchAsync(async (req, res, next) => {
-    console.log(req.body);
-
     const token = req.cookies.jwt;
     const cookiesId = await promisify(jwt.verify)(token, process.env.jwtPassword);
 
@@ -137,7 +137,6 @@ exports.uploadDesign = catchAsync(async (req, res, next) => {
 
     saveSticker(req.body.frontImage, `/tshirt/front/${tshirtName}_front.png`);
     saveSticker(req.body.backImage, `/tshirt/back/${tshirtName}_back.png`);
-
 
     let data = {
         title: req.body.title,
@@ -210,8 +209,9 @@ exports.orderRecorder = catchAsync(async (req, res, next) => {
         _id: req.body.productId
     });
 
-    console.log('imagesTransfer', imagesTransfer)
+    console.log('imagesTransfer', imagesTransfer);
 
+    const createTable = await sequelize.database.query("CREATE TABLE IF NOT EXITS order")
     const orderArrived = await orderRecived.create({
         name: req.body.name,
         email: req.body.email,

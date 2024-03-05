@@ -39,8 +39,7 @@ const sendErrorDev = (err, req, res) => {
     }
 
     // B) RENDERED WEBSITE
-    console.error('ERROR 💥', err);
-    console.log(err)
+    console.error('ERROR 🤣', err);
     if (err.message === 'PLEASE RE-LOGIN SESSION EXPIRED') {
         return res.redirect('/login')
     } else {

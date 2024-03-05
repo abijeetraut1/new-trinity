@@ -270,19 +270,29 @@ parentElement.addEventListener('mouseover', el => {
     parentElement.style.border = '2px solid black';
 })
 
+const count = 0;
+let imageNameArray = [];
+const storeImageBase64Address = {};
+
 // let countSessionStorageSticker = 0;
 addImage.addEventListener('input', el => {
     const file = addImage.files[0];
     const reader = new FileReader();
 
     reader.addEventListener('load', function () {
+        const imageKey = "image" + "-" + JSON.stringify(Date.now());
         const base64String = reader.result;
         const createImg = document.createElement('img');
+        createImg.setAttribute("image-key", imageKey);
         createImg.classList.add('newImg', `${$('.btn-toggle')[0].innerText.toLowerCase()}`);
         createImg.src = base64String;
         parentElement.insertBefore(createImg, parentElement.children[1]);
 
-        sessionStorage.setItem(`image`, base64String);
+        imageNameArray.push(imageKey);
+        storeImageBase64Address[imageKey] = base64String;
+
+        // store image in the session storage
+        sessionStorage.setItem(imageKey, base64String);  
 
         const newImg = document.querySelectorAll('.newImg');
         newImg.forEach((ele, i) => {
@@ -313,7 +323,6 @@ addImage.addEventListener('input', el => {
 
     // Start reading the file as a data URL
     reader.readAsDataURL(file);
-
 })
 
 const spanParenet = document.querySelector('#productDiv');
@@ -409,9 +418,9 @@ const addText = document.querySelector('#addText');
 
 addText.addEventListener('click', el => {
     let createRemovalbeDiv = document.createElement(`p`);
-    
-    
-    
+
+
+
     createRemovalbeDiv.classList.add('tshirt-text', `${$('.btn-toggle')[0].innerText.toLowerCase()}`);
 
 
@@ -510,7 +519,12 @@ if (!($("#for-admin-only")[0])) {
             duration: 0.5,
             ease: Power0.easeNone
         });
-        setTimeout(() => {
+
+
+        // save the send the image url object to session storage
+        // sessionStorage.setItem("stickers", JSON.stringify(storeImageBase64Address));
+
+        // setTimeout(() => {
 
             parentElement.style.borderColor = 'transparent';
             if (document.querySelector('.tshirt-text')) {
@@ -519,20 +533,23 @@ if (!($("#for-admin-only")[0])) {
             html2canvas(divToCapture).then(function (canvas) {
                 html2canvas(document.getElementById("product")).then(function (canvas) {
                     var img = canvas.toDataURL('image/png');
-                    console.log('buttonimage', img)
                     sessionStorage.setItem(`designed${$('.btn-toggle')[0].innerText}View`, img); // jun view set bhako xa tai ko image linxa
                     if (!($('.btn-toggle')[0].innerText === 'Front')) {
-                        $('.front').css("display", "block");
-                        $('.back').css("display", "none");
-                        productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_front.png")`;
-                        html2canvas(divToCapture).then(function (canvass) {
-                            html2canvas(document.getElementById("product")).then(function (canvass) {
-                                var backImg = canvass.toDataURL('image/png');
-                                console.log('! === front', backImg)
-                                sessionStorage.setItem('designedFrontView', backImg); // save the tshirt front view in the local storage
-                                productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_back.png")`;
+                        // setTimeout(() => {
+
+                            $('.front').css("display", "block");
+                            $('.back').css("display", "none");
+                            productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_front.png")`;
+                            html2canvas(divToCapture).then(function (canvass) {
+                                html2canvas(document.getElementById("product")).then(function (canvass) {
+                                    var backImg = canvass.toDataURL('image/png');
+                                    console.log('! === front', backImg)
+                                    sessionStorage.setItem('designedFrontView', backImg); // save the tshirt front view in the local storage
+                                    productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_back.png")`;
+                                });
                             });
-                        });
+                        // }, 10000)
+
                     } else if (!($('.btn-toggle')[0].innerText === 'Back')) {
                         $('.front').css("display", "none");
                         $('.back').css("display", "block");
@@ -549,7 +566,7 @@ if (!($("#for-admin-only")[0])) {
                 });
                 return;
             });
-        }, 1000);
+        // }, 1000);
 
         setTimeout(() => {
             gsap.fromTo('.extracting-design', {
@@ -585,6 +602,7 @@ if ($("#for-admin-only")[0]) {
             tags
         }
 
+
         parentElement.childNodes.forEach((el, i) => {
             if (i == 0) console.log(el);
             else {
@@ -618,6 +636,7 @@ if ($("#for-admin-only")[0]) {
         })
         if (postData.data.status = "success") {
             sessionStorage.removeItem('image');
+
             window.location.assign(`${window.origin}/product/${slug}`)
         } else {
             alert('plese fill up the information carefully');
@@ -636,6 +655,11 @@ deleteElement.addEventListener('click', el => {
     parentElement.childNodes.forEach((ele, i) => {
         if (i == parentElement.children.length) return;
         if (parentElement.children[i].classList.contains('clicked-item')) {
+            imageNameArray = imageNameArray.filter(el => el !== parentElement.children[i].getAttribute("image-key"))
+
+            // delete the key and value from object
+            delete storeImageBase64Address[parentElement.children[i].getAttribute("image-key")];
+            sessionStorage.removeItem(parentElement.children[i].getAttribute("image-key"));
             parentElement.removeChild(parentElement.children[i]);
         }
     })
@@ -680,6 +704,7 @@ if (json != null) {
     $(".cartItems").css('display', 'none');
     $(".shopping_cart").css('margin-top', '10px');
 }
+
 $(window).resize(function () {
     if ($(".collapse").is(":visible")) {
         $(".cart-button-mobile").css('display', 'none');

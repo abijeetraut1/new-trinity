@@ -57,11 +57,15 @@ exports.orderPage = async (req, res, next) => {
 }
 
 exports.DesignorderPage = async (req, res, next) => {
-    const viewPrice = await price.findOne({
-        type: req.params.material
-    });
-    console.log(viewPrice);
-    res.status(200).render('DesignorderPage.pug',{viewPrice});
+    try{
+        const viewPrice = await price.findOne({
+            type: req.params.material
+        });
+        console.log(viewPrice);
+        res.status(200).render('DesignorderPage.pug',{viewPrice});
+    } catch(err){
+        console.log(err)
+    }
 }
 
 exports.addToCart = async (req, res, next) => {

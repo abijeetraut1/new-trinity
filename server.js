@@ -15,6 +15,7 @@ require('dotenv').config({
 
 console.log(process.env.NODE_ENV);
 
+// mongodb connection
 const connectionInfo = process.env.dbId.replace('<password>', process.env.dbPSW);
 
 mongoose.connect(connectionInfo).then(data => {
@@ -24,7 +25,7 @@ mongoose.connect(connectionInfo).then(data => {
 })
 
 const server = app.listen(port, () => {
-    console.log('server is running');
+    console.log('server is running ' + port);
 })
 
 process.on('unhandledRejection', (err) => {
