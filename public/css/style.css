@@ -621,6 +621,7 @@ ol .cart {
 
     .mobile-nav {
         display: flex;
+        align-items:center;
     }
 
     .mobile-nav .ham-menu {

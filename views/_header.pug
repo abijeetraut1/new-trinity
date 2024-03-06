@@ -11,7 +11,6 @@ header.header(style="z-index: 20")
         span#userid(style="display:none;")= user.id
         if user.role === 'admin'
           a#for-admin-only(href='/dashboard-arrived' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Admin Pannel
-          //- a(href='/dashboard-arrived' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Admin Pannel
     div
       .content-border
         input#search(type='text' name='search' placeholder='search' style='outline: none; border: transparent; padding-left: 1rem;')
@@ -23,49 +22,35 @@ header.header(style="z-index: 20")
       li.account.display-logout-btn
         if user
           a#loged-in(style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;")= user.name 
-            i(class="bi bi-chevron-down" style=`margin-left:.5rem`)
-          div#logout.Logout.logout-active(style="cursor: pointer; text-align: center; padding:1rem;  color:#ff3f6c; position: absolute; backgroundColor: #f3f6f9; width: fit-content;" onclick="logout()") Log Out
-        else if(!user)
-          a(href='/login' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;") Account 
-            i(class="bi bi-chevron-down" style="margin-left:.5rem")
 
       li.cart
-        a(href='/add-to-cart').add-cart
-          div(class="bulb" style="height: 11px;width: 11px;border-radius: 5rem; position: absolute;")
-          i.bi.bi-bag
+        div(style="display: flex; align-items: center;" )
+          a(href='/add-to-cart').add-cart
+            div(class="bulb" style="border-radius: 5rem; margin-right:1rem; ")
+              i.bi.bi-bag
+          if user
+            div#logout.Logout(style="cursor: pointer; text-align: center;  color:#ff3f6c; backgroundColor: #f3f6f9;" onclick="logout()") Log Out
 
   .mobile-nav
     .add-cart
       i.bi.bi-bag
-    .ham-menu
-      i.bi.bi-list
-      div(class="bulb" style="height: 11px;width: 11px;border-radius: 5rem;position: absolute;")
+    if(!user)
+      a(href='/login' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;") Login 
 
 // display only clicked
 if user
   if user.role === 'admin'
     a#mobile-only(href='/dashboard-arrived' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;")
       div Admin Pannel
-nav.hidden-part.isHidden(style="overflow:hidden;")
+
+nav(style="overflow:hidden;")
   hr
   .hidden-search(style='margin: 1rem; font-size: 2.2rem')
     .content-border
       input#search(type='text' name='search')
-      a(href="#") 
-        button.button(style='height: 100%; ')
+      div(style="margin: 0 1rem") 
+        button.button(style='height: 100%; margin: auto; width: 100%;')
           i.bi.bi-search
-  hr
-  .hidden-account-text(style="padding-left: 2.5rem; ")
-    if !user 
-      a(style='height: 100%; margin: 1rem; ' href="/Login")  My Account
-      br
-    else if user
-      a#user-account(style='height: 100%; margin: 1rem; ')
-        div= user.name
-      br
-      a.display#logout(style='height: 100%; margin: 1rem;')
-        div Logout
-      br
 
 <div class="extracting-design" style="display:none; justify-content: center;" >
   div(style="background-color:#ccd3cc; padding: .5rem 10%; border-radius: 1.2rem; position:absolute;top:0;" )
