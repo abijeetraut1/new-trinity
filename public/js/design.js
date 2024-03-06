@@ -279,7 +279,6 @@ addImage.addEventListener('input', el => {
     reader.addEventListener('load', function () {
         const base64String = reader.result;
         const createImg = document.createElement('img');
-        createImg.setAttribute("image-key", imageKey);
         createImg.classList.add('newImg', `${$('.btn-toggle')[0].innerText.toLowerCase()}`);
         createImg.src = base64String;
         parentElement.insertBefore(createImg, parentElement.children[1]);
@@ -287,7 +286,6 @@ addImage.addEventListener('input', el => {
         
         const newImg = document.querySelectorAll('.newImg');
         newImg.forEach((ele, i) => {
-            // countSessionStorageSticker++;
             deleteElement.style.display = 'block';
 
             parentElement.childNodes.forEach(tshirt_text_click => {

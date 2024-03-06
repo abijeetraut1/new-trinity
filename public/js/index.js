@@ -130,8 +130,6 @@ $('#search-button')[0].addEventListener('click', el => {
 })
 
 
-
-
 // will be modified
 if ($('#place-the-order')[0]) {
     $('#place-the-order')[0].addEventListener('click', async el => {
@@ -353,6 +351,9 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
     }
 }
 
+
+
+
 // wait
 if (window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[2] === "order") {
     $('#designImageDisplayBack')[0].src = sessionStorage.getItem('designedFrontView');
@@ -387,11 +388,11 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
             const address = $('#order-address')[0].value;
             const city = $('#select')[0].value;
             const size = $(".changeColor")[0].innerText;
-            // const front = sessionStorage.getItem('designedFrontView');
-            // const back = sessionStorage.getItem('designedBackView');
+            const front = sessionStorage.getItem('designedFrontView');
+            const back = sessionStorage.getItem('designedBackView');
             const sticker = $("#inserted-stickers")[0].files;
-            
-            
+
+
             if ((email === '') && (number === '') && (name === '') && (area === '') && (address === '') && (city === '') && (size === '')) {
                 alert('please fill the information carefully');
             }
@@ -404,11 +405,14 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
             designs.append("address", address);
             designs.append("city", city);
             designs.append("size", size);
-            
+            designs.append("front", front);
+            designs.append("back", back);
+
             for (let index = 0; index < sticker.length; index++) {
-                console.log(sticker[index]);
                 designs.append("sticker", sticker[index]);
             }
+
+            
             const sendData = await axios({
                 method: 'POST',
                 url: '/api/v1/product/directorderrecord',
@@ -418,7 +422,7 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
                 data: designs
             })
             if (sendData.data.status === "success") {
-                sessionStorage.clear();
+                // sessionStorage.clear();
                 // window.location.assign('/delivered');
             }
         })

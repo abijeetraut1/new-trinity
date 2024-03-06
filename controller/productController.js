@@ -109,7 +109,6 @@ exports.getItem = catchAsync(async (req, res, next) => {
 });
 
 saveSticker = async (imageBase64, tshirtName) => {
-    console.log('shirtname', tshirtName)
     const base64Image = imageBase64;
     const matches = base64Image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
     const type = matches[1];
@@ -130,8 +129,7 @@ exports.uploadDesign = catchAsync(async (req, res, next) => {
     const token = req.cookies.jwt;
     const cookiesId = await promisify(jwt.verify)(token, process.env.jwtPassword);
 
-    let imageName = req.body.title.replaceAll(' ', '-').toLowerCase();
-    let tshirtName = `${imageName}-${Date.now()}`;
+    let tshirtName = `${Date.now() + '-' + Math.round(Math.random() * 1E9)+".png"}-${Date.now()}`;
     let designInfo;
 
     saveSticker(req.body.frontImage, `/tshirt/front/${tshirtName}_front.png`);
@@ -287,12 +285,11 @@ exports.changePrice = catchAsync(async (req, res, next) => {
 });
 
 exports.directorderrecord = async (req, res, next) => {
-    try {
-
+    // try {
         console.log(req.file)
         console.log(req.body);
         let imageName = req.body.name.replaceAll(' ', '-').toLowerCase();
-        let tshirtName = `${imageName}-${Date.now()}`;
+        let tshirtName = `${Date.now() + '-' + Math.round(Math.random() * 1E9)}`;
 
 
         let upload = {
@@ -310,7 +307,6 @@ exports.directorderrecord = async (req, res, next) => {
             saveSticker(req.body.paymeny, `/payment/${tshirtName}_payment.png`);
             upload.payment = `${imageName}_payment.png`;
         }
-
 
         if (req.body.front && req.body.back) {
             saveSticker(req.body.front, `/tshirt/front/${tshirtName}_front.png`);
@@ -333,9 +329,9 @@ exports.directorderrecord = async (req, res, next) => {
             status: 'success',
             record
         })
-    } catch(err){
-        console.log(err)
-    }
+    // } catch(err){
+    //     console.log(err)
+    // }
 
 };
 

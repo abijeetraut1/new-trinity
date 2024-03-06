@@ -20,7 +20,8 @@ exports.homepage = async (req, res, next) => {
     // const productData = await product.find().sort({
     //     uploadDate: -1
     // });
-    const totalUsers = await user.find().limit(4);
+    let totalUsers = await user.find().limit(4);
+    totalUsers += 1000;
     res.status(200).render('landing.pug', {
         adminDesign,
         totalUsers,

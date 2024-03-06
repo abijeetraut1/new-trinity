@@ -1,17 +1,21 @@
 const multer = require("multer");
 
+
+
+
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        console.log(req.body);
-        console.log(req.file, req.files);
-        cb(null, "/images/product/upload/sticker");
+       console.log(req.file)
+        cb(null, "public/images/product/upload/sticker");
     },
 
     filename: function (req, file, cb) {
-        const filename = "hello.png";
+
+        const filename = Date.now() + '-' + Math.round(Math.random() * 1E9)+".png";
         cb(null, filename);
     }
 })
+
 
 module.exports = {
     multer,
