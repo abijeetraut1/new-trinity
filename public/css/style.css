@@ -625,7 +625,7 @@ ol .cart {
     }
 
     .mobile-nav .ham-menu {
-        margin: 0 1rem 0 1rem;
+        margin: 0 1rem 0 1rem;  
     }
 
     .heroSection {
@@ -1185,7 +1185,11 @@ a {
 
 
 
-
+@media (min-width: 992px){
+    #mobile-only{
+        display: none;
+    }
+}
 
 
 
@@ -1221,11 +1225,12 @@ a {
 }
 
 .content {
-    margin-left: 250px;
     min-height: 100vh;
     background: #FFFFFF;
     transition: 0.5s;
 }
+
+
 
 @media (min-width: 992px) {
     .sidebar {
@@ -1234,10 +1239,6 @@ a {
 
     .sidebar.open {
         margin-left: -250px;
-    }
-
-    .content {
-        width: calc(100% - 250px);
     }
 
     .content.open {

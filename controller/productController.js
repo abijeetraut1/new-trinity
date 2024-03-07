@@ -285,53 +285,41 @@ exports.changePrice = catchAsync(async (req, res, next) => {
 });
 
 exports.directorderrecord = async (req, res, next) => {
-    // try {
-        console.log(req.file)
-        console.log(req.body);
-        let imageName = req.body.name.replaceAll(' ', '-').toLowerCase();
-        let tshirtName = `${Date.now() + '-' + Math.round(Math.random() * 1E9)}`;
+    console.log(req.files)
+    let tshirtName = `${Date.now() + '-' + Math.round(Math.random() * 1E9)}`;
+    const stickers = [];
+    req.files.map(el => {
+        stickers.push(el.filename);
+    })
 
+    let upload = {
+        email: req.body.email,
+        name: req.body.name,
+        number: req.body.number,
+        area: req.body.number,
+        address: req.body.address,
+        city: req.body.city,
+        size: req.body.size,
+        material: req.body.material,
+        sticker: stickers
+    }
 
-        let upload = {
-            email: req.body.email,
-            name: req.body.name,
-            number: req.body.number,
-            area: req.body.number,
-            address: req.body.address,
-            city: req.body.city,
-            size: req.body.size,
-            material: req.body.material,
-        }
+    if (req.body.front && req.body.back) {
+        saveSticker(req.body.front, `/tshirt/front/${tshirtName}_front.png`);
+        saveSticker(req.body.back, `/tshirt/back/${tshirtName}_back.png`);
 
-        if (req.body.paymeny) {
-            saveSticker(req.body.paymeny, `/payment/${tshirtName}_payment.png`);
-            upload.payment = `${imageName}_payment.png`;
-        }
+        upload.front = `${tshirtName}_front.png`;
+        upload.back = `${tshirtName}_back.png`;
+    }
 
-        if (req.body.front && req.body.back) {
-            saveSticker(req.body.front, `/tshirt/front/${tshirtName}_front.png`);
-            saveSticker(req.body.back, `/tshirt/back/${tshirtName}_back.png`);
+    const record = await directOrder.create(
+        upload
+    );
 
-            upload.front = `${tshirtName}_front`;
-            upload.back = `${tshirtName}_back`;
-        }
-
-        if (req.body.sticker) {
-            upload.sticker = `${tshirtName}-sticker`;
-            saveSticker(req.body.sticker, `/sticker/${tshirtName}-sticker.png`);
-        }
-
-        const record = await directOrder.create(
-            upload
-        );
-
-        res.status(200).json({
-            status: 'success',
-            record
-        })
-    // } catch(err){
-    //     console.log(err)
-    // }
+    res.status(200).json({
+        status: 'success',
+        record
+    })
 
 };
 

@@ -1,3 +1,8 @@
+// $('#logout')[0].addEventListener('click', async el => {
+// function formatNumber(num) {
+//     return num.toFixed(2);
+// }
+
 async function logout (){
     const logout = await axios({
         method: 'GET',
@@ -25,6 +30,7 @@ if (window.location.pathname.split('/')[1] === "product" && window.location.path
     $('.bi-list, .bi-bag').css('font-size', '2.3rem');
     $('.add-cart, .ham-menu').css('overflow', 'hidden');
 }
+
 
 if(window.innerWidth >= 640){
     $('#mobile-only').css('display',"none");

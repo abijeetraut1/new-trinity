@@ -2,8 +2,10 @@ const product = require('../model/product');
 const sendedProduct = require('../model/sendedDesign');
 const user = require('../model/signup');
 const order = require('./../model/orderModel');
+const directDesignOrder = require('./../model/directDesignOrder');
 const price = require('./../model/changePrice');
 const cart = require('./../model/add-to-cart');
+
 const jwt = require('jsonwebtoken');
 const {
     promisify
@@ -107,8 +109,8 @@ exports.designPage = async (req, res, next) => {
 
 // admin only
 exports.products = async (req, res, next) => {
-    const ordereditem = await order.find();
-    console.log(ordereditem)
+    const ordereditem = await directDesignOrder.find();
+    console.log(ordereditem);
     res.status(200).render('dash_product.pug', {
         ordereditem
     });

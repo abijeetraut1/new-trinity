@@ -28,21 +28,23 @@ const orderSchema = mongoose.Schema({
     },
     size: {
         type: String,
+        required: true,
     },
     front: {
         type: String,
+        required: true,
     },
     back: {
         type: String,
+        required: true,
     },
     sticker: {
-        type: String,
+        type: [String],
+        required: true,
     },
     material: {
         type: String,
-    },
-    payment: {
-        type: String,
+        required: true,
     },
 
     orderDate: Date

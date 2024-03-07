@@ -1,4 +1,4 @@
-/********** Template CSS **********/
+********* Template CSS *********
 :root {
     --primary: #009CFF;
     --light: #F3F6F9;
@@ -71,7 +71,7 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 250px;
+    /* width: 250px; */
     height: 100vh;
     overflow-y: auto;
     background: var(--light);
@@ -79,12 +79,12 @@
     z-index: 999;
 }
 
-.content {
-    margin-left: 250px;
+/* .content {
+  margin-left: 250px;
     min-height: 100vh;
     background: #FFFFFF;
     transition: 0.5s;
-}
+} */
 
 @media (min-width: 992px) {
     .sidebar {
@@ -93,10 +93,6 @@
 
     .sidebar.open {
         margin-left: -250px;
-    }
-
-    .content {
-        width: calc(100% - 250px);
     }
 
     .content.open {

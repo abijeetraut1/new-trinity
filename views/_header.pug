@@ -25,31 +25,33 @@ header.header(style="z-index: 20")
 
       li.cart
         div(style="display: flex; align-items: center;" )
-          a(href='/add-to-cart').add-cart
-            div(class="bulb" style="border-radius: 5rem; margin-right:1rem; ")
+          a.add-cart(href='/add-to-cart')
+            div(class="bulb" style="border-radius: 5rem; margin-right:1rem;")
               i.bi.bi-bag
           if user
             div#logout.Logout(style="cursor: pointer; text-align: center;  color:#ff3f6c; backgroundColor: #f3f6f9;" onclick="logout()") Log Out
+          if(!user)
+            a(href='/login' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;") Login 
 
-  .mobile-nav
-    .add-cart
+  .mobile-nav(style="margin-right: 12px;")
+    .add-cart(style="margin-right: 12px;")
       i.bi.bi-bag
     if(!user)
       a(href='/login' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;") Login 
 
-// display only clicked
+//-  display only clicked
 if user
   if user.role === 'admin'
     a#mobile-only(href='/dashboard-arrived' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;")
       div Admin Pannel
 
-nav(style="overflow:hidden;")
+nav#mobile-only(style="overflow:hidden;")
   hr
   .hidden-search(style='margin: 1rem; font-size: 2.2rem')
     .content-border
       input#search(type='text' name='search')
-      div(style="margin: 0 1rem") 
-        button.button(style='height: 100%; margin: auto; width: 100%;')
+      div(style="with: 12px") 
+        button.button(style='cursor: pointer; height: 100%; width: fit-content; padding: 0 .5rem 0 .5rem;')
           i.bi.bi-search
 
 <div class="extracting-design" style="display:none; justify-content: center;" >

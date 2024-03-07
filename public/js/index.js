@@ -390,6 +390,7 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
             const size = $(".changeColor")[0].innerText;
             const front = sessionStorage.getItem('designedFrontView');
             const back = sessionStorage.getItem('designedBackView');
+            const material = sessionStorage.getItem('material');
             const sticker = $("#inserted-stickers")[0].files;
 
 
@@ -407,6 +408,7 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
             designs.append("size", size);
             designs.append("front", front);
             designs.append("back", back);
+            designs.append("material", material);
 
             for (let index = 0; index < sticker.length; index++) {
                 designs.append("sticker", sticker[index]);
