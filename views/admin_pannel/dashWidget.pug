@@ -1,0 +1,76 @@
+extends dashbase
+
+block contentDash
+    .content
+        //- include _header
+        nav.navbar.navbar-expand.bg-light.navbar-light.sticky-top.px-4.py-0
+            a.sidebar-toggler.flex-shrink-0(href='#')
+                i.fa.fa-bars
+        // navigation ya aauxa
+
+        // Sale & Revenue Start
+        .container-fluid.pt-4.px-4
+            .row.g-4
+                .col-sm-6.col-xl-3
+                    .bg-light.rounded.d-flex.align-items-center.justify-content-between.p-4
+                        i.fa.fa-chart-bar.fa-3x.text-primary
+                        .ms-3
+                            - let total = fromSendItem.length;
+                            p.mb-2 Total Order Send
+                            h6.mb-0= `${total} item`
+                           
+        each product in fromSendItem
+
+            .container-fluid.pt-4.px-4
+                .row.pt-4.class-align-items.d-flex(style="font-size: 1.2rem;")
+                    .container-of-name-and-image.d-flex.align-items-center.justify-content-space-between
+                        .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
+                            img(src=`images/product/upload/tshirt/front/${product.front}.png` id="imageFromDB" alt='' style='height: 100%;')
+                        .image-of-container
+                            h4#name(style="font-size: 1.1rem;")= `${product.name} (${product.size})`
+                            h4.no-of-order#contact(style="font-size: 1.1rem;")= product.number
+
+                    .container-of-name-and-text.d-flex.justify-content-space-around
+                        .image-of-container.d-flex.justify-content-center.align-items-center(style='height: 15vh; padding: 1rem 1rem;')
+                            h4.no-of-order(style="font-size: 1.1rem;")= product.price
+
+            
+                    .container-of-name-and-text.d-flex.justify-content-space-around
+                        .image-of-container.d-flex.justify-content-center.align-items-center(style='flex-direction: column; width: fit-content; height: fir-content; padding: 1rem 1rem;')
+                            div
+                                h4.no-of-order#location(style="font-size: 1.1rem;")= `quantity = ${product.qnt}`
+                            div
+                                h4.no-of-order#location(style="font-size: 1.1rem;")= `color = ${product.color}` 
+
+                    .container-of-name-and-text.d-flex.justify-content-space-around
+                        .image-of-container.d-flex.justify-content-center.align-items-center(style='flex-direction: column; width: fit-content; height: fir-content; padding: 1rem 1rem;')
+                            div
+                                h4.no-of-order#location(style="font-size: 1.1rem;")= product.city
+                            div
+                                h4.no-of-order#location(style="font-size: 1.1rem;")= product.address
+                            div 
+                                h4.no-of-order#location(style="font-size: 1.1rem;")= product.area
+
+                    .container-of-name-and-text.d-flex.justify-content-space-around
+                        div
+                            a(href=`./images/product/upload/tshirt/${product.sticker}.png` download) 
+                                .image-of-container.d-flex.justify-content-center.align-items-center(style='height: fit-content; padding: 1rem 1rem;')
+                                    button.send-of-order Sticker
+
+                        div 
+                            a(href=`./images/product/upload/tshirt/${product.back}.png` target="_blank") 
+                                .image-of-container.d-flex.justify-content-center.align-items-center(style='height: fit-content; padding: 1rem 1rem;')
+                                    button.send-of-order Back Image
+
+                            a(href=`./images/product/upload/tshirt/front/${product.front}.png` target='_blank') 
+                                .image-of-container.d-flex.justify-content-center.align-items-center(style='height: fit-content; padding: 1rem 1rem;')
+                                    button.send-of-order Front Image
+
+                        div 
+                            a(href=`./images/product/upload/sticker/${product.sticker}-sticker.png` target='_blank') 
+                                .image-of-container.d-flex.justify-content-center.align-items-center(style='height: fit-content; padding: 1rem 1rem;')
+                                    button.send-of-order Sticker Link
+
+                            .image-of-container.d-flex.justify-content-center.align-items-center(style='height: fit-content; padding: 1rem 1rem;')
+                                button.send-of-order#send-of-order Order Send
+

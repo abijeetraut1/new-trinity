@@ -1,0 +1,26 @@
+extends dashbase
+
+block contentDash
+    script(src="./js/jquery-latest.js")
+    script(src="./js/forall.js")
+    .content
+        //- include _header
+        // navigation ya aauxa
+
+        // Sale & Revenue Start
+        .container-fluid.pt-4.px-4
+            table(style="width: 50%")
+                thead
+                    tr 
+                        th Material
+                        th Price
+                        th Change
+
+                tbody
+                    each price in changePrice
+                        tr
+                            td= price.type
+                            td(style="width: fit-content;")
+                                input.no-of-order#price-no(type="number" value=`${price.price}`)                 
+                            td 
+                                button.send-of-order#save-price(value=`${price._id}`) Save Price

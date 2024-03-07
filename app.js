@@ -12,6 +12,8 @@ const rateLimit = require('express-rate-limit');
 const apiRouter = require('./router/apiRouter');
 const userRouter = require('./router/userRouter');
 const viewRouter = require('./router/viewRouter');
+const adminPannelRouter = require("./router/adminRouter")
+
 const {
     urlencoded
 } = require('express');
@@ -31,13 +33,18 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', limiter);
-app.use(express.json({ limit: '15mb' }));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({
+    limit: '15mb'
+}));
+app.use(express.urlencoded({
+    extended: false
+}));
 
 app.use(cookiesParser());
 
 // app.use('/adminPannel', adminRotuer);
 app.use('/', viewRouter);
+app.use("/admin", adminPannelRouter);
 app.use('/api/v1/product', apiRouter);
 app.use('/api/v1/user', userRouter);
 

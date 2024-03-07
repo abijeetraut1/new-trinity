@@ -6,7 +6,7 @@ const order = require('../model/sendedDesign');
 const orderRecived = require('../model/orderModel');
 const addToCart = require('../model/add-to-cart');
 const changePrice = require('../model/changePrice');
-const directOrder = require('../model/directDesignOrder');
+const directDesignOrder = require('../model/directDesignOrder');
 const AppError = require('../utils/appError');
 
 const jwt = require('jsonwebtoken');
@@ -284,7 +284,7 @@ exports.changePrice = catchAsync(async (req, res, next) => {
     })
 });
 
-exports.directorderrecord = async (req, res, next) => {
+exports.Design_Order_Record = async (req, res, next) => {
     console.log(req.files)
     let tshirtName = `${Date.now() + '-' + Math.round(Math.random() * 1E9)}`;
     const stickers = [];
@@ -312,7 +312,7 @@ exports.directorderrecord = async (req, res, next) => {
         upload.back = `${tshirtName}_back.png`;
     }
 
-    const record = await directOrder.create(
+    const record = await directDesignOrder.create(
         upload
     );
 
@@ -347,3 +347,15 @@ exports.cartDelete = catchAsync(async (req, res, next) => {
         status: 'success'
     })
 });
+
+
+
+exports.send_product_to_users = async(req, res, next) => {
+    const id = req.body.id;
+    const product_send = await directDesignOrder.findOneAndUpdate({_id:id}, {sendStatus: true});
+    
+    res.status(200).json({
+        status: 200,
+        message: "status updated"
+    })
+}

@@ -19,7 +19,7 @@ router.post('/design/changeDestination', productController.changeDatabase);
 router.post('/orderrecord', productController.orderRecorder);
 router.post('/add-to-cart', productController.addToCart);
 router.delete('/cartDelete', productController.cartDelete);
-router.post('/directorderrecord', upload.array('sticker', 6), productController.directorderrecord);
+router.post('/directorderrecord', upload.array('sticker', 6), productController.Design_Order_Record);
 router.delete('/design/deleteRequestTshirt', productController.deleteProduct);
 router.patch('/updatePrice', productController.changePrice);
 
@@ -33,5 +33,8 @@ router.get("/deleteAllData", adminController.deleteAllData);
 // router.get('/:slug', productController.getItem);
 // router.get('/:slug/order', authController.protect, productController.buyRecorder)
 // router.post('/postimage', authController.protect, productController.uploadUserPhoto, productController.resizeUserPhoto, productController.work)
+
+// transfer set the product is send to user
+router.patch("/order-send-to-user", authController.isAdminLoggedIn, productController.send_product_to_users);
 
 module.exports = router;

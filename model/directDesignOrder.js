@@ -46,10 +46,27 @@ const orderSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-
-    orderDate: Date
+    sendStatus: {
+        type: Boolean,
+        default: false
+    },
+    orderDate: Date,
 });
 
+orderSchema.pre("save", async function (next) {
+    const currentDate = new Date();
+
+    // Get the current year, month, and day
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1; // January is 0, so we add 1
+    const day = currentDate.getDate();
+
+    // Format the date as needed
+    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    
+    this.orderDate = currentDate;
+    next();
+})
 
 const directOrder = new mongoose.model('directOrder', orderSchema);
 module.exports = directOrder;
