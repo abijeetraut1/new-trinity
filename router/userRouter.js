@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controller/userController');
+const adminController = require('../controller/adminController');
 
 router.post('/signup', userController.signup);
 router.post('/login', userController.login);
@@ -14,5 +15,10 @@ router.post('/finduser', userController.checkReferral);
 router.patch('/activateCutoff', userController.cutoffReg);
 router.patch('/deactivateCutoff', userController.cutoffDelete);
 router.post('/checkCode', userController.checkCode);
+
+
+router.patch("/appoint-sub-admin", adminController.change_user_to_admin);
+router.patch("/remove-sub-admin", adminController.remove_sub_admin);
+router.delete("/delete-user", adminController.deleteUser);
 
 module.exports = router;

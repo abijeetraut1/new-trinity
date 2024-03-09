@@ -14,49 +14,50 @@ block contentDash
                             - let productLength = ordereditem.length;
                             p.mb-2 Total Order Arrived
                             h6.mb-0= `${productLength} item` 
-                    
-                           
-            .container-fluid.pt-4.px-4
-                table(style="width: 100%")
-                    thead
-                        tr
-                            th SN
-                            th Name
-                            th Phone no
-                            th Address
-                            th Color
-                            th Size
-                            th price
-                            th T-shirt Front
-                            th T-shirt Back
-                            th Sticker 
-                            th Send
 
-                    tbody(style="flex")
-                        each product, i in ordereditem
-                            tr 
-                                td 
-                                    .no-of-order#location(style="font-size: 1.1rem;")= i+1
-                                td
-                                    .no-of-order#location(style="font-size: 1.1rem;")= product.name
-                                td
-                                    .no-of-order#location(style="font-size: 1.1rem;")= product.number
-                                td
-                                    .no-of-order#location(style="font-size: 1.1rem;")= product.city
-                                td
-                                    .no-of-order#location(style="font-size: 1.1rem;")= product.color
-                                td
-                                    .no-of-order#location(style="font-size: 1.1rem;")= product.size
-                                td
-                                    .no-of-order#location(style="font-size: 1.1rem;")= product.price
-                                td
-                                    .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
-                                        img(src=`images/product/upload/tshirt/front/${product.front}.png` id="imageFromDB" alt='' style='height: 100%;')
-                                td
-                                    .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
-                                        img(src=`images/product/upload/tshirt/back/${product.back}.png` id="imageFromDB" alt='' style='height: 100%;')
-                                td
-                                    .d-flex(style='height: fit-content;')
-                                        button.send-of-order Download
-                                td 
-                                    input#order_send_status(type="checkbox" style="font-size: 1.1rem;" value=`${product._id}`)
+        .container-fluid.pt-4.px-4
+            table(style="width: 100%;")
+                thead
+                    tr
+                        th SN
+                        th Name
+                        th Phone no
+                        th Address
+                        th Color
+                        th Size
+                        th price
+                        th T-shirt Front
+                        th T-shirt Back
+                        th Sticker 
+                        th Date
+                        th Send
+
+                tbody
+                    each product, i in ordereditem
+                        tr 
+                            td 
+                                .no-of-order#location(style="font-size: 1.1rem;")= i+1
+                            td
+                                .no-of-order#location(style="font-size: 1.1rem;")= product.name
+                            td
+                                .no-of-order#location(style="font-size: 1.1rem;")= product.number
+                            td
+                                .no-of-order#location(style="font-size: 1.1rem;")= product.city
+                            td
+                                .no-of-order#location(style="font-size: 1.1rem;")= product.color
+                            td
+                                .no-of-order#location(style="font-size: 1.1rem;")= product.size
+                            td
+                                .no-of-order#location(style="font-size: 1.1rem;")= product.price
+                            td
+                                .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
+                                    img(src=`../images/product/upload/tshirt/front/${product.front}` id="imageFromDB" alt='' style='height: 100%;')
+                            td
+                                .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
+                                    img(src=`../images/product/upload/tshirt/back/${product.back}` id="imageFromDB" alt='' style='height: 100%;')
+                            td
+                                .d-flex(style='height: fit-content;')
+                                    button.send-of-order Download
+                            td= new Date(`${product.orderDate}`).toLocaleDateString("en-US", { day: 'numeric', month: 'short', year: 'numeric' })
+                            td 
+                                input#order_send_status(type="checkbox" style="font-size: 1.1rem;" value=`${product._id}`)

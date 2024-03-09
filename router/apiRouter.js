@@ -23,7 +23,7 @@ router.post('/directorderrecord', upload.array('sticker', 6), productController.
 router.delete('/design/deleteRequestTshirt', productController.deleteProduct);
 router.patch('/updatePrice', productController.changePrice);
 
-router.get("/deleteAllData", adminController.deleteAllData);
+router.delete("/deleteAllData", adminController.deleteAllData);
 
 // router.get('/', productController.getAllProduct);
 // router.post('/uploadProduct', productController.upload);
