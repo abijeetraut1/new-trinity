@@ -47,6 +47,7 @@ app.use('/', viewRouter);
 app.use("/admin", adminPannelRouter);
 app.use('/api/v1/product', apiRouter);
 app.use('/api/v1/user', userRouter);
+// app.use("/api/v1/admin_controller", )
 
 app.all('*', (req, res, next) => {
     next(new AppError(`cannot find ${req.originalUrl} on this server`, 404));

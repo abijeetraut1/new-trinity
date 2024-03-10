@@ -12,7 +12,7 @@ exports.products = async (req, res, next) => {
         sendStatus: 0
     });
     console.log(ordereditem);
-    res.status(200).render('admin_pannel/dash_product.pug', {
+    res.status(200).render('admin_pannel/dashboard_product.pug', {
         ordereditem
     });
 }

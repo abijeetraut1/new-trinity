@@ -2,19 +2,14 @@ extends dashbase
 //- script(src="./js/jquery-latest.js")
 //- script(src="./js/forall.js")
 block contentDash
+    table.
+        tr:nth-child(even) {
+            background-color: rgba(150, 212, 212, 0.4);
+        }
 
     .content
         // Sale & Revenue Start
         .container-fluid.pt-4.px-4
-            .row.g-4
-                .col-sm-6.col-xl-3
-                    .bg-light.rounded.d-flex.align-items-center.justify-content-between.p-4
-                        i.fa.fa-chart-bar.fa-3x.text-primary
-                        .ms-3
-                            - let price = orderSend.length;
-                            p.mb-2 Total Order Send
-                            h6.mb-0= `${price} item` 
-
             .container-fluid.pt-4.px-4
                 table(style="width: 100%")
                     thead
@@ -33,32 +28,32 @@ block contentDash
                             th date
 
                     tbody(style="flex")
-                    each product, i in orderSend
-                        tr 
-                            td 
-                                .no-of-order#location(style="font-size: 1.1rem;")= i+1
-                            td
-                                .no-of-order#location(style="font-size: 1.1rem;")= product.name
-                            td
-                                .no-of-order#location(style="font-size: 1.1rem;")= product.number
-                            td
-                                .no-of-order#location(style="font-size: 1.1rem;")= product.city
-                            td
-                                .no-of-order#location(style="font-size: 1.1rem;")= product.color
-                            td
-                                .no-of-order#location(style="font-size: 1.1rem;")= product.size
-                            td
-                                .no-of-order#location(style="font-size: 1.1rem;")= product.price
-                            td
-                                .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
-                                    img(src=`../images/product/upload/tshirt/front/${product.front}.png` id="imageFromDB" alt='' style='height: 100%;')
-                            td
-                                .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
-                                    img(src=`../images/product/upload/tshirt/back/${product.back}.png` id="imageFromDB" alt='' style='height: 100%;')
-                            td
-                                .d-flex(style='height: fit-content;')
-                                    button.send-of-order Download
-                            td 
-                                input.no-of-order#location(type="checkbox" style="font-size: 1.1rem;" checked=(product.sendStatus === true))
-                            td
-                                h4= product.orderDate
+                        each product, i in orderSend
+                            tr 
+                                td 
+                                    .no-of-order#location(style="font-size: 1.1rem;")= i+1
+                                td
+                                    .no-of-order#location(style="font-size: 1.1rem;")= product.name
+                                td
+                                    .no-of-order#location(style="font-size: 1.1rem;")= product.number
+                                td
+                                    .no-of-order#location(style="font-size: 1.1rem;")= product.city
+                                td
+                                    .no-of-order#location(style="font-size: 1.1rem;")= product.color
+                                td
+                                    .no-of-order#location(style="font-size: 1.1rem;")= product.size
+                                td
+                                    .no-of-order#location(style="font-size: 1.1rem;")= product.price
+                                td
+                                    .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
+                                        img(src=`../images/product/upload/tshirt/front/${product.front}.png` id="imageFromDB" alt='' style='height: 100%;')
+                                td
+                                    .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
+                                        img(src=`../images/product/upload/tshirt/back/${product.back}.png` id="imageFromDB" alt='' style='height: 100%;')
+                                td
+                                    .d-flex(style='height: fit-content;')
+                                        button.send-of-order#send-order(setAttribute=`${product.sticker}`) Download
+                                td 
+                                    input.no-of-order#location(type="checkbox" style="font-size: 1.1rem;" checked=(product.sendStatus === true))
+                                td
+                                    h4= product.orderDate

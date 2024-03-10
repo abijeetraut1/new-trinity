@@ -562,8 +562,7 @@ iframe {
     margin: 1rem 0 1rem 0;
 }
 
-.isHidden,
-.mobile-nav {
+.isHidden {
     display: none;
 }
 

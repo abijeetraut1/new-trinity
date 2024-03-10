@@ -32,7 +32,9 @@ if (window.location.pathname == '/dashboard-arrived') {
         const postData = await axios({
             method: "patch",
             url: "api/v1/product/order-send-to-user",
-            data: {id:productSendCheckbox.value}
+            data: {
+                id: productSendCheckbox.value
+            }
 
         })
         if (postData.data.status === "success") {
@@ -120,5 +122,15 @@ if ($('#place-the-order')[0]) {
         if (sendData.data.status === "success") {
             alert('your order is on the way')
         }
+    })
+}
+
+if (window.location.pathname.split("/")[2] === "dashboard_products") {
+    const order_send_status = document.querySelectorAll("#order_send_status");
+
+    order_send_status.forEach(el => {
+        el.addEventListener("change", async () => {
+            const productSend = await axios.patch("/api/v1/products")
+        })
     })
 }

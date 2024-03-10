@@ -1,28 +1,128 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 style.
     .admin-pannel-navbar{
         display: flex;
         justify-content: right;
         align-items: center;
         height: 4rem;
-        padding: 0 3rem;
+        padding: 0 2rem;
     }
 
     .admin-pannel-navbar div{
         margin-left: 1rem;
+        color: white;
+    }
+
+    .mobile-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        z-index: 999;
+    }
+
+    .menu-btn {
+        display: block;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .menu-icon {
+        position: relative;
+        z-index: 50;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #222;
+        transition: left 0.3s ease;
+    }
+
+    @media (min-width: 732px){
+        .nav-links {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 20%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #222;
+            transition: left 0.3s ease;
+        }
+    }
+
+    .nav-links.show {
+        left: 0;
+    }
+
+    .nav-links div a , 
+    .nav-links div h5{
+        display: block;
+        padding: 15px 20px;
+        color: #fff;
+        text-decoration: none;
+        width: fit-content;
+        cursor: pointer;
     }
 
 
 
-section.admin-pannel-navbar
-    div 
-        a(href="dashboard-arrived" style="color:#ff3f6c") Order Recived 
-    div 
-        a(href="dashboard-dispatched" style="color:#ff3f6c") Order Dispatched
-    div
-        a(href='dashboard-price' style="color:#ff3f6c") Cloth Material Price
-    div 
-        a(href='dashboard-show-users' style="color:#ff3f6c") Appoint Admin
-    div 
-        a(href='dashboard-database-clear' style="color:#ff3f6c") clear database
+//- for mobile device
+<div class="mobile-nav">
+    <div class="menu-btn">
+        <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
+    </div>
+    <div class="nav-links">
+        <div>
+            <h5 class="admin-pannel-of" style="text-transform: capitalize;"></h5>
+        </div>
+        <div>
+            <h5>User Page</h5>
+        </div>
+        <div>
+            <a href="/">Home</a>
+        </div>
+        <div>
+            <h5>Admin Pannel</h5>
+        </div>
+        <div>
+            <a href="dashboard_products">Order Received</a>
+        </div>
+        <div>
+            <a href="dashboard-dispatched">Order Dispatched</a>
+        </div>
+        <div>
+            <a href="dashboard-price">Cloth Material Price</a>
+        </div>
+        <div>
+            <a href="dashboard-show-users">Appoint Admin</a>
+        </div>
+        <div>
+            <a href="dashboard-database-clear">Clear Database</a>
+        </div>
+    </div>
+</div>
 
 
+script(src="../js/jquery-latest.js")
+script.
+    $(`.admin-pannel-of`)[0].innerText = window.location.hostname;
+
+    const menuBtn = document.querySelector(".menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+    document.addEventListener("DOMContentLoaded", function() {
+        menuBtn.addEventListener("click", (el) => {    
+            navLinks.classList.toggle("show");
+        });
+    });

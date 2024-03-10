@@ -1,22 +1,27 @@
 extends dashbase
-//- script(src="./js/jquery-latest.js")
-//- script(src="./js/forall.js")
 block contentDash
+    style.
+        #table{
+            width: 100%;
+                margin-top: 1rem;
 
-    .content
-        // Sale & Revenue Start
-        .container-fluid.pt-4.px-4
-            .row.g-4
-                .col-sm-6.col-xl-3
-                    .bg-light.rounded.d-flex.align-items-center.justify-content-between.p-4
-                        i.fa.fa-chart-bar.fa-3x.text-primary
-                        .ms-3
-                            - let productLength = ordereditem.length;
-                            p.mb-2 Total Order Arrived
-                            h6.mb-0= `${productLength} item` 
+        }
+        tbody{
+            height: 20vh;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(150, 212, 212, 0.4);
+        }
 
+        @media (max-width: 732px){
+            #table{
+                width: 300%;
+            }
+        }
+
+    .container-fluid.pt-4.px-4
         .container-fluid.pt-4.px-4
-            table(style="width: 100%;")
+            table#table.px-2.py-10
                 thead
                     tr
                         th SN
@@ -31,12 +36,11 @@ block contentDash
                         th Sticker 
                         th Date
                         th Send
-
                 tbody
                     each product, i in ordereditem
                         tr 
                             td 
-                                .no-of-order#location(style="font-size: 1.1rem;")= i+1
+                                .no-of-order#location(style="font-size: 1.1rem;")= i+1 + "."
                             td
                                 .no-of-order#location(style="font-size: 1.1rem;")= product.name
                             td
@@ -48,7 +52,7 @@ block contentDash
                             td
                                 .no-of-order#location(style="font-size: 1.1rem;")= product.size
                             td
-                                .no-of-order#location(style="font-size: 1.1rem;")= product.price
+                                .no-of-order#location(style="font-size: 1.1rem;" data=`${product.price}`)= product.price
                             td
                                 .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
                                     img(src=`../images/product/upload/tshirt/front/${product.front}` id="imageFromDB" alt='' style='height: 100%;')
@@ -56,8 +60,29 @@ block contentDash
                                 .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
                                     img(src=`../images/product/upload/tshirt/back/${product.back}` id="imageFromDB" alt='' style='height: 100%;')
                             td
-                                .d-flex(style='height: fit-content;')
-                                    button.send-of-order Download
+                                .d-flex(style='height: fit-content; widthL: fit-content;')
+                                    button.send-of-order#sended-stickers(imagesname=`${JSON.stringify(product.sticker)}`) Download All
                             td= new Date(`${product.orderDate}`).toLocaleDateString("en-US", { day: 'numeric', month: 'short', year: 'numeric' })
                             td 
                                 input#order_send_status(type="checkbox" style="font-size: 1.1rem;" value=`${product._id}`)
+
+    script(src="../js/jquery-latest.js")
+    script.
+        const sendedSticker = document.querySelectorAll("#sended-stickers");
+
+        sendedSticker.forEach(el => {
+            el.addEventListener("click", () => {
+                const imageFileArray = JSON.parse(el.getAttribute("imagesname"));
+                imageFileArray.forEach(image => {
+                    const link = document.createElement("a");
+                    link.href = `../images/product/upload/sticker/${image}`;
+                    link.setAttribute("download", image);
+                    link.style.display = "none";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                })
+            })
+        });
+
+
