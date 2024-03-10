@@ -1,6 +1,7 @@
 const product = require('../../model/product');
 const user = require('../../model/signup');
-const price = require('../../model/changePrice');
+const cloth_Type_Model = require('../../model/cloth_Type_Model');
+const cloth_material_model = require('../../model/Cloth_Material_Model');
 const cart = require('../../model/add-to-cart');
 
 const jwt = require('jsonwebtoken');
@@ -57,13 +58,15 @@ exports.orderPage = async (req, res, next) => {
 }
 
 exports.DesignorderPage = async (req, res, next) => {
-    try{
-        const viewPrice = await price.findOne({
+    try {
+        const viewPrice = await cloth_Type_Model.findOne({
             type: req.params.material
         });
         console.log(viewPrice);
-        res.status(200).render('user_pages/DesignorderPage.pug',{viewPrice});
-    } catch(err){
+        res.status(200).render('user_pages/DesignorderPage.pug', {
+            viewPrice
+        });
+    } catch (err) {
         console.log(err)
     }
 }
@@ -80,7 +83,7 @@ exports.addToCart = async (req, res, next) => {
     let products;
     let renderingItem = [];
     let sender;
-    items.forEach(async (el,i) => {
+    items.forEach(async (el, i) => {
         products = await product.findOne({
             _id: el.itemId
         })
@@ -96,10 +99,13 @@ exports.addToCart = async (req, res, next) => {
 
 
 exports.designPage = async (req, res, next) => {
-    const changePrice = await price.find();
+    const cloth_type_price = await cloth_Type_Model.find({});
+    const cloth_material_price = await cloth_material_model.find({});
+    
+    console.log(cloth_material_price)
+    
     res.status(200).render('user_pages/design.pug', {
-        changePrice
+        cloth_type_price,
+        cloth_material_price
     });
 }
-
-

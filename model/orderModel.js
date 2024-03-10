@@ -3,7 +3,12 @@ const product = require('./product');
 
 const orderSchema = mongoose.Schema({
     orderedProduct: {
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
     },
     email: {
         type: String,
@@ -31,25 +36,34 @@ const orderSchema = mongoose.Schema({
     },
     size: {
         type: String,
+        required: true,
     },
     qnt: {
         type: String,
+        required: true,
     },
     color: {
         type: String,
+        required: true,
     },
     front: {
         type: String,
+        required: true,
     },
     back: {
         type: String,
+        required: true,
     },
     sticker: {
         type: String,
+        required: true,
     },
-    orderDate: Date
+    orderDate: {
+        type: Date,
+        required: true,
+    },
 });
 
 
-const order = new mongoose.model('order', orderSchema);
+const order = new mongoose.model('admin_designed_tshirt', orderSchema);
 module.exports = order;

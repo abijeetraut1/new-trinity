@@ -33,12 +33,6 @@ header.header(style="z-index: 20")
           if(!user)
             a(href='/login' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;") Login 
 
-  .mobile-nav(style="margin-right: 12px;")
-    .add-cart(style="margin-right: 12px;")
-      i.bi.bi-bag
-    if(!user)
-      a(href='/login' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;") Login 
-
 //-  display only clicked
 if user
   if user.role === 'admin'

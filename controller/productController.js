@@ -2,11 +2,11 @@ const multer = require('multer');
 const sharp = require('sharp');
 const catchAsync = require('../utils/catchAsync');
 const product = require('../model/product');
-const order = require('../model/sendedDesign');
+const order = require('../model/sended_design_by_users_model');
 const orderRecived = require('../model/orderModel');
 const addToCart = require('../model/add-to-cart');
-const changePrice = require('../model/changePrice');
-const directDesignOrder = require('../model/directDesignOrder');
+const changePrice = require('../model/cloth_Type_Model');
+const directDesignOrder = require('../model/admin_designed_tshirt');
 const AppError = require('../utils/appError');
 
 const jwt = require('jsonwebtoken');

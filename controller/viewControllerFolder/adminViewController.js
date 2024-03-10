@@ -1,9 +1,9 @@
-const directDesignOrder = require('../../model/directDesignOrder');
-const price = require('../../model/changePrice');
+const directDesignOrder = require('../../model/admin_designed_tshirt');
+const price = require('../../model/cloth_Type_Model');
 const user = require("./../../model/signup");
 const ordersModel = require("../../model/orderModel");
 const productsModel = require("../../model/product");
-const sendedDesignModel = require("./../../model/sendedDesign");
+const sendedDesignModel = require("../../model/sended_design_by_users_model");
 const cartsModel = require("./../../model/add-to-cart");
 
 // admin only

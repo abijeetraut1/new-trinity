@@ -114,6 +114,7 @@ let holdClickedOne = '#ffffff';
 productColorChooser.forEach(el => {
     el.addEventListener('click', e => {
         holdClickedOne = el.style.background;
+        sessionStorage.setItem("tshirt-color", el.style.background);
     })
 });
 productColorChooser.forEach(el => { // -- new code

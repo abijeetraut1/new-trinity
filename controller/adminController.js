@@ -1,9 +1,9 @@
 const catchAsync = require("../utils/catchAsync");
-const directDesignOrderModel = require("./../model/directDesignOrder");
+const directDesignOrderModel = require("../model/admin_designed_tshirt");
 const ordersModel = require("./../model/orderModel");
 const productsModel = require("./../model/product");
 const usersModel = require("./../model/signup");
-const sendedDesignModel = require("./../model/sendedDesign");
+const sendedDesignModel = require("../model/sended_design_by_users_model");
 const cartsModel = require("./../model/add-to-cart");
 
 const statusFunc = (res, statusNumber, message) => {

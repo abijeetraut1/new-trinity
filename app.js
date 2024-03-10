@@ -13,6 +13,8 @@ const apiRouter = require('./router/apiRouter');
 const userRouter = require('./router/userRouter');
 const viewRouter = require('./router/viewRouter');
 const adminPannelRouter = require("./router/adminRouter")
+const adminDataControlRouter = require("./router/admin_datactrl_router")
+
 
 const {
     urlencoded
@@ -47,7 +49,7 @@ app.use('/', viewRouter);
 app.use("/admin", adminPannelRouter);
 app.use('/api/v1/product', apiRouter);
 app.use('/api/v1/user', userRouter);
-// app.use("/api/v1/admin_controller", )
+app.use('/api/v1/admin_data_controller', adminDataControlRouter);
 
 app.all('*', (req, res, next) => {
     next(new AppError(`cannot find ${req.originalUrl} on this server`, 404));

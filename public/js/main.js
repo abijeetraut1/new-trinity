@@ -130,7 +130,16 @@ if (window.location.pathname.split("/")[2] === "dashboard_products") {
 
     order_send_status.forEach(el => {
         el.addEventListener("change", async () => {
-            const productSend = await axios.patch("/api/v1/products")
+            console.log(el.value)
+            const productSend = await axios({
+                method: "PATCH",
+                url: "/api/v1/admin_data_controller/sended_product_to_user",
+                data: {
+                    id: el.value
+                }
+            })
+
+            console.log(productSend)
         })
     })
 }

@@ -6,7 +6,7 @@
     <meta name="title" content="Start Designing Own Tshirt">
     <meta property="og:title" content="Start Designing Own Tshirt" />
     <meta property="og:description" content="Create your own design for t-shirts, hoodies, mobile cases in our designing studio and sell online without any hassles at zero cost." />
-    
+
     <link rel="shortcut icon" type="image/png" href="img/icon.png" />
     <meta name="theme-color" content="#ee2761" />
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
@@ -15,7 +15,7 @@
     link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css')
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/tags.css" type="text/css">
-    
+
 </head>
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Montserrat" rel="stylesheet">
@@ -28,7 +28,7 @@
     <div id="fb-root"></div>
     include ../headers/_header
 
-     
+
     script(src="./js/jquery-latest.js")
     script(src="./js/forall.js")
 
@@ -204,7 +204,7 @@
             <div class="col-lg-3 col-md-3" style="padding-left:30px">
                 <div  style="user-select: none; display: flex; justify-content: space-between; align-items: center;" id="chooseProduct" class="form-control" onmousedown="(function(e){ e.preventDefault(); })(event, this)" onClick="javascript:$('#productModal').modal('show');">
                     | Unisex T-Shirt <i class="bi bi-chevron-down"></i>
-                    
+
                 </div>
                 <br />
                 <div id="product_color_chooser">
@@ -233,12 +233,12 @@
                 <h4 style="color:#808080; margin-bottom:0px;">Cost <a href="#" data-toggle="tooltip" title="You can sell this apparel above this base price. This Includes shipping cost."><span class="glyphicon glyphicon-info-sign" style="color:black;"></span></a></h4>
                 <p id="base_cost" style="margin-top:3px; font-size:20px;display:inline-block;">800</p>
                 <br>
-                
+
                 <p id="base_cost" style="margin-top:3px; font-size:20px;display:inline-block;">Choose Fabric</p>
                 br
                 <select onclick="clickChange()" id="cost-selector" style="width: 100%; padding: 0.5rem; width: 100%; padding: 0.5rem; outline: none; border-color: #cccccc; border-width: 2px; border-radius: 0.4rem;">
-                    each values in changePrice
-                        option(value=`${values.price}`)= values.type
+                    each clothMaterial in cloth_material_price
+                        option(value=`${clothMaterial.price}`)= clothMaterial.material
                 </select>
                 <br>
                 <br>
@@ -291,8 +291,8 @@
                                         <br />
                                         <label for="chooseUrlInput">Choose Your Product URL <a href="#" data-toggle="tooltip"  title="This will be the link where you will send buyers to view and buy product."><span  class="glyphicon glyphicon-info-sign" style="color:black;"></span></a></label>
                                         <div class="input-group" id="chooseUrlInput">
-                                            <span class="input-group-addon">https://teeshopper.in/products/</span>
-                                            <input id="chooseUrl" type="text" class="form-control" placeholder="rockstar-tshirt-design" />
+                                            <span class="input-group-addon">https://trinitygarments.com/products/</span>
+                                            <input id="chooseUrl" type="text" class="form-control" placeholder="Nepal-jersy" />
                                             <span class="input-group-addon" id="urlOkey">&#x2717; Empty</span>
                                         </div>
                                         <br />
@@ -365,9 +365,6 @@
 
 
 
-
-
-
     <div class="modal fade" id="fontModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -408,9 +405,6 @@
     </div>
 
 
-
-
-
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <center>
             <div class="modal-dialog" role="document" style="width:100%; margin:0px">
@@ -421,146 +415,17 @@
                     </div>
                     <div class="modal-body">
                         <div class="container" style="padding-top:20px; padding-left:10px; padding-right:10px; padding-bottom:20px;">
-                            <div class="row">
-                                <div class="col-md-3">
+                            each cloth_type in cloth_type_price
+                                <div class="col-md-3 mx-2" style="margin-bottom: 1.75rem">
                                     <div class="productCard">
                                         <center>
-                                            <img src="product_img/hsrn_tshirt_front.png" style="width:200px;" />
+                                            img(src=`product_img/${cloth_type.front}.png` style="width:200px;")
                                         </center>
                                         <p style="margin:0 0 5px">Unisex Half Sleeve T-Shirt</p>
                                         <span style="font-size: 10px; color: #afafaf;">Slim fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
                                         <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="hsrn_tshirt">Select</button>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="productCard">
-                                        <center>
-                                            <img src="product_img/women_tee_front.png" style="width:200px;" />
-                                        </center>
-                                        <p style="margin:0 0 5px">Women Half Sleeve T-Shirt</p>
-                                        <span style="font-size: 10px; color: #afafaf;">Slim fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
-                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="women_tee">Select</button>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="productCard">
-                                        <center>
-                                            <img src="product_img/full_sleeve_front.png" style="width:200px;" />
-                                        </center>
-                                        <p style="margin:0 0 5px">Full Sleeve T-Shirt</p>
-                                        <span style="font-size: 10px; color: #afafaf;">Classic fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
-                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="full_sleeve">Select</button>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="productCard">
-                                        <center>
-                                            <img src="product_img/women_full_sleeve_front.png" style="width:200px;" />
-                                        </center>
-                                        <p style="margin:0 0 5px">Women Full Sleeve T-Shirt</p>
-                                        <span style="font-size: 10px; color: #afafaf;">Classic fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
-                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="women_full_sleeve">Select</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br /><br />
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="productCard">
-                                        <center>
-                                            <img src="product_img/v_neck_front.png" style="width:200px;" />
-                                        </center>
-                                        <p style="margin:0 0 5px">V-Neck Half Sleeve T-Shirt</p>
-                                        <span style="font-size: 10px; color: #afafaf;">Slim fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
-                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="v_neck">Select</button>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="productCard">
-                                        <center>
-                                            <img src="product_img/hoodie_front.png" style="width:200px;" />
-                                        </center>
-                                        <p style="margin:0 0 5px">Unisex Hoodie</p>
-                                        <span style="font-size: 10px; color: #afafaf;">Relaxed fit, 80% Combed Ringspun Cotton, Bio-wash</span><br />
-                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="hoodie">Select</button>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="productCard">
-                                        <center>
-                                            <img src="product_img/sweatshirt_front.png" style="width:200px;" />
-                                        </center>
-                                        <p style="margin:0 0 5px">Unisex Sweatshirt</p>
-                                        <span style="font-size: 10px; color: #afafaf;">Relaxed fit, 80% Combed Ringspun Cotton, Bio-wash</span><br />
-                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="sweatshirt">Select</button>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="productCard">
-                                        <center>
-                                            <img src="product_img/tank_front.png" style="width:200px;" />
-                                        </center>
-                                        <p style="margin:0 0 5px">Unisex Tank Top</p>
-                                        <span style="font-size: 10px; color: #afafaf;">Classic fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
-                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="tank">Select</button>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br /><br />
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="productCard">
-                                        <center>
-                                            <img src="product_img/kids_front.png" style="width:200px;" />
-                                        </center>
-                                        <p style="margin:0 0 5px">Kid Half Sleeve T-Shirt</p>
-                                        <span style="font-size: 10px; color: #afafaf;">Relaxed fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
-                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="kids">Select</button>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="productCard">
-                                        <center>
-                                            <img src="product_img/oversize_tshirt_front.png" style="width:200px;" />
-                                        </center>
-                                        <p style="margin:0 0 5px">Oversized T-Shirt</p>
-                                        <span style="font-size: 10px; color: #afafaf;">Classic fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
-                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="oversize_tshirt">Select</button>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="productCard">
-                                        <center>
-                                            <img src="product_img/joggers_front.png" style="width:200px;" />
-                                        </center>
-                                        <p style="margin:0 0 5px">Joggers</p>
-                                        <span style="font-size: 10px; color: #afafaf;">Regular fit, 100% Combed Ringspun Cotton, Bio-wash</span><br />
-                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="joggers">Select</button>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="productCard">
-                                        <center>
-                                            <img src="product_img/throw_pillow.png" style="width:200px;" />
-                                        </center>
-                                        <p style="margin:0 0 5px">Throw Pillow</p>
-                                        <span style="font-size: 10px; color: #afafaf;">100% Polyester</span><br />
-                                        <button type="button" id="change-t-shirt-button" class="btn btn-default btn-sm select-product-btn" data-dismiss="modal" value="throw_pillow">Select</button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -569,8 +434,6 @@
     </div>
 </body>
 <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-//- <script type="text/javascript" src="js/html2canvas.min.js"></script>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js" integrity="sha512-LUKzDoJKOLqnxGWWIBM4lzRBlxcva2ZTztO8bTcWPmDSpkErWx0bSP4pdsjNH8kiHAUPaT06UXcb+vOEZH+HpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
