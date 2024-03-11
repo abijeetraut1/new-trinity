@@ -1,4 +1,14 @@
 header.header(style="z-index: 20")
+  style.
+    #mobile-device{
+      display: none;
+    }
+    @media (max-width:762px){
+      #mobile-device{
+        display: block;
+      }
+    }
+
   .logo
     img(src='https://icms-image.slatic.net/images/ims-web/458d4688-ae26-4e6d-8f39-c26194de228a.png' width='35%' alt='' onclick="window.location.assign(`/`)" style="cursor: pointer;")
 
@@ -34,20 +44,21 @@ header.header(style="z-index: 20")
             a(href='/login' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;") Login 
 
 //-  display only clicked
-if user
-  if user.role === 'admin'
-    a#mobile-only.admin-pannel-link(href='/admin/dashboard_products' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;")
-      div Admin Pannel
+div#mobile-device
+  if user
+    if user.role === 'admin'
+      a#mobile-only.admin-pannel-link(href='/admin/dashboard_products' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;")
+        div Admin Pannel
 
 
-nav#mobile-only.search-bar-container(style="overflow-x: hidden;")
-  hr
-  .hidden-search(style='margin: 1rem; font-size: 2.2rem')
-    .content-border
-      input#search(type='text' name='search')
-      div(style="with: 12px") 
-        button.button(style='cursor: pointer; height: 100%; width: fit-content; padding: 0 .5rem 0 .5rem;')
-          i.bi.bi-search
+  nav#mobile-only.search-bar-container(style="overflow-x: hidden;")
+    hr
+    .hidden-search(style='margin: 1rem; font-size: 2.2rem')
+      .content-border
+        input#search(type='text' name='search')
+        div(style="with: 12px") 
+          button.button(style='cursor: pointer; height: 100%; width: fit-content; padding: 0 .5rem 0 .5rem;')
+            i.bi.bi-search
 
 <div class="extracting-design" style="display:none; justify-content: center;" >
   div(style="background-color:#ccd3cc; padding: .5rem 10%; border-radius: 1.2rem; position:absolute;top:0;" )

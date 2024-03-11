@@ -32,11 +32,6 @@ if (window.location.pathname.split('/')[1] === "product" && window.location.path
 }
 
 
-if (window.innerWidth >= 640) {
-    $('#mobile-only').css('display', "none");
-}
-
-
 // for changing the user role
 if (window.location.pathname.split('/')[2] === 'dashboard-show-users') {
     const changeUserRole = document.querySelectorAll("#change-user-role");

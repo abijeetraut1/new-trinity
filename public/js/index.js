@@ -284,10 +284,6 @@ if ($('#apply-referral-code')[0]) {
 //     }
 // }
 
-if (window.innerWidth >= 700) {
-    $("#mobile-only").css("display", "none");
-}
-
 if (window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[3] === "order") {
     // function to change color and remove the previous color 
     const choose_size = document.querySelectorAll('.size');
