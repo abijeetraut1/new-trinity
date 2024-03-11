@@ -53,7 +53,9 @@ if (window.location.pathname.split('/')[2] === 'dashboard-show-users') {
                 });
 
                 if(changeUserRole.data.status === 200){
-                    alert(changeUserRole.data.message)
+                    // change the button color and text
+                    el.style.backgroundColor = el.style.backgroundColor === "red" ? "green" : "red";  
+                    el.innerText = el.innerText === "Appoint To Admin" ? "Remove As Admin" : "Appoint To Admin";
                 }
             });
     });

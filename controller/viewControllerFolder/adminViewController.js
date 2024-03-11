@@ -5,6 +5,7 @@ const ordersModel = require("../../model/orderModel");
 const productsModel = require("../../model/product");
 const sendedDesignModel = require("../../model/sended_design_by_users_model");
 const cartsModel = require("./../../model/add-to-cart");
+const cloth_fabric = require("./../../model/Cloth_Fabric_Model");
 
 // admin only
 exports.products = async (req, res, next) => {
@@ -29,10 +30,9 @@ exports.order = async (req, res, next) => {
     })
 }
 
-exports.price = async (req, res, next) => {
-    const changePrice = await price.find();
-    console.log(changePrice)
-    res.status(200).render('admin_pannel/priceChange.pug', {
+exports.tshrit_price = async (req, res, next) => {
+    const changePrice = await price.find({});
+    res.status(200).render('admin_pannel/clothes_type.pug', {
         changePrice
     })
 }
@@ -111,5 +111,13 @@ exports.database_clear = async (req, res) => {
     
     res.status(200).render("admin_pannel/Clear_Database.pug", {
         datas
+    })
+}
+
+exports.tshrit_fabric = async(req, res) => {
+    const fabrics = await cloth_fabric.find({});
+    console.log(fabrics)
+    res.status(200).render("admin_pannel/clothes_fabric.pug", {
+        fabrics
     })
 }

@@ -55,4 +55,3 @@ if (window.location.pathname === '/adminPannel/login') {
     })
 }
 
-

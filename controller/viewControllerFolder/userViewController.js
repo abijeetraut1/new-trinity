@@ -1,7 +1,7 @@
 const product = require('../../model/product');
 const user = require('../../model/signup');
 const cloth_Type_Model = require('../../model/cloth_Type_Model');
-const cloth_material_model = require('../../model/Cloth_Material_Model');
+const cloth_material_model = require('../../model/Cloth_Fabric_Model');
 const cart = require('../../model/add-to-cart');
 
 const jwt = require('jsonwebtoken');

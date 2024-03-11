@@ -9,9 +9,10 @@ const adminPageViewController = require("../controller/viewControllerFolder/admi
 // only accessible to page admin
 router.get('/dashboard_products', authController.isAdminLoggedIn, adminPageViewController.products);
 router.get('/dashboard-dispatched', authController.isAdminLoggedIn, adminPageViewController.order);
-router.get('/dashboard-price', authController.isAdminLoggedIn, adminPageViewController.price);
+router.get('/dashboard-material-type', authController.isAdminLoggedIn, adminPageViewController.tshrit_price);
+router.get('/dashboard-fabric', authController.isAdminLoggedIn, adminPageViewController.tshrit_fabric);
 router.get('/dashboard-referralActivate', authController.isAdminLoggedIn, adminPageViewController.referralActivate);
-router.get("/dashboard-show-users", adminPageViewController.appoint_to_admin);
-router.get("/dashboard-database-clear", adminPageViewController.database_clear);
+router.get("/dashboard-show-users", authController.isAdminLoggedIn, adminPageViewController.appoint_to_admin);
+router.get("/dashboard-database-clear", authController.isAdminLoggedIn, adminPageViewController.database_clear);
 
 module.exports = router;

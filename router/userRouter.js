@@ -16,7 +16,6 @@ router.patch('/activateCutoff', userController.cutoffReg);
 router.patch('/deactivateCutoff', userController.cutoffDelete);
 router.post('/checkCode', userController.checkCode);
 
-
 router.patch("/appoint-sub-admin", adminController.change_user_to_admin);
 router.patch("/remove-sub-admin", adminController.remove_sub_admin);
 router.delete("/delete-user", adminController.deleteUser);

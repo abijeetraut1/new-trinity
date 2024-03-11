@@ -3,9 +3,7 @@ const crypto = require('crypto');
 const user = require('../model/signup');
 const jwt = require('jsonwebtoken');
 const AppError = require('../utils/appError');
-const {
-    hasUncaughtExceptionCaptureCallback
-} = require('process');
+
 const {
     promisify
 } = require('util');
@@ -51,7 +49,7 @@ exports.signup = catchAsync(async (req, res, next) => {
             password: req.body.password,
         })
 
-    createCookies(signin, res, 200);
+        createCookies(signin, res, 200);
 
     } catch (err) {
         console.log(err.code);
@@ -176,8 +174,8 @@ exports.protect = catchAsync(async (req, res, next) => {
         token = req.cookies.jwt;
     }
     if (!token) {
-        // return window.location.assign('/login');
-        return next(new AppError('PLEASE RE-LOGIN SESSION EXPIRED', 400));
+        return window.location.assign('/login');
+        // return next(new AppError('PLEASE RE-LOGIN SESSION EXPIRED', 400));
     }
     const userId = await promisify(jwt.verify)(token, process.env.jwtPassword);
     const cookieUser = await user.findOne({
@@ -185,7 +183,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     });
 
     if (!cookieUser) {
-        return next(new AppError('PLEASE RE-LOGIN', 400));
+        return window.location.assign('/login');
+        // return next(new AppError('PLEASE RE-LOGIN', 400));
     }
 
     req.user = cookieUser;
@@ -201,13 +200,14 @@ exports.isUserLoggedIn = catchAsync(async (req, res, next) => {
         });
 
         if (!cookieUser) {
-
-            return window.location.assign('/login');
+            return res.redirect('/login');
             // return next(new AppError('PLEASE RE-LOGIN', 400));
         }
         res.locals.user = cookieUser;
 
         return next();
+    } else {
+        return res.redirect('/login');
     }
     next();
 })
@@ -260,23 +260,30 @@ exports.adminLogin = catchAsync(async (req, res, next) => {
 })
 
 exports.isAdminLoggedIn = catchAsync(async (req, res, next) => {
+    console.log(req.cookies)
     if (req.cookies.jwt) {
         const token = req.cookies.jwt;
         const cookiesId = await promisify(jwt.verify)(token, process.env.jwtPassword);
-        const AdminUser = await user.findOne({
-            id: cookiesId,
-            role: 'admin'
+
+        if (!cookiesId) {
+            return res.redirect("/login");
+        }
+        
+        const AdminUser = await user.findById({
+            _id: cookiesId.id,
         });
 
-        console.log(AdminUser)
-
         if (!AdminUser) {
-            return next(new AppError('PLEASE RE-LOGIN', 400));
-
+            return res.redirect("/login");
+        } else if (AdminUser.role === "user") {
+            res.render("user_pages/Not_Found.pug")
         }
+
         res.locals.user = AdminUser;
 
         return next();
+    } else {
+        return res.redirect("/login");
     }
     next();
 })

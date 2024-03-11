@@ -52,7 +52,11 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/admin_data_controller', adminDataControlRouter);
 
 app.all('*', (req, res, next) => {
-    next(new AppError(`cannot find ${req.originalUrl} on this server`, 404));
+    if (process.env.NODE_ENV === "development") {
+        res.render("user_pages/Not_Found.pug")
+    }else{
+        next(new AppError(`cannot find ${req.originalUrl} on this server`, 404));
+    }
 });
 
 // app.use(globalErrorHandler);

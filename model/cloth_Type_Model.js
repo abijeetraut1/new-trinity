@@ -14,10 +14,13 @@ const clothSchema = mongoose.Schema({
         required: true,
         unique: true,
     },
-    name: {
+    cloth_type: {
         type: String,
         required: true,
         unique: true,
+    },
+    description: {
+        type: String,
     },
 });
 

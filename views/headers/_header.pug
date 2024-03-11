@@ -10,7 +10,7 @@ header.header(style="z-index: 20")
       else if user
         span#userid(style="display:none;")= user.id
         if user.role === 'admin'
-          a#for-admin-only(href='/dashboard-arrived' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Admin Pannel
+          a#for-admin-only(href='/admin/dashboard_products' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Admin Pannel
     div
       .content-border
         input#search(type='text' name='search' placeholder='search' style='outline: none; border: transparent; padding-left: 1rem;')
@@ -19,9 +19,9 @@ header.header(style="z-index: 20")
     ol(style="margin-bottom: 0;")
       li
         a(href='/design' style="margin-left: 2rem; color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Design
-      li.account.display-logout-btn
         if user
-          a#loged-in(style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;")= user.name 
+          li.account.display-logout-btn
+            a#loged-in(style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;")= user.name 
 
       li.cart
         div(style="display: flex; align-items: center;" )
@@ -36,7 +36,7 @@ header.header(style="z-index: 20")
 //-  display only clicked
 if user
   if user.role === 'admin'
-    a#mobile-only.admin-pannel-link(href='/dashboard-arrived' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;")
+    a#mobile-only.admin-pannel-link(href='/admin/dashboard_products' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;")
       div Admin Pannel
 
 
@@ -59,12 +59,12 @@ script(src="../js/jquery-latest.js")
 
 script.
   if(window.location.pathname.split("/")[1] === "admin"){
-    $(`.search-bar-container`)[0].style.display = "none";
-    $(`.admin-pannel-link`)[0].style.display = "none";
-    $(`.header`)[0].style.display = "none";
+    if(!$(`.header`)[0]) $(`.header`)[0].style.display = "none";
+    if(!$(`.search-bar-container`)[0]) $(`.search-bar-container`)[0].style.display = "none";
+    if(!$(`.admin-pannel-link`)[0])   $(`.admin-pannel-link`)[0].style.display = "none";
   }else{
     $(`.search-bar-container`)[0].style.display = "block";
-    $(`.admin-pannel-link`)[0].style.display = "block";
-    $(`.header`)[0].style.display = "block";
+    $(`.header`)[0].style.display = "flex";
+    if($(`.admin-pannel-link`)[0]) $(`.admin-pannel-link`)[0].style.display = "block";
   
   }

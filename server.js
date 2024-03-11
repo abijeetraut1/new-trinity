@@ -3,7 +3,7 @@ const port = 4000;
 const mongoose = require('mongoose');
 const signupModel = require("./model/signup");
 const clothTypeModel = require("./model/cloth_Type_Model");
-const clothMaterialModel = require("./model/Cloth_Material_Model");
+const clothMaterialModel = require("./model/Cloth_Fabric_Model");
 
 
 process.on('uncaughtException', (err) => {
@@ -28,73 +28,86 @@ mongoose.connect(connectionInfo).then(data => {
     console.log('FAILED TO CONNECT');
 });
 
-const clothingItems = [{
+const clothingItems = [
+    {
         back: 'full_sleeve_back',
         front: 'full_sleeve_front',
-        name: "full_sleeve",
+        cloth_type: "full_sleeve",
+        description: "A classic full-sleeve shirt suitable for everyday wear.",
         price: 100
     },
     {
         back: 'hoodie_back',
         front: 'hoodie_front',
-        name: "hoodie",
+        cloth_type: "hoodie",
+        description: "Stay warm and stylish with this comfortable hoodie.",
         price: 100
     },
     {
         back: 'hsrn_tshirt_back',
         front: 'hsrn_tshirt_front',
-        name: "hsrn_tshirt",
+        cloth_type: "hsrn_tshirt",
+        description: "A trendy t-shirt featuring a unique design.",
         price: 100
     },
     {
         back: 'kids_back',
         front: 'kids_front',
-        name: "kids",
+        cloth_type: "kids",
+        description: "Adorable and comfortable clothing for kids.",
         price: 100
     },
     {
         back: 'sweatshirt_back',
         front: 'sweatshirt_front',
-        name: "sweatshirt",
+        cloth_type: "sweatshirt",
+        description: "Stay cozy during chilly days with this stylish sweatshirt.",
         price: 100
     },
     {
         back: 'tank_back',
         front: 'tank_front',
-        name: "tank",
+        cloth_type: "tank",
+        description: "Perfect for hot weather, this tank top offers both comfort and style.",
         price: 100
     },
     {
         back: 'tshirt_back',
         front: 'tshirt_front',
-        name: "tshirt",
+        cloth_type: "tshirt",
+        description: "A classic t-shirt suitable for various occasions and activities.",
         price: 100
     },
     {
         back: 'v_neck_back',
         front: 'v_neck_front',
-        name: "v_neck",
+        cloth_type: "v_neck",
+        description: "Add a touch of style to your wardrobe with this v-neck t-shirt.",
         price: 100
     },
     {
         back: 'women_full_sleeve_back',
         front: 'women_full_sleeve_front',
-        name: "women_full",
+        cloth_type: "women_full",
+        description: "A stylish and comfortable full-sleeve shirt designed for women.",
         price: 100
     },
     {
         back: 'women_tee_back',
         front: 'women_tee_front',
-        name: "women_tee",
+        cloth_type: "women_tee",
+        description: "Stay chic and comfortable with this trendy women's tee.",
         price: 100
     }
 ];
 
+
+
 const material = [{
-    material: "polyster",
+    fabric: "polyster",
     price: 500
 }, {
-    material: "cotton",
+    fabric: "cotton",
     price: 800
 }];
 
@@ -122,7 +135,8 @@ clothingItems.forEach(async el => {
         back: el.back,
         front: el.front,
         price: el.price,
-        name: el.name,
+        cloth_type: el.cloth_type,
+        description: el.description
     }).then((data) => {
         console.log("Cloth_Type seeded successfully");
     }).catch(err => {
@@ -138,12 +152,12 @@ clothingItems.forEach(async el => {
 material.forEach(async el => {
     await clothMaterialModel.create({
         price: el.price,
-        material: el.material,
+        fabric: el.fabric,
     }).then((data) => {
-        console.log("Cloth_Material seeded successfully");
+        console.log("Cloth_Fabric seeded successfully");
     }).catch(err => {
         if (err.code === 11000) {
-            console.log("Cloth_Material already seeded");
+            console.log("Cloth_Fabric already seeded");
         } else {
             console.log("Please restart the server");
         }
