@@ -1,69 +1,170 @@
-header.header(style="z-index: 20")
+header
+  <div class="extracting-design" style="display:none; justify-content: center;" >
+    div(style="background-color:#ccd3cc; padding: .5rem 10%; border-radius: 1.2rem; position:absolute;top:0;" )
+      <p> please wait we're extracting your designs....</p>
+  </div>
+
+
   style.
-    #mobile-device{
-      display: none;
+    .desktop-navBar, .nav-items, .mobile-navBar{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    @media (max-width:762px){
-      #mobile-device{
-        display: block;
+
+    .nav-items div{
+      margin: 0 .75rem;
+    }
+
+    .desktop-navBar{
+      display: flex ;
+    }
+
+    @media (max-width: 360px){
+      .desktop-navBar{
+        display: none;
       }
     }
 
-  .logo
-    img(src='https://icms-image.slatic.net/images/ims-web/458d4688-ae26-4e6d-8f39-c26194de228a.png' width='35%' alt='' onclick="window.location.assign(`/`)" style="cursor: pointer;")
+    .mobile-nav {
+        z-index: 999;
+    }
 
+    .menu-btn {
+        display: block;
+        padding: 10px;
+        cursor: pointer;
+        width: fit-content;
+    }
 
-  nav.navBar
-    li.account(style="list-style: none; margin-right: 2rem;")
-      if !user
-        a(href='' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") 
-      else if user
-        span#userid(style="display:none;")= user.id
-        if user.role === 'admin'
-          a#for-admin-only(href='/admin/dashboard_products' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Admin Pannel
+    .menu-icon{
+        position: relative;
+        z-index: 50;
+        width: fit-content;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #222;
+        transition: left 0.3s ease;
+    }
+
+    @media (min-width: 732px){
+        .nav-links {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 20%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #222;
+            transition: left 0.3s ease;
+        }
+    }
+
+    .menu-icon i{
+        width: fit-content;
+    }
+    .nav-links.show {
+        left: 0;
+    }
+
+    .nav-links div a , 
+    .nav-links div h5{
+        display: block;
+        padding: 15px 20px;
+        color: #fff;
+        text-decoration: none;
+        width: fit-content;
+        cursor: pointer;
+    }
+
+  .nav.mobile-navBar
     div
-      .content-border
-        input#search(type='text' name='search' placeholder='search' style='outline: none; border: transparent; padding-left: 1rem;')
-        button#search-button.button(style='cursor: pointer; height: 100%; width: fit-content; padding: 0 .5rem 0 .5rem;')
-          i.bi.bi-search
-    ol(style="margin-bottom: 0;")
-      li
-        a(href='/design' style="margin-left: 2rem; color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Design
+      .logo
+        img(src='https://icms-image.slatic.net/images/ims-web/458d4688-ae26-4e6d-8f39-c26194de228a.png' width='40%' alt='' onclick="window.location.assign(`/`)" style="cursor: pointer;")
+    
+    .mobile-nav
+      .menu-btn
+        .menu-icon
+          i.fa-solid.fa-bars
+      .nav-links
         if user
-          li.account.display-logout-btn
-            a#loged-in(style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;")= user.name 
+          div
+            h3(style="color: white;")= `👋${user.name}`
+        div
+          a(href="/") Home
+        div
+          a(href="/design") Design
+        if user
+          if user.role === "admin" || user.role === "sub-admin"
+            div
+              h5 Admin Pannel
+            div
+              a(href="dashboard_products") Order Received
+            div
+              a(href="dashboard-dispatched") Order Dispatched
+            div
+              a(href="dashboard-material-type") Cloth Material Type
+            div
+              a(href="dashboard-fabric") Cloth Fabric
+            div
+              a(href="dashboard-show-users") Appoint Admin
+            div
+              a(href="dashboard-database-clear") Clear Database
 
-      li.cart
-        div(style="display: flex; align-items: center;" )
-          a.add-cart(href='/add-to-cart')
-            div(class="bulb" style="border-radius: 5rem; margin-right:1rem;")
-              i.bi.bi-bag
-          if user
-            div#logout.Logout(style="cursor: pointer; text-align: center;  color:#ff3f6c; backgroundColor: #f3f6f9;" onclick="logout()") Log Out
-          if(!user)
-            a(href='/login' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;") Login 
-
-//-  display only clicked
-div#mobile-device
-  if user
-    if user.role === 'admin'
-      a#mobile-only.admin-pannel-link(href='/admin/dashboard_products' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;")
-        div Admin Pannel
+  
+  .content-border
+    input#search(type='text' name='search' placeholder='search' style='outline: none; border: transparent; padding-left: 1rem;')
+    button#search-button.button(style='cursor: pointer; height: 100%; width: fit-content; padding: 0 .5rem 0 .5rem;')
+      i.bi.bi-search
 
 
-  nav#mobile-only.search-bar-container(style="overflow-x: hidden;")
-    hr
-    .hidden-search(style='margin: 1rem; font-size: 2.2rem')
+
+
+
+  //- desktop only nav bar
+  .nav.desktop-navBar
+    div
+      .logo
+        img(src='https://icms-image.slatic.net/images/ims-web/458d4688-ae26-4e6d-8f39-c26194de228a.png' width='40%' alt='' onclick="window.location.assign(`/`)" style="cursor: pointer;")
+
+    div.nav-items
+      if user
+        if user.role === 'admin' || user.role === "sub-admin"
+          div
+            a#for-admin-only(href='/admin/dashboard_products' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Admin Pannel
+
       .content-border
-        input#search(type='text' name='search')
-        div(style="with: 12px") 
-          button.button(style='cursor: pointer; height: 100%; width: fit-content; padding: 0 .5rem 0 .5rem;')
+          input#search(type='text' name='search' placeholder='search' style='outline: none; border: transparent; padding-left: 1rem;')
+          button#search-button.button(style='cursor: pointer; height: 100%; width: fit-content; padding: 0 .5rem 0 .5rem;')
             i.bi.bi-search
 
-<div class="extracting-design" style="display:none; justify-content: center;" >
-  div(style="background-color:#ccd3cc; padding: .5rem 10%; border-radius: 1.2rem; position:absolute;top:0;" )
-    <p> please wait we're extracting your designs....</p>
-</div>
+      div
+        a(href='/design' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Design
+
+      if user
+        .account.display-logout-btn
+          a#loged-in(style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;")= user.name
+        div#logout.Logout(style="cursor: pointer; text-align: center; color:#ff3f6c; backgroundColor: #f3f6f9;" onclick="logout()") Log Out
+      else 
+        div
+          a(href='/login' style="color:#ff3f6c; font-family: 'Montserrat', sans-serif; cursor: pointer; text-transform: capitalize;") Login 
+
+
+      div(style="display: flex; align-items: center;" )
+        a.add-cart(href='/add-to-cart')
+          div(class="bulb" style="border-radius: 5rem; margin-right:1rem;")
+            i.bi.bi-bag
 
 script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js")
 script(src="../js/jquery-latest.js")
@@ -77,5 +178,21 @@ script.
     $(`.search-bar-container`)[0].style.display = "block";
     $(`.header`)[0].style.display = "flex";
     if($(`.admin-pannel-link`)[0]) $(`.admin-pannel-link`)[0].style.display = "block";
-  
+
   }
+
+script.
+    const menuBtn = document.querySelector(".menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+    document.addEventListener("DOMContentLoaded", function() {
+        menuBtn.addEventListener("click", (el) => {    
+            if(navLinks.classList.contains("show")){
+              menuBtn.style.color = "black";
+            }else if(!(navLinks.classList.contains("show"))){
+              menuBtn.style.color = "white";
+            }
+
+            navLinks.classList.toggle("show");
+
+        });
+    });
