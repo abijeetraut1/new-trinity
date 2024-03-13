@@ -1,19 +1,13 @@
 extends dashbase
 
 block contentDash
-    //- style.
-    //-     label{
-    //-         margin:0 .2rem;
-    //-     }
-
     .container-fluid.pt-4.px-4
-        .container-fluid.pt-4.px-4
-            table(style="width: 75%")
+        .container-fluid.pt-4.px-4.admin-container
+            table
                 thead
                     tr 
                         th S.N
                         th Name
-                        th Password
                         th Role
                         th Appoint To Admin
                         th Delete User
@@ -22,7 +16,6 @@ block contentDash
                         tr
                             td= i+1 + "."
                             td= user.name
-                            td= user.password
                             td(class=`${user._id}`)= user.role
                             td
                                 if(user.role !== "admin")

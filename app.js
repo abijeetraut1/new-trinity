@@ -11,7 +11,7 @@ const rateLimit = require('express-rate-limit');
 // router
 const apiRouter = require('./router/apiRouter');
 const userRouter = require('./router/userRouter');
-const viewRouter = require('./router/viewRouter');
+const viewRouter = require('./router/viewRouter');  
 const adminPannelRouter = require("./router/adminRouter")
 const adminDataControlRouter = require("./router/admin_datactrl_router")
 

@@ -11,9 +11,9 @@
 
 const account = document.querySelector('.display-logout-btn');
 const loggout = document.querySelector('.Logout');
-account.addEventListener('click', () => {
-    loggout.classList.toggle('active');
-})
+// account.addEventListener('click', () => {
+//     loggout.classList.toggle('active');
+// })
 
 // const activenav = document.querySelectorAll('.nav-link');
 // if (window.location.pathname == '/dashboard-arrived') {

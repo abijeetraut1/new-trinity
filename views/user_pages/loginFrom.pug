@@ -18,7 +18,10 @@ block content
                     .css-form-control
                         .form-control-icon
                             i.fa-solid.fa-lock
-                        input.form-input-text.login-password(type='password' id='password' name='password' placeholder='Password')
+                        input.form-input-text.login-password(type='password' id='password-login' name='password' placeholder='Password')
+                        button.password-show#password-login-show show
+                    .incorrect-password( style="color: red; display: none; padding-left: 1.2rem;")
+                        p incorrect password
                     .css-form-control
                         input#remenber.form-input-checkbox(type='checkbox' name='remember')
                         label(for='remember') Remember Me
@@ -26,7 +29,7 @@ block content
                         div.btn-form-submit.btn-success Login
                     .css-form-control
                         span
-                            a.form-color-primary(href='#') Forget Password
+                            a.form-color-primary(href='/forget-password') Forget Password
 
         #signUpDiv.form-card
             h2.form-heading Sign Up
@@ -43,13 +46,45 @@ block content
                         .form-control-icon
                             i.fa-solid.fa-envelope
                         input.form-input-text.signup-email(type='email' id='email' name='email' placeholder='Email')
+                    .incorrect-email( style="color: red; display: none; font-size: 12px; padding-left: 1.2rem;")
+                        p Email Already Registered
                     .css-form-control
                         .form-control-icon
                             i.fa-solid.fa-lock
-                        input.form-input-text.signup-password(type='password' id='password' name='password' placeholder='Password')
+                        input.form-input-text.signup-password(type='password' id='password-signup' name='password' placeholder='Password')
+                        button#password-signup-show show
+
                     .css-form-control
                         input#remenber.form-input-checkbox(type='checkbox' name='remember')
                         label(for='remenber') Remember Me
                     .css-form-control
                         div.btn-form-submit.btn-success Sign Up
 
+        #resetPasswordDiv.form-card
+            h2.form-heading Sign Up
+            .form-body
+                .form-switch
+                    span#toLogin.btn-login(onclick="changeLogin()") Login
+                    span#btn-signUp.btn-signUp(onclick="changeSignup()") Signup
+                form
+                    .css-form-control
+                        .form-control-icon
+                            i.fa-solid.fa-user
+                        input.form-input-text.signup-name(type='Name' id='name' name='name' placeholder='Name')
+                    .css-form-control
+                        .form-control-icon
+                            i.fa-solid.fa-envelope
+                        input.form-input-text.signup-email(type='email' id='email' name='email' placeholder='Email')
+                    .incorrect-email( style="color: red; display: none; font-size: 12px; padding-left: 1.2rem;")
+                        p Email Already Registered
+                    .css-form-control
+                        .form-control-icon
+                            i.fa-solid.fa-lock
+                        input.form-input-text.signup-password(type='password' id='password-signup' name='password' placeholder='Password')
+                        button#password-signup-show show
+
+                    .css-form-control
+                        input#remenber.form-input-checkbox(type='checkbox' name='remember')
+                        label(for='remenber') Remember Me
+                    .css-form-control
+                        div.btn-form-submit.btn-success Sign Up

@@ -109,3 +109,7 @@ exports.designPage = async (req, res, next) => {
         cloth_material_price
     });
 }
+
+exports.forgetPassword = async(req, res, next) => {
+    res.render("./user_pages/ForgetPassword.pug");
+}

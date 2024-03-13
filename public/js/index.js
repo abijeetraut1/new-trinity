@@ -1,18 +1,3 @@
-if (window.innerWidth === 800) {
-    const n_menu = document.querySelector('.ham-menu');
-    const hidden_part = document.querySelector('.hidden-part');
-
-    n_menu.addEventListener('click', function () {
-        hidden_part.classList.toggle('isHidden')
-    });
-}
-
-// (max-width: 991.98px)
-// .content {
-//     width: 100%;
-//     margin-left: 0;
-// }
-
 if (window.location.pathname === '/') {
     // overflow-x: hidden;
     $("*").css("overflow-x", "hidden")
@@ -24,16 +9,6 @@ if (window.location.pathname === '/') {
 
 
 if (window.location.pathname === '/login' || window.location.pathname === '/Login') {
-    // $(document).ready(function () {
-    //     $("#btn-signUp").click(function () {
-    //         $("#loginDiv").fadeOut(700);
-    //         $("#signUpDiv").fadeIn();
-    //     });
-    //     $("#toLogin").click(function () {
-    //         $("#signUpDiv").fadeOut(700);
-    //         $("#loginDiv").fadeIn();
-    //     });
-    // });
 
     document.getElementById('btn-signUp').addEventListener("click", el => {
         $("#loginDiv").fadeOut(700);
@@ -53,22 +28,6 @@ if (window.location.pathname === '/login' || window.location.pathname === '/Logi
     function changeSignup() {
         $("#signUpDiv").fadeOut(700);
         $("#loginDiv").fadeIn();
-    }
-
-    if (window.innerWidth <= 800) {
-
-        // document.querySelector(".form-switch").style.overflow = 'none'
-        $(".form-switch").css("overflow-x", "none");
-
-        // alert('sdfa')
-        const n_menu = document.querySelector('.ham-menu');
-        const hidden_part = document.querySelector('.hidden-part');
-
-
-        n_menu.addEventListener('click', function () {
-            hidden_part.classList.toggle('isHidden')
-        });
-
     }
 
     // extracting login and signin information
@@ -96,7 +55,7 @@ if (window.location.pathname === '/login' || window.location.pathname === '/Logi
                 if (sendToDb.data.status === "success") {
                     location.assign('/');
                 } else {
-                    alert('ALREADY RESGISTERED');
+                    $(`.incorrect-email`)[0].style.display = "block";
                 }
 
             } else if (el.innerHTML === 'Login') {
@@ -114,7 +73,8 @@ if (window.location.pathname === '/login' || window.location.pathname === '/Logi
                 if (sendToDb.data.status === "success") {
                     location.assign('/');
                 } else {
-                    alert('WRONG PASSWORD OR EMAIL');
+                    $(`.incorrect-password`)[0].style.display = "block";
+                    $(`#password`)[0].value = "";
                 }
             }
         })
@@ -410,7 +370,7 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
                 designs.append("sticker", sticker[index]);
             }
 
-            
+
             const sendData = await axios({
                 method: 'POST',
                 url: '/api/v1/product/directorderrecord',
@@ -442,4 +402,28 @@ if (window.location.pathname === '/delivered') {
     if (window.innerWidth < 700) {
         $('#gifimage').css("width", "80%")
     }
+}
+
+
+
+if(window.location.pathname === "/login"){
+    const pswShowBtnSignup = $("#password-signup-show")[0];
+    pswShowBtnSignup.addEventListener("click", (e) => {
+        e.preventDefault();
+        if ($("#password-signup").attr("type") === "password") {
+            $("#password-signup").attr("type", "text");
+        } else {
+            $("#password-signup").attr("type", "password");
+        }
+    });
+
+    const pswShowBtnLogin = $("#password-login-show")[0];
+    pswShowBtnLogin.addEventListener("click", (e) => {
+        e.preventDefault();
+        if ($("#password-login").attr("type") === "password") {
+            $("#password-login").attr("type", "text");
+        } else {
+            $("#password-login").attr("type", "password");
+        }
+    });
 }

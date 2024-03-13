@@ -51,6 +51,7 @@ if (window.location.pathname.split('/')[2] === 'dashboard-show-users') {
                     // change the button color and text
                     el.style.backgroundColor = el.style.backgroundColor === "red" ? "green" : "red";  
                     el.innerText = el.innerText === "Appoint To Admin" ? "Remove As Admin" : "Appoint To Admin";
+                    
                 }
             });
     });
@@ -66,7 +67,9 @@ if (window.location.pathname.split('/')[2] === 'dashboard-show-users') {
                 });
 
                 if(deleteUser.data.status === 200){
-                    alert(deleteUser.data.message)
+                    window.location.reload();
+                }else{
+                    alert("check your internet connection!")
                 }
             });
     });

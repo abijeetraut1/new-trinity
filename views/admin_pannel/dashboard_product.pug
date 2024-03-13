@@ -3,8 +3,7 @@ block contentDash
     style.
         #table{
             width: 100%;
-                margin-top: 1rem;
-
+            margin-top: 1rem;
         }
         tbody{
             height: 20vh;
@@ -20,8 +19,9 @@ block contentDash
         }
 
     .container-fluid.pt-4.px-4
-        .container-fluid.pt-4.px-4
-            table#table.px-2.py-10
+        .container-fluid.pt-4.px-4.admin-container(style="max-width: 80vw; width: 100%;")
+            h3(style="color: #897575;") Ordered Products
+            table#table.px-2.py-10(style="width: 300%;")
                 thead
                     tr
                         th SN

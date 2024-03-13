@@ -89,7 +89,10 @@ exports.login = catchAsync(async (req, res, next) => {
     }).select('+password');
 
     if (!login || !(await login.correctPassword(password, login.password))) {
-        return console.log('USER NOT FOUND');
+        res.status(200).json({
+            status: 200,
+            message: "INCORRECT PASSWORD",
+        })
     }
 
     createCookies(login, res, 200);

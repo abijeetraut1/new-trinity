@@ -31,8 +31,8 @@ block contentDash
 
     .content
         .container-fluid.pt-4.px-4
-            .container-fluid.pt-4.px-4
-                table(style="width: 60%")
+            .container-fluid.pt-4.px-4.admin-container
+                table
                     thead
                         tr 
                             th S.N
@@ -46,33 +46,33 @@ block contentDash
                                 td= i+1 + "."
                                 td(class=`${i+1}-data-edit`)= fabric.fabric
                                 td(class=`${i+1}-data-edit`)= fabric.price
-                                th
-                                    i(fabric-id=`${fabric.id}` style="color:red; cursor: pointer;"  id="delete-fabric" class="fa-solid fa-trash")
+                                td
+                                    i.fa-solid.fa-trash(fabric-id=`${fabric.id}` style="color:red; cursor: pointer;"  id="delete-fabric")
 
-            //- input.input-change-cloth-price(type="text" name="")
+                //- input.input-change-cloth-price(type="text" name="")
 
-        <div class="container-fluid pt-4 px-4">
-            <button id="add-tshirt" style="background:blue; color: white; padding: .5rem; border: none;"> Add Fabric </button>
-            <div id="add-tshirt-form" class="d-none my-2" style="width:fit-content;">
-                <div>
-                    <label class="my-2">
-                        <span> Name: </span>
-                        <br/>
-                        <input type="text" id="fabric" name="name" required><br>
-                    </label>
-                    <br>
-                    <label class="my-2">
-                        <span> price: </span>
-                        <br/>
-                            <input type="number" id="price" name="price" required><br>
-                    </label>
-                    <br>
-                    <label class="my-2"> 
-                        <button id="add-fabric" type="submit" class="send-of-order" style="background-color: #ff3f6c; color: white; border: none; padding: 10px 20px; cursor: pointer;">Add</button>
-                    </label>
+                <div class="container-fluid pt-4" style="padding-left: 0;">
+                    <button id="add-tshirt" style="background:blue; color: white; padding: .5rem; border: none;"> Add Fabric </button>
+                    <div id="add-tshirt-form" class="d-none my-2" style="width:fit-content;">
+                        <div>
+                            <label class="my-2">
+                                <span> Name: </span>
+                                <br/>
+                                <input type="text" id="fabric" name="name" required><br>
+                            </label>
+                            <br>
+                            <label class="my-2">
+                                <span> price: </span>
+                                <br/>
+                                    <input type="number" id="price" name="price" required><br>
+                            </label>
+                            <br>
+                            <label class="my-2"> 
+                                <button id="add-fabric" type="submit" class="send-of-order" style="background-color: #ff3f6c; color: white; border: none; padding: 10px 20px; cursor: pointer;">Add</button>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
     script(src="../js/jquery-latest.js")
     script(src="../js/admin_datasend_to_backend.js")

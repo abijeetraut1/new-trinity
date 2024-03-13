@@ -32,6 +32,7 @@ exports.order = async (req, res, next) => {
 
 exports.tshrit_price = async (req, res, next) => {
     const changePrice = await price.find({});
+    console.log(changePrice)
     res.status(200).render('admin_pannel/clothes_type.pug', {
         changePrice
     })
