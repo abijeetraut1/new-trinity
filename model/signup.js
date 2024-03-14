@@ -67,5 +67,6 @@ signupSchema.methods.createPasswordResetToken = async function () {
     return resetToken;
 }
 
+
 const user = new mongoose.model('user', signupSchema);
 module.exports = user;

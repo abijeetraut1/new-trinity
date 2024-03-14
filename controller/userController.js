@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const user = require('../model/signup');
 const jwt = require('jsonwebtoken');
 const AppError = require('../utils/appError');
+const nodemailer = require("nodemailer");
 
 const {
     promisify
@@ -114,32 +115,68 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
     createCookies(updateAccountUser, res, 200);
 });
 
+exports.changePassword = catchAsync(async (req, res, next) => {
+    const {email, password} = req.body;
+    console.log(email, password)
+    const updateAccountUser = await user.findOne({
+        email: email
+    });
+
+    console.log(updateAccountUser)
+
+    if (!updateAccountUser) {
+        return next(new AppError('user not found', 400));
+    }
+
+    updateAccountUser.password = password;
+    updateAccountUser.save();
+
+    res.status(200).json({
+        status: "changed"
+    })
+});
+
+
 exports.forgetPassword = catchAsync(async (req, res, next) => {
     // console.log('email',req.body)
-    const email = req.body.email;
+    const email = req.params.email;
+
     const forgetAccount = await user.findOne({
         email
     });
 
     if (!forgetAccount) {
-        return next(new AppError('The UserEmail not found', 401));
+        // return next(new AppError('The UserEmail not found', 401));
+        res.status(404).json({
+            status: 'Not Found',
+            message: 'The Email not found',
+        });
     }
 
-    const resetToken = await forgetAccount.createPasswordResetToken();
-    await forgetAccount.save({
-        validateBeforeSave: false
+    const passwordResetVerification = Math.floor(Math.random() * 1000000);
+
+
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        auth: {
+            user: "bebishnewar@gmail.com",
+            pass: "rvzcdtxfpkthglzy",
+        },
     });
 
-    const resetURL = `${req.protocol}://${req.get(  
-      'host'
-    )}/api/v1/users/resetPassword/${resetToken}`;
-
-    const message = `forget your password? submit  your patch request with new password and password confirm to: ${resetURL} if you did\'t forget your password then ignore this all `;
+    await transporter.sendMail({
+        from: '"Trinity Garments" <bebishnewar@gmail.com>', 
+        to: email, 
+        subject: "Trinity Garment Verification Code",
+        html: `Your Password Reset Token is : <h2> ${passwordResetVerification} </h2>`
+    });
 
     res.status(200).json({
         status: 'sucess',
         message: 'token send to email',
-        token: resetURL,
+        token: passwordResetVerification
     });
 });
 
@@ -271,7 +308,7 @@ exports.isAdminLoggedIn = catchAsync(async (req, res, next) => {
         if (!cookiesId) {
             return res.redirect("/login");
         }
-        
+
         const AdminUser = await user.findById({
             _id: cookiesId.id,
         });
