@@ -28,7 +28,7 @@ exports.deleteAllData = catchAsync(async (req, res) => {
     })
 })
 
-exports.change_user_to_admin = async (req, res, next) => {
+exports.change_user_to_admin = catchAsync(async (req, res, next) => {
     const userId = req.body.id;
 
     const user = await usersModel.findById({
@@ -51,10 +51,10 @@ exports.change_user_to_admin = async (req, res, next) => {
     }).catch(err => {
         statusFunc(res, 501, "failed! please reload");
     })
-}
+})
 
 
-exports.remove_sub_admin = async (req, res, next) => {
+exports.remove_sub_admin = catchAsync(async (req, res, next) => {
     const userId = req.body.id;
 
     const user = await usersModel.findById({
@@ -77,11 +77,11 @@ exports.remove_sub_admin = async (req, res, next) => {
     }).catch(err => {
         statusFunc(res, 501, "failed! please reload");
     })
-}
+})
 
 
 // deleteUser
-exports.deleteUser = async (req, res, next) => {
+exports.deleteUser = catchAsync(async (req, res, next) => {
     const userId = req.body.id;
 
     const user = await usersModel.findById({
@@ -99,4 +99,4 @@ exports.deleteUser = async (req, res, next) => {
     }).catch(err => {
         statusFunc(res, 501, "failed! please reload");
     })
-}
+})

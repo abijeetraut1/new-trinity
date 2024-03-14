@@ -8,9 +8,10 @@ const jwt = require('jsonwebtoken');
 const {
     promisify
 } = require('util');
+const catchAsync = require('../../utils/catchAsync');
 
 
-exports.homepage = async (req, res, next) => {
+exports.homepage = catchAsync(async (req, res, next) => {
     const adminDesign = await product.find({
         role: 'admin'
     }).sort({
@@ -27,27 +28,27 @@ exports.homepage = async (req, res, next) => {
         totalUsers,
         title: 'home'
     });
-}
+})
 
-exports.buypage = async (req, res, next) => {
+exports.buypage = catchAsync(async (req, res, next) => {
     const slug = req.params.slug;
     const products = await product.findOne({
         slug
     });
-    console.log(products)
+
     res.status(200).render('user_pages/slugView.pug', {
         products,
         title: products.title
     });
-}
+})
 
-exports.login = async (req, res, next) => {
+exports.login = catchAsync(async (req, res, next) => {
     res.status(200).render('user_pages/loginFrom.pug', {
         title: 'Account'
     });
-}
+})
 
-exports.orderPage = async (req, res, next) => {
+exports.orderPage = catchAsync(async (req, res, next) => {
     const item = await product.findOne({
         slug: req.params.slug
     })
@@ -55,9 +56,9 @@ exports.orderPage = async (req, res, next) => {
     res.status(200).render('user_pages/orderPage.pug', {
         item
     });
-}
+})
 
-exports.DesignorderPage = async (req, res, next) => {
+exports.DesignorderPage = catchAsync(async (req, res, next) => {
     try {
         const viewPrice = await cloth_Type_Model.findOne({
             type: req.params.material
@@ -69,9 +70,9 @@ exports.DesignorderPage = async (req, res, next) => {
     } catch (err) {
         console.log(err)
     }
-}
+})
 
-exports.addToCart = async (req, res, next) => {
+exports.addToCart = catchAsync(async (req, res, next) => {
 
     const token = req.cookies.jwt;
     const cookiesId = await promisify(jwt.verify)(token, process.env.jwtPassword);
@@ -95,10 +96,10 @@ exports.addToCart = async (req, res, next) => {
             renderingItem
         });
     }, 2000);
-}
+})
 
 
-exports.designPage = async (req, res, next) => {
+exports.designPage = catchAsync(async (req, res, next) => {
     const cloth_type_price = await cloth_Type_Model.find({});
     const cloth_material_price = await cloth_material_model.find({});
     
@@ -108,8 +109,8 @@ exports.designPage = async (req, res, next) => {
         cloth_type_price,
         cloth_material_price
     });
-}
+})
 
-exports.forgetPassword = async(req, res, next) => {
+exports.forgetPassword = catchAsync(async(req, res, next) => {
     res.render("./user_pages/ForgetPassword.pug");
-}
+})

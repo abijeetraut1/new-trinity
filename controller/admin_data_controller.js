@@ -12,7 +12,7 @@ const statusFunc = (res, statusNumber, message) => {
     });
 }
 
-exports.sended_product_to_user = async(req, res) => {
+exports.sended_product_to_user = catchAsync(async(req, res) => {
     const id = req.body.id;
     console.log(req.body);
     const sendedCustomDesign = await customDesignOrder.findOneAndUpdate({_id: id}, {sendStatus: true}, {new: true});
@@ -22,7 +22,7 @@ exports.sended_product_to_user = async(req, res) => {
     res.status(200).json({
         message: "hello world"
     })
-}
+})
 
 exports.add_fabric = catchAsync(async(req, res) => {
     const {fabric, price} = req.body;

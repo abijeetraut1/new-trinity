@@ -284,7 +284,7 @@ exports.changePrice = catchAsync(async (req, res, next) => {
     })
 });
 
-exports.Design_Order_Record = async (req, res, next) => {
+exports.Design_Order_Record = catchAsync(async (req, res, next) => {
     console.log(req.files)
     let tshirtName = `${Date.now() + '-' + Math.round(Math.random() * 1E9)}`;
     const stickers = [];
@@ -321,7 +321,7 @@ exports.Design_Order_Record = async (req, res, next) => {
         record
     })
 
-};
+});
 
 
 
@@ -350,7 +350,7 @@ exports.cartDelete = catchAsync(async (req, res, next) => {
 
 
 
-exports.send_product_to_users = async(req, res, next) => {
+exports.send_product_to_users = catchAsync(async(req, res, next) => {
     const id = req.body.id;
     const product_send = await directDesignOrder.findOneAndUpdate({_id:id}, {sendStatus: true});
     
@@ -358,4 +358,4 @@ exports.send_product_to_users = async(req, res, next) => {
         status: 200,
         message: "status updated"
     })
-}
+})
