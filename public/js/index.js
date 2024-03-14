@@ -395,7 +395,6 @@ if (window.innerWidth <= 700) {
     $(".checkout-product-display")[0] = $(".checkout-product-display")[1];
     // $(".checkout-product-display")[1] = holdnode[0];
     // $(".checkout-product-display")[1];
-    console.log(holdnode)
 }
 
 if (window.location.pathname === '/delivered') {
