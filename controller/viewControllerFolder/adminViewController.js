@@ -1,10 +1,9 @@
-const directDesignOrder = require('../../model/admin_designed_tshirt');
+const directDesignOrder = require('../../model/user_designed_tshirt');
 const price = require('../../model/cloth_Type_Model');
 const user = require("./../../model/signup");
 const ordersModel = require("../../model/orderModel");
 const productsModel = require("../../model/product");
 const sendedDesignModel = require("../../model/sended_design_by_users_model");
-const cartsModel = require("./../../model/add-to-cart");
 const cloth_fabric = require("./../../model/Cloth_Fabric_Model");
 const catchAsync = require('../../utils/catchAsync');
 
@@ -76,7 +75,6 @@ exports.database_clear = catchAsync(async (req, res) => {
     const ordersModelLength = await ordersModel.find({});
     const productsModelLength = await productsModel.find({});
     const sendedDesignModelLength = await sendedDesignModel.find({});
-    const cartsModelLength = await cartsModel.find({});
 
 
     const datas = [{
@@ -103,10 +101,6 @@ exports.database_clear = catchAsync(async (req, res) => {
             model: "Admin Designed",
             length: sendedDesignModelLength.length
         },
-        {
-            model: "Carts",
-            length: cartsModelLength.length
-        }
     ];
 
     

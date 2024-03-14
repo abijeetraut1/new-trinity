@@ -55,7 +55,6 @@ const orderSchema = mongoose.Schema({
     },
     orderDate: {
         type: Date,
-        required: true,
     },
 });
 

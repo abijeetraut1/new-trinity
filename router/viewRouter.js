@@ -8,7 +8,7 @@ router.get('/', authController.isUserLoggedInForHome, viewController.homepage);
 router.get('/login', viewController.login);
 router.get("/forget-password", viewController.forgetPassword);
 router.get('/design', authController.isUserLoggedIn, authController.protect, viewController.designPage);
-router.get('/add-to-cart', authController.isUserLoggedIn, viewController.addToCart);
+router.get('/ordered-list', authController.isUserLoggedIn, viewController.track_order);
 // router.get('/searched/:params', viewController.search);
 
 router.get('/product/order/:material', authController.isUserLoggedIn, viewController.DesignorderPage);

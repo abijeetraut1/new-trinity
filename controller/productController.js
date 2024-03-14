@@ -4,9 +4,8 @@ const catchAsync = require('../utils/catchAsync');
 const product = require('../model/product');
 const order = require('../model/sended_design_by_users_model');
 const orderRecived = require('../model/orderModel');
-const addToCart = require('../model/add-to-cart');
 const changePrice = require('../model/cloth_Type_Model');
-const directDesignOrder = require('../model/admin_designed_tshirt');
+const directDesignOrder = require('../model/user_designed_tshirt');
 const AppError = require('../utils/appError');
 
 const jwt = require('jsonwebtoken');
@@ -285,7 +284,8 @@ exports.changePrice = catchAsync(async (req, res, next) => {
 });
 
 exports.Design_Order_Record = catchAsync(async (req, res, next) => {
-    console.log(req.files)
+    const userId = res.locals.user.id;
+
     let tshirtName = `${Date.now() + '-' + Math.round(Math.random() * 1E9)}`;
     const stickers = [];
     req.files.map(el => {
@@ -294,6 +294,7 @@ exports.Design_Order_Record = catchAsync(async (req, res, next) => {
 
     let upload = {
         email: req.body.email,
+        userID: userId,
         name: req.body.name,
         number: req.body.number,
         area: req.body.number,
@@ -321,31 +322,6 @@ exports.Design_Order_Record = catchAsync(async (req, res, next) => {
         record
     })
 
-});
-
-
-
-exports.addToCart = catchAsync(async (req, res, next) => {
-    const addToCarted = await addToCart.create({
-        userId: req.body.user,
-        itemId: req.body.product
-    })
-
-    res.status(200).json({
-        status: 'success',
-        addToCarted
-    })
-});
-
-
-exports.cartDelete = catchAsync(async (req, res, next) => {
-    console.log(req.body.deleteDataDbId)
-    await addToCart.deleteOne({
-        _id: req.body.deleteDataDbId
-    })
-    res.status(200).json({
-        status: 'success'
-    })
 });
 
 

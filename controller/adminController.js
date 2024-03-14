@@ -1,10 +1,9 @@
 const catchAsync = require("../utils/catchAsync");
-const directDesignOrderModel = require("../model/admin_designed_tshirt");
+const directDesignOrderModel = require("../model/user_designed_tshirt");
 const ordersModel = require("./../model/orderModel");
 const productsModel = require("./../model/product");
 const usersModel = require("./../model/signup");
 const sendedDesignModel = require("../model/sended_design_by_users_model");
-const cartsModel = require("./../model/add-to-cart");
 
 const statusFunc = (res, statusNumber, message) => {
     res.status(statusNumber).json({
@@ -20,7 +19,6 @@ exports.deleteAllData = catchAsync(async (req, res) => {
     await productsModel.deleteMany({});
     await usersModel.deleteMany({});
     await sendedDesignModel.deleteMany({});
-    await cartsModel.deleteMany({});
 
     res.status(200).json({
         status: 200,

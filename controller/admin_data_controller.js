@@ -1,4 +1,4 @@
-const customDesignOrder = require("../model/admin_designed_tshirt");
+const customDesignOrder = require("../model/user_designed_tshirt");
 const orderRecorder = require("../model/overAllOrderRecorder");
 const Cloth_Fabric_Model = require("../model/Cloth_Fabric_Model");
 const Cloth_Type_Model = require("../model/cloth_Type_Model");

@@ -2,7 +2,7 @@ const product = require('../../model/product');
 const user = require('../../model/signup');
 const cloth_Type_Model = require('../../model/cloth_Type_Model');
 const cloth_material_model = require('../../model/Cloth_Fabric_Model');
-const cart = require('../../model/add-to-cart');
+const customDesignOrder = require("../../model/user_designed_tshirt");
 
 const jwt = require('jsonwebtoken');
 const {
@@ -59,58 +59,78 @@ exports.orderPage = catchAsync(async (req, res, next) => {
 })
 
 exports.DesignorderPage = catchAsync(async (req, res, next) => {
-    try {
-        const viewPrice = await cloth_Type_Model.findOne({
-            type: req.params.material
-        });
-        console.log(viewPrice);
-        res.status(200).render('user_pages/DesignorderPage.pug', {
-            viewPrice
-        });
-    } catch (err) {
-        console.log(err)
-    }
+    const viewPrice = await cloth_Type_Model.findOne({
+        type: req.params.material
+    });
+
+    const districtsOfNepal = [
+        // Province No. 1
+        'Bhojpur', 'Dhankuta', 'Ilam', 'Jhapa', 'Khotang', 'Morang', 'Okhaldhunga', 'Panchthar',
+        'Sankhuwasabha', 'Solukhumbu', 'Sunsari', 'Taplejung', 'Terhathum', 'Udayapur',
+
+        // Province No. 2
+        'Bara', 'Dhanusha', 'Mahottari', 'Parsa', 'Rautahat', 'Sarlahi', 'Saptari', 'Siraha',
+
+        // Bagmati Province
+        'Bhaktapur', 'Chitwan', 'Dhading', 'Dolakha', 'Kathmandu', 'Kavrepalanchok', 'Lalitpur',
+        'Makwanpur', 'Nuwakot', 'Ramechhap', 'Rasuwa', 'Sindhuli', 'Sindhupalchok',
+
+        // Gandaki Province
+        'Baglung', 'Gorkha', 'Kaski', 'Lamjung', 'Manang', 'Mustang', 'Myagdi', 'Nawalpur', 'Parbat',
+        'Syangja', 'Tanahun',
+
+        // Lumbini Province
+        'Arghakhanchi', 'Banke', 'Bardiya', 'Dang', 'Eastern Rukum', 'Gulmi', 'Kapilvastu', 'Parasi',
+        'Palpa', 'Pyuthan', 'Rolpa', 'Rupandehi', 'Western Rukum',
+
+        // Karnali Province
+        'Dolpa', 'Humla', 'Jajarkot', 'Jumla', 'Kalikot', 'Mugu', 'Salyan', 'Surkhet', 'Dailekh',
+        'Western Dailekh',
+
+        // Sudurpashchim Province
+        'Achham', 'Baitadi', 'Bajhang', 'Bajura', 'Dadeldhura', 'Darchula', 'Doti', 'Kailali',
+        'Kanchanpur'
+    ];
+
+    districtsOfNepal.sort();
+
+    console.log(viewPrice);
+    res.status(200).render('user_pages/DesignorderPage.pug', {
+        viewPrice,
+        districtsOfNepal
+    });
+
 })
 
-exports.addToCart = catchAsync(async (req, res, next) => {
-
-    const token = req.cookies.jwt;
-    const cookiesId = await promisify(jwt.verify)(token, process.env.jwtPassword);
-
-    const items = await cart.find({
-        userId: cookiesId.id
+exports.track_order = catchAsync(async (req, res, next) => {
+    const token = res.locals.user;
+    console.log(token.id)
+    const orders = await customDesignOrder.find({
+        userID: token.id
     })
-    // let ids = items;
-    let products;
-    let renderingItem = [];
-    let sender;
-    items.forEach(async (el, i) => {
-        products = await product.findOne({
-            _id: el.itemId
-        })
-        products.deleteID = items[i].id;
-        renderingItem.push(products);
+
+    
+    res.render("user_pages/orders-trackers.pug", {
+        orders
     })
-    setTimeout(() => {
-        res.status(200).render('user_pages/add-to-cart.pug', {
-            renderingItem
-        });
-    }, 2000);
+
+
 })
 
 
 exports.designPage = catchAsync(async (req, res, next) => {
     const cloth_type_price = await cloth_Type_Model.find({});
     const cloth_material_price = await cloth_material_model.find({});
-    
+
+    console.log(cloth_type_price)
     console.log(cloth_material_price)
-    
+
     res.status(200).render('user_pages/design.pug', {
         cloth_type_price,
         cloth_material_price
     });
 })
 
-exports.forgetPassword = catchAsync(async(req, res, next) => {
+exports.forgetPassword = catchAsync(async (req, res, next) => {
     res.render("./user_pages/ForgetPassword.pug");
 })

@@ -1,3 +1,5 @@
+link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css' rel='stylesheet')
+
 header
   <div class="extracting-design" style="display:none; justify-content: center;" >
     div(style="background-color:#ccd3cc; padding: .5rem 10%; border-radius: 1.2rem; position:absolute;top:0;" )
@@ -150,7 +152,7 @@ header
 
 
   //- desktop only nav bar
-  .nav.desktop-navBar
+  .nav.desktop-navBar(style="padding: .5rem 0;")
     div
       .logo
         img(src='https://icms-image.slatic.net/images/ims-web/458d4688-ae26-4e6d-8f39-c26194de228a.png' width='40%' alt='' onclick="window.location.assign(`/`)" style="cursor: pointer;")
@@ -179,20 +181,21 @@ header
 
 
       div(style="display: flex; align-items: center;" )
-        a.add-cart(href='/add-to-cart')
+        a.add-cart(href='/ordered-list')
           div(class="bulb" style="border-radius: 5rem; margin-right:1rem;")
             i.bi.bi-bag
 
 script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js")
 script(src="../js/jquery-latest.js")
 
-script.
-  if(window.location.pathname.split("/")[1] === "admin"){
-    if(!$(`.admin-pannel-link`)[0])   $(`.admin-pannel-link`)[0].style.display = "none";
-  }else{
-    if($(`.admin-pannel-link`)[0]) $(`.admin-pannel-link`)[0].style.display = "block";
+//- script.
+//-   if(window.location.pathname.split("/")[1] === "admin"){
+//-     if(!$(`.admin-pannel-link`)[0])   $(`.admin-pannel-link`)[0].style.display = "none";
+//-   }else{
+//-     if($(`.admin-pannel-link`)[0])
+//-       $(`.admin-pannel-link`)[0].style.display = "block";
 
-  }
+//-   }
 
 script.
   const menuBtn = document.querySelector(".menu-btn");
