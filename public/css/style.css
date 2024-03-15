@@ -1421,7 +1421,7 @@ a {
 
 }
 
-#choose_size_and_quantity div{
+#choose_size_and_quantity div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -1483,10 +1483,7 @@ a {
     cursor: pointer;
 }
 
-.image-name-size-display div {
-    display: flex;
-    align-items: center;
-}
+
 
 .payment-text,
 .image-name-size-display,
@@ -1525,7 +1522,7 @@ a {
     .checkout-information-fillup,
     .checkout-product-display {
         height: fit-content;
-        width: 80%;
+        width: 93%;
         margin-right: 0;
         margin-left: 0;
     }
@@ -1595,4 +1592,24 @@ a {
 
 .account .active {
     display: block;
+}
+
+.productDiv {
+    overflow: hidden;
+    position: absolute;
+    border: 1px solid transparent;
+    width: 210px;
+    height: 270px;
+    top: 110px;
+    left: 135px;
+}
+
+@media (min-width: 0px) and (max-width: 360px) {
+    .mobile-navBar {
+        display: none;
+    }
+
+    .desktop-navBar {
+        display: flex;
+    }
 }

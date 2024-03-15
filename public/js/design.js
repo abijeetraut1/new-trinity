@@ -498,6 +498,12 @@ if (sessionStorage.getItem("designedFrontView") || sessionStorage.getItem("desig
     sessionStorage.removeItem("designedBackView")
 }
 
+alert(window.innerWidth)
+if(window.innerWidth <= 360){
+    $(`#productDiv`)[0].style.left = "86px";
+    $(`#productDiv`)[0].style.width = "185px";
+
+}
 
 const sellThis = document.querySelector('#saveProductDesign');
 var divToCapture = document.getElementById('product');
