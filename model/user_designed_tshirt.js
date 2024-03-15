@@ -1,23 +1,31 @@
 const mongoose = require('mongoose');
 
 const orderSchema = mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-    },
     userID: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
-    },
-    number: {
-        type: Number,
         required: true,
     },
     name: {
         type: String,
         required: true,
     },
-    area: {
+    email: {
+        type: String,
+        required: true,
+    },
+    number: {
+        type: Number,
+        required: true,
+    },
+    alt_number: {
+        type: Number,
+        required: true,
+    },
+    state: {
+        type: String,
+        required: true,
+    },
+    district: {
         type: String,
         required: true,
     },
@@ -25,11 +33,19 @@ const orderSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    address: {
+    ward_no: {
+        type: Number,
+        required: true,
+    },
+    toll_name: {
         type: String,
         required: true,
     },
-    size: {
+    land_mark: {
+        type: String,
+        required: true,
+    },
+    material: {
         type: String,
         required: true,
     },
@@ -45,9 +61,13 @@ const orderSchema = mongoose.Schema({
         type: [String],
         required: true,
     },
-    material: {
+    size: {
         type: String,
         required: true,
+    },
+    color: {
+        type: String,
+        default: "white"
     },
     sendStatus: {
         type: Boolean,

@@ -33,6 +33,43 @@ head
         } 
 
 
+        #insert_choosen_design{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Style for the container div */
+        .container {
+            border: 2px solid #007bff; /* Blue border color */
+            padding: 5px 14px;
+            margin: 2.5px 15px 2.5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+            width: fit-content;
+        }
+
+        /* Style for the spans inside the container div */
+        .container span {
+            margin-right: 10px;
+        }
+
+        /* Style for the remove button */
+        .remove-button {
+            font-weight: bolder; 
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: red; /* Blue color for the button */
+            font-size: 18px;
+        }
+
+        #insert_choosen_design{
+            padding: 0.7rem;
+        }
+
+
     include ../headers/_header
 
     script(src="./../../js/jquery-latest.js") 
@@ -46,32 +83,48 @@ head
                 br
                 label Contact Info
                 .contact-info
+                    input.spacer(type='text' name='' id='order-username' placeholder='user name'  value=user.name)
                     input.spacer(type='email' name='' id='order-email' placeholder='email' value=user.email)
                     input.spacer(type='number' name='' id='order-number' placeholder='contact number' value=user.email)
-                br
-                label Shopping Info
+                    input.spacer(type='number' name='' id='alt-order-number' placeholder='Alternative Contact Number' value=user.email)
+
+                label Address Info
                 .contact-info
-                    input.spacer(type='text' name='' id='order-username' placeholder='user name'  value=user.name)
-                    input.spacer(type='text' name='' id='order-area' placeholder='Area Name')
-                    input.spacer(type='text' name='' id='order-address' placeholder='shipping address')
                     .address
-                        input.widther.spacer(type='text' name='' id='order-area' placeholder='city')
-                        select#select.widther.spacer(name='')
+                        select#state.widther.spacer(name='')
+                            each state in states
+                                option(value=`${state}`)= state
+                        
+                        select#district.widther.spacer(name='')
                             each district in districtsOfNepal
                                 option(value=`${district}`)= district
+                                
+                    input.spacer(type='text' name='' id='order-city' placeholder='City: Birathnagar')
+                    input.spacer(type='text' name='' id='toll-ward-number' placeholder='Ward Number: 2')
+                    .quantity
+                        input.widther.spacer(type='text' name='' id='land-mark' placeholder='Land Mark: Rekha Hotel')
+                        input.widther.spacer(type='text' name='' id='toll-name' placeholder='toll-name: Godawari Marg')
 
-                <div id="choose_size" style="display:flex;">
-                    <div style="display:inline-block; margin:5px; border: 1px solid #ccc; padding: .5rem 2rem 0 2rem; border-radius:5px; user-select: none;"
-                        | class="size changeColor">S</div>
-                    <div style="display:inline-block; margin:5px; border: 1px solid #ccc; padding: .5rem 2rem 0 2rem; border-radius:5px; user-select: none;"
-                        | class="size">M</div>
-                    <div style="display:inline-block; margin:5px; border: 1px solid #ccc; padding: .5rem 2rem 0 2rem; border-radius:5px; user-select: none;"
-                        | class="size">L</div>
-                    <div style="display:inline-block; margin:5px; border: 1px solid #ccc; padding: .5rem 2rem 0 2rem; border-radius:5px; user-select: none;"
-                        | class="size">XL</div>
-                    <div style="display:inline-block; margin:5px; border: 1px solid #ccc; padding: .5rem 2rem 0 2rem; border-radius:5px; user-select: none;"
-                        | class="size">XXL</div>
+                <div id="choose_size_and_quantity">
+                    <div>
+                        <div value="S" class="size changeColor">S</div>
+                        <div value="M" class="size">M</div>
+                        <div value="L" class="size">L</div>
+                        <div value="XL" class="size">XL</div>
+                        <div value="XXL" class="size">XXL</div>
+                    </div>
+                    <div id="choose-quantity">
+                        input.order-quantity(type='number' name='' id='order-quantity' placeholder='Quantity' min="1" value="1")
+                    </div>
+                    <div class="submit-design">
+                        <div id="add-qunatity">Add</div>
+                    </div>
                 </div>
+
+                <div id="insert_choosen_design">
+                   
+                </div>
+                
 
                 div.payment
                     br
@@ -102,7 +155,7 @@ head
                         br
                         label Insert Designs
                         input.input-file-style#inserted-stickers(type="file" name="sticker-name" accept="image/png, image/jpeg" multiple)
-                           
+
 
                     .payment-container
                         .delivery-section

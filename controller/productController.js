@@ -284,6 +284,7 @@ exports.changePrice = catchAsync(async (req, res, next) => {
 });
 
 exports.Design_Order_Record = catchAsync(async (req, res, next) => {
+    console.log(req.body)
     const userId = res.locals.user.id;
 
     let tshirtName = `${Date.now() + '-' + Math.round(Math.random() * 1E9)}`;
@@ -293,17 +294,23 @@ exports.Design_Order_Record = catchAsync(async (req, res, next) => {
     })
 
     let upload = {
-        email: req.body.email,
         userID: userId,
         name: req.body.name,
+        email: req.body.email,
         number: req.body.number,
-        area: req.body.number,
-        address: req.body.address,
+        alt_number: req.body.alt_number,
+        state: req.body.state,
+        district: req.body.district,
         city: req.body.city,
+        ward_no: req.body.ward_no,
+        toll_name: req.body.toll_name,
+        land_mark: req.body.land_mark,
         size: req.body.size,
+        color: req.body.color,
         material: req.body.material,
         sticker: stickers
     }
+
 
     if (req.body.front && req.body.back) {
         saveSticker(req.body.front, `/tshirt/front/${tshirtName}_front.png`);
@@ -326,10 +333,14 @@ exports.Design_Order_Record = catchAsync(async (req, res, next) => {
 
 
 
-exports.send_product_to_users = catchAsync(async(req, res, next) => {
+exports.send_product_to_users = catchAsync(async (req, res, next) => {
     const id = req.body.id;
-    const product_send = await directDesignOrder.findOneAndUpdate({_id:id}, {sendStatus: true});
-    
+    const product_send = await directDesignOrder.findOneAndUpdate({
+        _id: id
+    }, {
+        sendStatus: true
+    });
+
     res.status(200).json({
         status: 200,
         message: "status updated"

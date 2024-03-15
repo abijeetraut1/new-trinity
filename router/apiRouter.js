@@ -17,7 +17,7 @@ const adminController = require('../controller/adminController');
 router.post('/design/upload', authController.isAdminLoggedIn, productController.uploadDesign);
 router.post('/design/changeDestination', productController.changeDatabase);
 router.post('/orderrecord', productController.orderRecorder);
-router.post('/directorderrecord', authController.isUserLoggedIn, upload.array('sticker', 6), productController.Design_Order_Record);
+router.post('/directorderrecord', authController.isUserLoggedIn,  upload.array('sticker', 6), productController.Design_Order_Record);
 router.delete('/design/deleteRequestTshirt', productController.deleteProduct);
 router.patch('/updatePrice', productController.changePrice);
 

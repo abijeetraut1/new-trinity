@@ -14,13 +14,33 @@
 .size {
     width: 35px;
     height: 30px;
-    padding: 3px;
     border: 1px solid #e6e6e6;
+    border-radius: 5px;
     text-align: center;
-    padding: 1rem;
+    padding: .5rem 1rem;
     vertical-align: top;
     width: fit-content;
     cursor: pointer;
+    display: flex;
+    align-items:center;
+    margin-right: .3rem;
+}
+
+#add-qunatity {
+    width: 35px;
+    height: 30px;
+    border: 1px solid #e6e6e6;
+    background: green;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    padding: .3rem 1rem;
+    vertical-align: top;
+    width: fit-content;
+    cursor: pointer;
+    display: flex;
+    align-items:center;
+    margin-right: .3rem;
 }
 
 .qty {

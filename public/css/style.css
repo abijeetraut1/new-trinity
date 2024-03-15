@@ -152,7 +152,7 @@
     border-radius: .5rem;
 }
 
-.form-switch{
+.form-switch {
     user-select: none;
 }
 
@@ -620,11 +620,11 @@ ol .cart {
 
     .mobile-nav {
         display: flex;
-        align-items:center;
+        align-items: center;
     }
 
     .mobile-nav .ham-menu {
-        margin: 0 1rem 0 1rem;  
+        margin: 0 1rem 0 1rem;
     }
 
     .heroSection {
@@ -1166,7 +1166,7 @@ a {
 
 @media only screen and (max-width: 450px) {
     .form-card {
-       /* width: 90%; */
+        /* width: 90%; */
 
     }
 
@@ -1178,7 +1178,8 @@ a {
 
 
 /* dahsboard */
-/********** Template CSS **********//********** Template CSS **********/
+/********** Template CSS **********/
+/********** Template CSS **********/
 :root {
     --primary: #009CFF;
     --light: #F3F6F9;
@@ -1335,39 +1336,25 @@ a {
     .content .navbar .navbar-nav .nav-link {
         margin-left: 15px;
     }
-} */
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 /* align with css */
-.class-align-items{
+.class-align-items {
     border-radius: .7rem;
     box-shadow: 0 8px 18px 10px rgb(0 0 0 / 14%);
 }
 
-.class-align-items{
+.class-align-items {
     background-color: #e8ebef;
     display: flex;
     justify-content: centere;
     align-items: center;
 }
 
-.container-of-name-and-image, .container-of-name-and-text{
+.container-of-name-and-image,
+.container-of-name-and-text {
     width: 50%;
 }
 
@@ -1403,14 +1390,50 @@ a {
     border: 1px solid #ccc;
 }
 
-.address {
+.order-quantity {
+    padding-left: 0.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    outline: none;
+    border-color: transparent;
+    border: 1px solid #ccc;
+}
+
+
+.address,
+.quantity {
     display: flex;
     justify-content: space-between;
 }
 
+
+
 .widther {
-    width: 40%;
+    width: 48%;
 }
+
+#choose_size_and_quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+
+#choose_size_and_quantity div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* .size {
+    display: inline-block;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    user-select: none;
+} */
 
 #select {
     /* padding: .5rem 0; */
@@ -1484,31 +1507,33 @@ a {
     color: #5cb85c;
 }
 
-.bold-text{
+.bold-text {
     font-size: 1.6rem;
     font-weight: 600;
     color: #333;
 }
 
 @media screen and (max-width: 800px) {
-    .insider{
+    .insider {
         width: 100%;
     }
+
     .check-out-container .insider {
         flex-direction: column;
     }
 
-    .checkout-information-fillup, .checkout-product-display {
+    .checkout-information-fillup,
+    .checkout-product-display {
         height: fit-content;
         width: 80%;
         margin-right: 0;
         margin-left: 0;
     }
 
-    .contact-info{
+    .contact-info {
         width: 100%;
     }
-    
+
 }
 
 
@@ -1533,7 +1558,7 @@ a {
     --bs-gutter-x: 0;
 }
 
-.send-of-order{
+.send-of-order {
     padding: .5rem;
     border-radius: .2rem;
     background-color: var(--color);
@@ -1556,11 +1581,11 @@ a {
     }
 }
 
-.logout-active{
+.logout-active {
     display: none;
 }
 
-.account .Logout{
+.account .Logout {
     width: 8%;
     background: white;
     border-radius: 0 0px 6px 6px;
@@ -1568,7 +1593,6 @@ a {
     z-index: 10;
 }
 
-.account .active{
-    display: block;   
+.account .active {
+    display: block;
 }
-

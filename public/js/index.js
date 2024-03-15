@@ -320,7 +320,7 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
     // function to change color and remove the previous color 
     const choose_size = document.querySelectorAll('.size');
 
-    // buttonColor = (onlyClick, className) => {
+
     choose_size.forEach(el => {
         el.addEventListener('click', e => {
             choose_size.forEach(ele => {
@@ -328,43 +328,62 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
                     ele.classList.remove('changeColor')
                 }
             })
-            return el.classList.toggle('changeColor');
+            return el.classList.add('changeColor');
         })
     })
-    // }
+
+
+
+
 
     // buttonColor(choose_size, 'changeColor');
 
     if ($("#directDesignPlaceOrder")) {
         $("#directDesignPlaceOrder")[0].addEventListener('click', async el => {
+            // contact
+            const name = $('#order-username')[0].value;
             const email = $('#order-email')[0].value;
             const number = $('#order-number')[0].value;
-            const name = $('#order-username')[0].value;
-            const area = $('#order-area')[0].value;
-            const address = $('#order-address')[0].value;
-            const city = $('#select')[0].value;
-            const size = $(".changeColor")[0].innerText;
+            const alt_number = $('#alt-order-number')[0].value;
+
+            // address
+            const state = $('#state')[0].value;
+            const district = $('#district')[0].value;
+            const city = $('#order-city')[0].value;
+            const toll_ward = $('#toll-ward-number')[0].value;
+            const land_mark = $('#land-mark')[0].value;
+            const toll_name = $('#toll-name')[0].value;
+            
             const front = sessionStorage.getItem('designedFrontView');
             const back = sessionStorage.getItem('designedBackView');
             const material = sessionStorage.getItem('material');
             const sticker = $("#inserted-stickers")[0].files;
-
+            const color = localStorage.getItem('tshirt-color') ? localStorage.getItem('tshirt-color') : "white";
+            
 
             if ((email === '') && (number === '') && (name === '') && (area === '') && (address === '') && (city === '') && (size === '')) {
                 alert('please fill the information carefully');
             }
 
             const designs = new FormData();
+            designs.append("name", name);
             designs.append("email", email);
             designs.append("number", number);
-            designs.append("name", name);
-            designs.append("area", area);
-            designs.append("address", address);
+            designs.append("alt_number", alt_number);
+
+            designs.append("state", state);
+            designs.append("district", district);
             designs.append("city", city);
-            designs.append("size", size);
+            designs.append("ward_no", toll_ward);
+            designs.append("land_mark", land_mark);
+            designs.append("toll_name", toll_name);
+
+            designs.append("size", localStorage.getItem("ordered-sized"));
             designs.append("front", front);
             designs.append("back", back);
             designs.append("material", material);
+            designs.append("color", color);
+            
 
             for (let index = 0; index < sticker.length; index++) {
                 designs.append("sticker", sticker[index]);
@@ -381,6 +400,7 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
             })
             if (sendData.data.status === "success") {
                 // sessionStorage.clear();
+                localStorage.clear();
                 // window.location.assign('/delivered');
             }
         })
@@ -405,7 +425,7 @@ if (window.location.pathname === '/delivered') {
 
 
 
-if(window.location.pathname === "/login"){
+if (window.location.pathname === "/login") {
     const pswShowBtnSignup = $("#password-signup-show")[0];
     pswShowBtnSignup.addEventListener("click", (e) => {
         e.preventDefault();
@@ -425,4 +445,93 @@ if(window.location.pathname === "/login"){
             $("#password-login").attr("type", "password");
         }
     });
+}
+
+
+if (window.location.pathname.split('/')[2] === 'order') {
+    const addQuantityBtn = $("#add-qunatity")[0];
+    const orderAddDiv = $("#insert_choosen_design")[0];
+
+    addQuantityBtn.addEventListener("click", () => {
+        const size = document.querySelector(".changeColor").getAttribute("value");
+        const quantity = document.getElementById("order-quantity").value;
+
+        if (!(localStorage.getItem("ordered-sized"))) {
+            const arr = [];
+            const newArr = {
+                key: 0,
+                size: size,
+                quantity: quantity
+            };
+
+            arr.push(newArr);
+            localStorage.setItem("ordered-sized", JSON.stringify(arr));
+        } else if (localStorage.getItem("ordered-sized")) {
+            const arr = JSON.parse(localStorage.getItem("ordered-sized"));
+            const newArr = {
+                key: arr.length,
+                size: size,
+                quantity: quantity
+            };
+            arr.push(newArr);
+            localStorage.setItem("ordered-sized", JSON.stringify(arr));
+        }
+
+        // Create the container div
+        const arr = JSON.parse(localStorage.getItem("ordered-sized"));
+        const containerDiv = document.createElement("div");
+        containerDiv.setAttribute("key", JSON.stringify(arr.length - 1));
+        containerDiv.classList.add("container"); // Add the 'container' class
+
+        // Create the div to contain the items
+        const itemsListingDiv = document.createElement("div");
+
+        // Create spans for size and quantity
+        const sizeSpan = document.createElement("span");
+        sizeSpan.textContent = size;
+
+        const quantitySpan = document.createElement("span");
+        quantitySpan.textContent = quantity;
+
+        const comma = document.createElement("span");
+        comma.textContent = ",";
+
+        // Append size and quantity spans to itemsListingDiv
+        itemsListingDiv.appendChild(sizeSpan);
+        itemsListingDiv.appendChild(comma);
+        itemsListingDiv.appendChild(quantitySpan);
+
+        // Append itemsListingDiv to containerDiv
+        containerDiv.appendChild(itemsListingDiv);
+
+        // Create the remove button
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "x";
+        removeButton.classList.add("remove-button"); // Add the 'remove-button' class
+
+        // Add event listener to remove the containerDiv when remove button is clicked
+        removeButton.addEventListener("click", () => {
+            containerDiv.remove();
+            // Parse the key as an integer
+            const deletedKey = parseInt(containerDiv.getAttribute("key"));
+
+            // Get the array from localStorage
+            const arrs = JSON.parse(localStorage.getItem("ordered-sized"));
+
+            // Filter the array to remove the item with the specified key
+            const updatedArrs = arrs.filter(arr => arr.key !== deletedKey);
+
+            // Store the updated array back to localStorage
+            localStorage.setItem("ordered-sized", JSON.stringify(updatedArrs));
+        });
+
+        // Append the remove button to containerDiv
+        containerDiv.appendChild(removeButton);
+
+
+        // Append containerDiv to orderAddDiv
+        orderAddDiv.appendChild(containerDiv);
+    });
+
+
 }

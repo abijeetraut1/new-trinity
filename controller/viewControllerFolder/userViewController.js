@@ -92,12 +92,16 @@ exports.DesignorderPage = catchAsync(async (req, res, next) => {
         'Kanchanpur'
     ];
 
+    const states = ["Province No. 1", "Province No. 2", "Bagmati Province", "Gandaki Province", "Lumbini Province", "Karnali Province", "Sudurpashchim Province"]
+
+
     districtsOfNepal.sort();
 
     console.log(viewPrice);
     res.status(200).render('user_pages/DesignorderPage.pug', {
         viewPrice,
-        districtsOfNepal
+        districtsOfNepal,
+        states
     });
 
 })
@@ -109,7 +113,7 @@ exports.track_order = catchAsync(async (req, res, next) => {
         userID: token.id
     })
 
-    
+
     res.render("user_pages/orders-trackers.pug", {
         orders
     })
