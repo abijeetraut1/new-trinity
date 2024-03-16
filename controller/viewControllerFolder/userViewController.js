@@ -141,6 +141,10 @@ exports.forgetPassword = catchAsync(async (req, res, next) => {
 })
 
 exports.delivered = catchAsync(async (req, res, next) => {
-    // console.log('searched', searchItem)
-    res.status(200).render('user_pages/send.pug')
+    const id = req.params.id;
+    const product = await customDesignOrder.findOne({_id:id});
+    console.log('product', product)
+    res.status(200).render('user_pages/send.pug', {
+        product
+    })
 })

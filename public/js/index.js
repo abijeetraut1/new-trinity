@@ -399,10 +399,11 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
                 data: designs
             })
             if (sendData.data.status === "success") {
-                console.log(sendData.data)
+                console.log(sendData.data.record._id)
                 sessionStorage.clear();
                 localStorage.clear();
-                window.location.assign('/delivered');
+                sessionStorage.setItem("p_id", sendData.data.record._id);
+                window.location.assign(`/delivered/${sendData.data.record._id}`);
             }
         })
     }

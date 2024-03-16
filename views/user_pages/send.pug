@@ -11,6 +11,7 @@ block content
     .container {
       max-width: 800px;
       margin: 50px auto;
+      margin-bottom: 20px;
       padding: 20px;
       background-color: #fff;
       border-radius: 8px;
@@ -66,7 +67,47 @@ block content
       border:none;
       color: white;
     }
+
+    .product-image img{
+      width: 30%;
+    }
+
+    .vertical-table {
+      max-width: 800px;
+      margin: 10px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+
+    .table-row {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+    }
+
+    .label {
+      font-weight: bold;
+      min-width: 120px;
+    }
+
     @media (min-width: 0px) and (max-width: 360px) {
+      .container, .vertical-table {
+        margin-left: .7rem;
+        margin-right: .7rem;
+      }
+
+      .delivery-detail-container img{
+        width: 200%;
+      }
+      .product-image img{
+        width: 100%;
+      }
       .stage {
         margin: 1rem 0 20px 0; 
         display: flex;
@@ -90,10 +131,6 @@ block content
       }
 
 
-      .container{
-        margin: 1rem;
-      }
-
       h1{
         font-size: 25px;
         text-align:center;
@@ -110,12 +147,25 @@ block content
       .container div{
         margin-bottom: 0;
       }
+
+
     }
     .back-to-home-link{
       text-decoration: none;
       color: white;
     }
-    
+
+
+    .delivery-detail{
+      display: flex;
+      width: fit-content;
+    }
+
+    .delivery-detail-container{
+      display: flex;
+      flex-direction: column;
+    }
+
   .container
     div 
       h1 Order Tracking
@@ -129,6 +179,52 @@ block content
       .stage
         .circle 3
         .stage-text Shipped
-    .back-to-home
-      button 
-        a.back-to-home-link(href="/") Home
+    .back-to-home 
+      a.back-to-home-link(href="/") 
+        button Home
+
+  .vertical-table
+    .table-row
+      .label Name:
+      div= product.name
+    .table-row
+      .label Email:
+      div= product.email
+    .table-row
+      .label Number:
+      div= product.number
+    .table-row
+      .label Alt. Number:
+      div= product.alt_number
+    .table-row
+      .label State:
+      div= product.state
+    .table-row
+      .label District:
+      div= product.district
+    .table-row
+      .label City:
+      div= product.city
+    .table-row
+      .label Ward:
+      div= product.ward_no
+    .table-row
+      .label Toll:
+      div= product.toll_name
+    .table-row
+      .label Land Mark:
+      div= product.land_mark
+    .table-row
+      .label Color:
+      div= product.color
+    .table-row
+      .label size:
+      div= product.size
+    .table-row
+      .label front:
+      div.front-image.product-image
+        img(src=`../images/product/upload/tshirt/front/${product.front}`, alt="image not found")
+    .table-row
+      .label back:
+      div.front-image.product-image
+        img(src=`../images/product/upload/tshirt/back/${product.back}`, alt="image not found")
