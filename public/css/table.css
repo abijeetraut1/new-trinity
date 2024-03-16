@@ -20,7 +20,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 10px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
@@ -28,4 +29,32 @@ th, td {
 
 tr:hover {
     background-color: #f9f9f9;
+}
+
+/* desktop-order-view */
+.mobile-order-view {
+    display: none;
+}
+
+.desktop-order-view {
+    display: block;
+}
+
+@media screen and (max-width: 500px) {
+    .desktop-order-view {
+        display: none;
+    }
+    .mobile-order-view {
+        display: block;
+    }
+
+    .admin-container {
+        max-width: 800px;
+        margin: 5px auto;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow-x: auto;
+    }
 }

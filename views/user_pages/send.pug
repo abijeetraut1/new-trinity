@@ -69,7 +69,7 @@ block content
     }
 
     .product-image img{
-      width: 30%;
+      width: 60%;
     }
 
     .vertical-table {
@@ -95,8 +95,24 @@ block content
       font-weight: bold;
       min-width: 120px;
     }
+    .order-tshirt-sizes{
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: .4rem 1rem;
+      margin: .2rem;
+    }
 
-    @media (min-width: 0px) and (max-width: 360px) {
+    .align-image{
+      flex-direction: row;
+    }
+
+    @media (min-width: 0px) and (max-width: 500px) {
+      .order-tshirt-sizes{
+        padding: .4rem .7rem;
+      }
+      .align-image{
+        flex-direction: column;
+      }
       .container, .vertical-table {
         margin-left: .7rem;
         margin-right: .7rem;
@@ -174,10 +190,10 @@ block content
         .circle.done 1
         .stage-text Order Received
       .stage
-        .circle 2
+        .circle(class=`${product.sendStatus === true ? "done" : " "}`) 2
         .stage-text Processing
       .stage
-        .circle 3
+        .circle(class=`${product.shipped === true ? "done" : " "}`) 3
         .stage-text Shipped
     .back-to-home 
       a.back-to-home-link(href="/") 
@@ -219,12 +235,13 @@ block content
       div= product.color
     .table-row
       .label size:
-      div= product.size
-    .table-row
-      .label front:
-      div.front-image.product-image
-        img(src=`../images/product/upload/tshirt/front/${product.front}`, alt="image not found")
-    .table-row
-      .label back:
-      div.front-image.product-image
-        img(src=`../images/product/upload/tshirt/back/${product.back}`, alt="image not found")
+      div(style="display:flex; flex-wrap: wrap;")
+        each size in JSON.parse(product.size)
+          div.order-tshirt-sizes 
+            p= `${size.size}, ${size.quantity}`
+
+  .vertical-table.align-image
+    div.front-image.product-image
+      img(src=`../images/product/upload/tshirt/front/${product.front}`, alt="image not found")
+    div.front-image.product-image
+      img(src=`../images/product/upload/tshirt/back/${product.back}`, alt="image not found")

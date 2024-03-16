@@ -103,7 +103,7 @@ header
 
 
   .nav.mobile-navBar 
-    div
+    div(style="width:50%;")
       .logo
         img(src='https://icms-image.slatic.net/images/ims-web/458d4688-ae26-4e6d-8f39-c26194de228a.png' width='40%' alt='' onclick="window.location.assign(`/`)" style="cursor: pointer;")
     
@@ -122,6 +122,8 @@ header
           a(href="/") Home
         div
           a(href="/design") Design
+        div
+          a(href="/ordered-list") Ordered List
         if user
           if user.role === "admin" || user.role === "sub-admin"
             div
