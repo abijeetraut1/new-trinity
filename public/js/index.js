@@ -314,12 +314,12 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
 if (window.location.pathname.split("/")[1] === "product" && window.location.pathname.split("/")[2] === "order") {
     $('#designImageDisplayBack')[0].src = sessionStorage.getItem('designedFrontView');
     $('#designImageDisplayFront')[0].src = sessionStorage.getItem('designedBackView');
+
     $('#material')[0].innerText = sessionStorage.getItem('material');
     $('.bi-bag').css("font-size", "1.3rem")
 
     // function to change color and remove the previous color 
     const choose_size = document.querySelectorAll('.size');
-
 
     choose_size.forEach(el => {
         el.addEventListener('click', e => {
@@ -331,10 +331,6 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
             return el.classList.add('changeColor');
         })
     })
-
-
-
-
 
     // buttonColor(choose_size, 'changeColor');
 

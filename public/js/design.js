@@ -21,10 +21,9 @@ if (window.location.pathname === '/design') {
 }
 
 
-if (window.innerWidth <= 700) {
-    alert('PLEASE USE THE DESKTOP TO DESIGN')
-}
-
+if (window.innerWidth <= 1200) {
+    alert('PLEASE USE THE DESKTOP TO DESIGN \n Enable Desktop Site on your Browser')
+} 
 
 
 
@@ -306,10 +305,10 @@ addImage.addEventListener('input', el => {
                     }
                 })
             })
-            
-            if(window.outerWidth > 900){
+
+            if (window.outerWidth > 900) {
                 moveitemDesktop(ele)
-            }else{
+            } else {
                 moveitemMobile(ele)
             }
         })
@@ -409,10 +408,14 @@ moveitemMobile = (element) => {
     let isDragging = false;
 
     // Add event listener for touchstart event
-    element.addEventListener("touchstart", dragStart, { passive: false });
+    element.addEventListener("touchstart", dragStart, {
+        passive: false
+    });
 
     // Add event listener for touchmove event
-    document.addEventListener("touchmove", drag, { passive: false });
+    document.addEventListener("touchmove", drag, {
+        passive: false
+    });
 
     // Add event listener for touchend event
     document.addEventListener("touchend", dragEnd);
@@ -499,9 +502,9 @@ addText.addEventListener('click', el => {
 
     const tshirt_text = document.querySelector('.tshirt-text');
     tshirt_text.style = "position: absolute; padding: .5rem;";
-    if(window.outerWidth > 900){
+    if (window.outerWidth > 900) {
         moveitemDesktop(tshirt_text);
-    }else{
+    } else {
         moveitemMobile(tshirt_text)
     }
 
@@ -577,7 +580,7 @@ if (sessionStorage.getItem("designedFrontView") || sessionStorage.getItem("desig
     sessionStorage.removeItem("designedBackView")
 }
 
-if(window.innerWidth <= 360){
+if (window.innerWidth <= 360) {
     $(`#productDiv`)[0].style.left = "86px";
     $(`#productDiv`)[0].style.width = "185px";
 
@@ -591,12 +594,6 @@ if (!($("#for-admin-only")[0])) {
 
     document.querySelector('#sellThis').addEventListener('click', el => {
         $('.design-time-notification')[0].style.display = "block";
-        
-
-        // save the send the image url object to session storage
-        // sessionStorage.setItem("stickers", JSON.stringify(storeImageBase64Address));
-
-        // setTimeout(() => {
 
         parentElement.style.borderColor = 'transparent';
         if (document.querySelector('.tshirt-text')) {
@@ -606,9 +603,8 @@ if (!($("#for-admin-only")[0])) {
             html2canvas(document.getElementById("product")).then(function (canvas) {
                 var img = canvas.toDataURL('image/png');
                 sessionStorage.setItem(`designed${$('.btn-toggle')[0].innerText}View`, img); // jun view set bhako xa tai ko image linxa
+
                 if (!($('.btn-toggle')[0].innerText === 'Front')) {
-                    // setTimeout(() => {
-                    console.log("front")
 
                     $('.front').css("display", "block");
                     $('.back').css("display", "none");
@@ -616,49 +612,37 @@ if (!($("#for-admin-only")[0])) {
                     html2canvas(divToCapture).then(function (canvass) {
                         html2canvas(document.getElementById("product")).then(function (canvass) {
                             var backImg = canvass.toDataURL('image/png');
-                            console.log('! === front', backImg)
                             sessionStorage.setItem('designedFrontView', backImg); // save the tshirt front view in the local storage
                             productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_back.png")`;
+                            
+                            if (sessionStorage.getItem("designedBackView") && sessionStorage.getItem("designedFrontView")) {
+                                window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
+                            }
                         });
                     });
+                }
 
-                    if (sessionStorage.getItem("designedBackView")) {
-                        window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
-                    }
-                    // }, 10000)
-
-                } else if (!($('.btn-toggle')[0].innerText === 'Back')) {
-
-
+                if (!($('.btn-toggle')[0].innerText === 'Back')) {
                     $('.front').css("display", "none");
                     $('.back').css("display", "block");
                     productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_back.png")`;
                     html2canvas(divToCapture).then(function (canvass) {
                         html2canvas(document.getElementById("product")).then(function (canvass) {
                             var backImg = canvass.toDataURL('image/png');
-                            console.log('! === back', backImg)
+
                             sessionStorage.setItem('designedBackView', backImg); // save the tshirt front view in the local storage
                             productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_front.png")`;
-
-                            if (sessionStorage.getItem("designedFrontView")) {
+                            
+                            if (sessionStorage.getItem("designedBackView") && sessionStorage.getItem("designedFrontView")) {
                                 window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
                             }
                         });
                     });
                 }
+
             });
-            return;
         });
-        // }, 1000);
 
-
-
-
-        // // setTimeout(() => {
-        // if (sessionStorage.getItem("designedBackView") && sessionStorage.getItem("designedFrontView")) {
-        //     window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
-        // }
-        // }, 10000);
         return;
     })
 }
