@@ -498,7 +498,6 @@ if (sessionStorage.getItem("designedFrontView") || sessionStorage.getItem("desig
     sessionStorage.removeItem("designedBackView")
 }
 
-alert(window.innerWidth)
 if(window.innerWidth <= 360){
     $(`#productDiv`)[0].style.left = "86px";
     $(`#productDiv`)[0].style.width = "185px";
@@ -550,7 +549,6 @@ if (!($("#for-admin-only")[0])) {
                     // }, 10000)
 
                 } else if (!($('.btn-toggle')[0].innerText === 'Back')) {
-                    console.log("back")
 
 
                     $('.front').css("display", "none");

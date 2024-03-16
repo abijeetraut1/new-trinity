@@ -133,8 +133,14 @@ exports.designPage = catchAsync(async (req, res, next) => {
         cloth_type_price,
         cloth_material_price
     });
+    
 })
 
 exports.forgetPassword = catchAsync(async (req, res, next) => {
     res.render("./user_pages/ForgetPassword.pug");
+})
+
+exports.delivered = catchAsync(async (req, res, next) => {
+    // console.log('searched', searchItem)
+    res.status(200).render('user_pages/send.pug')
 })

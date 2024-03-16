@@ -55,11 +55,6 @@ exports.referralActivate = catchAsync(async (req, res, next) => {
     res.status(200).render('activateReferral.pug')
 })
 
-exports.delivered = catchAsync(async (req, res, next) => {
-    // console.log('searched', searchItem)
-    res.status(200).render('user_pages/send.pug')
-})
-
 
 exports.appoint_to_admin = catchAsync(async (req, res, next) => {
     const users = await user.find();

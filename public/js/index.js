@@ -399,9 +399,10 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
                 data: designs
             })
             if (sendData.data.status === "success") {
-                // sessionStorage.clear();
+                console.log(sendData.data)
+                sessionStorage.clear();
                 localStorage.clear();
-                // window.location.assign('/delivered');
+                window.location.assign('/delivered');
             }
         })
     }
