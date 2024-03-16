@@ -306,8 +306,12 @@ addImage.addEventListener('input', el => {
                     }
                 })
             })
-
-            moveitem(ele)
+            
+            if(window.outerWidth > 900){
+                moveitemDesktop(ele)
+            }else{
+                moveitemMobile(ele)
+            }
         })
     });
 
@@ -326,7 +330,7 @@ createSpaner = classes => {
 
 
 // move item position when click and drag
-moveitem = (element) => {
+moveitemDesktop = (element) => {
     let initialX, initialY;
     let currentX, currentY;
     let xOffset = 0,
@@ -341,6 +345,7 @@ moveitem = (element) => {
 
     // Add event listener for mouseup event
     document.addEventListener("mouseup", dragEnd);
+
 
     // Define dragStart function
     function dragStart(e) {
@@ -396,6 +401,76 @@ moveitem = (element) => {
     }
 }
 
+moveitemMobile = (element) => {
+    let initialX, initialY;
+    let currentX, currentY;
+    let xOffset = 0,
+        yOffset = 0;
+    let isDragging = false;
+
+    // Add event listener for touchstart event
+    element.addEventListener("touchstart", dragStart, { passive: false });
+
+    // Add event listener for touchmove event
+    document.addEventListener("touchmove", drag, { passive: false });
+
+    // Add event listener for touchend event
+    document.addEventListener("touchend", dragEnd);
+
+    // Define dragStart function
+    function dragStart(e) {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+
+        if (e.target === element) {
+            isDragging = true;
+        }
+    }
+
+    // Define drag function
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+
+            currentX = e.touches[0].clientX - initialX;
+            currentY = e.touches[0].clientY - initialY;
+
+            xOffset = currentX;
+            yOffset = currentY;
+
+            setTranslate(currentX, currentY, element);
+        }
+    }
+
+    // Define dragEnd function
+    function dragEnd(e) {
+        initialX = currentX;
+        initialY = currentY;
+
+        isDragging = false;
+    }
+
+    // Define setTranslate function
+    function setTranslate(xPos, yPos, el) {
+        if (xPos >= 204) {
+            xPos -= el.offsetWidth;
+            return el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        } else if (xPos <= -50) {
+            xPos = 0;
+            return el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        } else if (yPos >= 258) {
+            yPos -= el.offsetHeight;
+            return el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        } else if (yPos <= -27) {
+            yPos = 0;
+            return el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        } else {
+            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        }
+    }
+}
+
+
 // add text
 createSpan = (element, className, parent) => {
     const elementCreate = document.createElement(element);
@@ -424,7 +499,11 @@ addText.addEventListener('click', el => {
 
     const tshirt_text = document.querySelector('.tshirt-text');
     tshirt_text.style = "position: absolute; padding: .5rem;";
-    moveitem(tshirt_text);
+    if(window.outerWidth > 900){
+        moveitemDesktop(tshirt_text);
+    }else{
+        moveitemMobile(tshirt_text)
+    }
 
     // console.log(tshirt_text.length)
     deleteElement.style.display = 'block';
