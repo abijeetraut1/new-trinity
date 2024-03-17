@@ -1,6 +1,8 @@
 extends dashbase
 
 block contentDash
+    
+
     .container-fluid.pt-4.px-4
         .container-fluid.pt-4.px-4.admin-container
             table
@@ -25,4 +27,5 @@ block contentDash
                                     button#delete-user(style="background:red; width: 90%; color: white; padding: .5rem; border:none;" value=`${user._id}`) Delete User
     
     script(src="../js/jquery-latest.js")
+
     script(src="../js/forall.js")

@@ -8,8 +8,12 @@
     border: 1px solid #bebebe;
     text-align: center;
     vertical-align: top;
-
 }
+
+body{
+    font-family: Montserrat, sans-serif;
+}
+
 
 .size {
     width: 35px;

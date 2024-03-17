@@ -143,3 +143,11 @@ if (window.location.pathname.split("/")[2] === "dashboard_products") {
         })
     })
 }
+
+
+console.log("first")
+if (window.location.pathname.split("/")[2] === "dashboard_products") {
+    $("#updatebutton")[0].addEventListener("click", () => {
+        alert("adf")
+    })
+}

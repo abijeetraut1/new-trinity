@@ -80,12 +80,18 @@ const orderSchema = mongoose.Schema({
     orderDate: {
         type: Date,
     },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 orderSchema.pre("save", async function (next) {
     const currentDate = new Date();
 
     this.orderDate = currentDate;
+    // this.createdAt = Date.now();
+    // console.log(this.createdAt)
     next();
 })
 

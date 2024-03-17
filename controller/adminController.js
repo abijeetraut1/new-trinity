@@ -87,7 +87,7 @@ exports.deleteUser = catchAsync(async (req, res, next) => {
     });
 
     if (user.role === "admin") {
-        return statusFunc(res, 200, "failed", "cannot update admin role");
+        return statusFunc(res, 200, "failed", "cannot delete admin role");
     }
 
     await usersModel.deleteOne({

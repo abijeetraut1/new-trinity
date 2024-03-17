@@ -20,9 +20,8 @@ exports.products = catchAsync(async (req, res, next) => {
 
 
 exports.order = (async (req, res, next) => {
-    const orderSend = await directDesignOrder.find({
-        sendStatus: 1
-    });
+    const orderSend = await directDesignOrder.find({ sendStatus: 1 }).sort({ createdAt: -1 });;
+
 
     res.status(200).render('admin_pannel/dashboard-view-order-send.pug', {
         orderSend
@@ -109,5 +108,14 @@ exports.tshrit_fabric = catchAsync(async(req, res) => {
     console.log(fabrics)
     res.status(200).render("admin_pannel/clothes_fabric.pug", {
         fabrics
+    })
+})
+
+exports.singleProductWithId = catchAsync(async(req, res) => {
+    const id = req.params.id;
+    const product = await directDesignOrder.findById({_id:id});
+    console.log(product)
+    res.status(200).render("admin_pannel/viewsendedProduct.pug", {
+        product
     })
 })

@@ -1,72 +1,48 @@
 extends dashbase
 block contentDash
     style.
-        #table{
-            width: 100%;
-            margin-top: 1rem;
-        }
         tbody{
             height: 20vh;
         }
         tr:nth-child(even) {
             background-color: rgba(150, 212, 212, 0.4);
         }
-
-        @media (max-width: 732px){
-            #table{
-                width: 300%;
-            }
+        .order-tshirt-sizes{
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: .4rem 1rem;
+            margin: .2rem;
         }
 
-    .container-fluid.pt-4.px-4
-        .container-fluid.pt-4.px-4.admin-container(style="max-width: 80vw; width: 100%;")
-            h3(style="color: #897575;") Ordered Products
-            table#table.px-2.py-10(style="width: 300%;")
+    .container-fluid.pt-4.px-2
+        .container-fluid.pt-4.px-2.admin-container
+            h5(style="color: #897575;") Ordered Products
+            table(style="width: 100%")
                 thead
                     tr
                         th SN
                         th Name
-                        th Phone no
-                        th Address
-                        th Color
-                        th Size
-                        th price
-                        th T-shirt Front
-                        th T-shirt Back
-                        th Sticker 
-                        th Date
-                        th Send
-                tbody
+                        th send
+                        th date
+                        th Link
+
+                tbody(style="flex")
                     each product, i in ordereditem
                         tr 
                             td 
-                                .no-of-order#location(style="font-size: 1.1rem;")= i+1 + "."
+                                .no-of-order#location(style="font-size: 1.1rem;")= i+1
                             td
                                 .no-of-order#location(style="font-size: 1.1rem;")= product.name
-                            td
-                                .no-of-order#location(style="font-size: 1.1rem;")= product.number
-                            td
-                                .no-of-order#location(style="font-size: 1.1rem;")= product.city
-                            td
-                                .no-of-order#location(style="font-size: 1.1rem;")= product.color
-                            td
-                                .no-of-order#location(style="font-size: 1.1rem;")= product.size
-                            td
-                                .no-of-order#location(style="font-size: 1.1rem;" data=`${product.price}`)= product.price
-                            td
-                                .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
-                                    img(src=`../images/product/upload/tshirt/front/${product.front}` id="imageFromDB" alt='' style='height: 100%;')
-                            td
-                                .image-of-container(style='height: 15vh; padding: 1rem 1rem;')
-                                    img(src=`../images/product/upload/tshirt/back/${product.back}` id="imageFromDB" alt='' style='height: 100%;')
-                            td
-                                .d-flex(style='height: fit-content; widthL: fit-content;')
-                                    button.send-of-order#sended-stickers(imagesname=`${JSON.stringify(product.sticker)}`) Download All
-                            td= new Date(`${product.orderDate}`).toLocaleDateString("en-US", { day: 'numeric', month: 'short', year: 'numeric' })
                             td 
-                                input#order_send_status(type="checkbox" style="font-size: 1.1rem;" value=`${product._id}`)
+                                input.no-of-order#location(type="checkbox" style="font-size: 1.1rem;" checked=(product.sendStatus === true))
+                            td= new Date(`${product.orderDate}`).toLocaleDateString("en-US", { day: 'numeric', month: 'short', year: 'numeric' })
+                            td
+                                .no-of-order#location(style="font-size: 1.1rem;")
+                                    a(href=`dashboard_products/${product.id}`) View 
+                            
+                                
 
-    script(src="../js/jquery-latest.js")
+    //- script(src="../js/jquery-latest.js")
     script.
         const sendedSticker = document.querySelectorAll("#sended-stickers");
 

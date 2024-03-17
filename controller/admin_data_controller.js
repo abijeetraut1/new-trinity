@@ -12,11 +12,17 @@ const statusFunc = (res, statusNumber, message) => {
     });
 }
 
-exports.sended_product_to_user = catchAsync(async(req, res) => {
+exports.sended_product_to_user = catchAsync(async (req, res) => {
     const id = req.body.id;
     console.log(req.body);
-    const sendedCustomDesign = await customDesignOrder.findOneAndUpdate({_id: id}, {sendStatus: true}, {new: true});
-    
+    const sendedCustomDesign = await customDesignOrder.findOneAndUpdate({
+        _id: id
+    }, {
+        sendStatus: true
+    }, {
+        new: true
+    });
+
     console.log(sendedCustomDesign)
 
     res.status(200).json({
@@ -24,8 +30,11 @@ exports.sended_product_to_user = catchAsync(async(req, res) => {
     })
 })
 
-exports.add_fabric = catchAsync(async(req, res) => {
-    const {fabric, price} = req.body;
+exports.add_fabric = catchAsync(async (req, res) => {
+    const {
+        fabric,
+        price
+    } = req.body;
     console.log(req.body)
     await Cloth_Fabric_Model.create({
         price,
@@ -37,18 +46,24 @@ exports.add_fabric = catchAsync(async(req, res) => {
     });
 });
 
-exports.delete_fabric = catchAsync(async(req, res) => {
+exports.delete_fabric = catchAsync(async (req, res) => {
     const id = req.body.id;
-    await Cloth_Fabric_Model.deleteOne({_id: id}).then(() => {
+    await Cloth_Fabric_Model.deleteOne({
+        _id: id
+    }).then(() => {
         statusFunc(res, 200, "successfull")
     }).catch(err => {
         statusFunc(res, 500, "please refresh")
     });
 });
 
-exports.add_cloth_type = catchAsync(async(req, res) => {
-    const {cloth_type, description, price} = req.body;
-    
+exports.add_cloth_type = catchAsync(async (req, res) => {
+    const {
+        cloth_type,
+        description,
+        price
+    } = req.body;
+
     await Cloth_Type_Model.create({
         price: price,
         front: req.files.front[0].filename,
@@ -63,11 +78,32 @@ exports.add_cloth_type = catchAsync(async(req, res) => {
     });
 })
 
-exports.delete_material_type = catchAsync(async(req, res) => {
+exports.delete_material_type = catchAsync(async (req, res) => {
     const id = req.body.id;
-    await Cloth_Type_Model.deleteOne({_id: id}).then(() => {
+    await Cloth_Type_Model.deleteOne({
+        _id: id
+    }).then(() => {
         statusFunc(res, 200, "successfull")
     }).catch(err => {
         statusFunc(res, 500, "please refresh")
     });
 });
+
+exports.update_productStatus = catchAsync(async (req, res) => {
+    const {
+        id,
+        sendStatus,
+        shippingStatus
+    } = req.body;
+
+    await customDesignOrder.findByIdAndUpdate({
+        _id: id
+    }, {
+        sendStatus:sendStatus,
+        shipped:shippingStatus
+    }).then(data => {
+        statusFunc(res, 200, "successfull")
+    }).catch(err => {
+        statusFunc(res, 500, "please refresh")
+    });
+})

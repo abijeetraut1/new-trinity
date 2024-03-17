@@ -16,7 +16,7 @@ router.patch("/sended_product_to_user", admin_data_controller.sended_product_to_
 // fabric type
 router.post("/add_fabric", admin_data_controller.add_fabric);
 router.delete("/delete_fabric", admin_data_controller.delete_fabric);
-
+router.patch("/update_productStatus", admin_data_controller.update_productStatus);
 // material type
 router.post("/add_cloth_type", upload.fields([{
     name: "front",

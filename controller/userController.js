@@ -315,7 +315,7 @@ exports.isAdminLoggedIn = catchAsync(async (req, res, next) => {
 
         if (!AdminUser) {
             return res.redirect("/login");
-        } else if (AdminUser.role === "user") {
+        } else if (AdminUser.role === "user" || AdminUser.role === "sub-user") {
             res.render("user_pages/Not_Found.pug")
         }
 
