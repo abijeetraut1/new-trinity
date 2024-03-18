@@ -40,7 +40,14 @@ tr:hover {
     display: block;
 }
 
+.on-mobile{
+    display: block;
+}
 @media screen and (max-width: 500px) {
+    .on-mobile{
+        display: none;
+    }
+
     .desktop-order-view {
         display: none;
     }

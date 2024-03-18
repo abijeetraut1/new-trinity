@@ -31,8 +31,8 @@ block contentDash
                         tr
                             th SN
                             th Name
-                            th Phone no
-                            th send
+                            th(class="on-mobile") Phone no
+                            th(class="on-mobile") send
                             th date
                             th Link
 
@@ -43,11 +43,11 @@ block contentDash
                                     .no-of-order#location(style="font-size: 1.1rem;")= i+1
                                 td
                                     .no-of-order#location(style="font-size: 1.1rem;")= product.name
-                                td
+                                td(class="on-mobile")
                                     .no-of-order#location(style="font-size: 1.1rem;")= product.number
-                                td= new Date(`${product.orderDate}`).toLocaleDateString("en-US", { day: 'numeric', month: 'short', year: 'numeric' })
-                                td 
+                                td(class="on-mobile")
                                     input.no-of-order#location(type="checkbox" style="font-size: 1.1rem;" checked=(product.sendStatus === true))
+                                td= new Date(`${product.orderDate}`).toLocaleDateString("en-US", { day: 'numeric', month: 'short', year: 'numeric' })
                                 td
                                     .no-of-order#location(style="font-size: 1.1rem;")
                                         a(href=`dashboard_products/${product.id}`) View 

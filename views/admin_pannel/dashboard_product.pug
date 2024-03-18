@@ -1,9 +1,6 @@
 extends dashbase
 block contentDash
     style.
-        tbody{
-            height: 20vh;
-        }
         tr:nth-child(even) {
             background-color: rgba(150, 212, 212, 0.4);
         }
@@ -17,12 +14,12 @@ block contentDash
     .container-fluid.pt-4.px-2
         .container-fluid.pt-4.px-2.admin-container
             h5(style="color: #897575;") Ordered Products
-            table(style="width: 100%")
+            table
                 thead
                     tr
                         th SN
                         th Name
-                        th send
+                        th(class="on-mobile") send
                         th date
                         th Link
 
@@ -33,7 +30,7 @@ block contentDash
                                 .no-of-order#location(style="font-size: 1.1rem;")= i+1
                             td
                                 .no-of-order#location(style="font-size: 1.1rem;")= product.name
-                            td 
+                            td(class="on-mobile") 
                                 input.no-of-order#location(type="checkbox" style="font-size: 1.1rem;" checked=(product.sendStatus === true))
                             td= new Date(`${product.orderDate}`).toLocaleDateString("en-US", { day: 'numeric', month: 'short', year: 'numeric' })
                             td

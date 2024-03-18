@@ -17,36 +17,6 @@ block contentDash
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     }
-    .order-progress {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: row;
-    }
-    .stage-text {
-      font-size: 14px;
-      margin-top: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .circle {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: #ccc;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 12px;
-      color: #fff;
-    }
-    .circle.done {
-      background-color: #4caf50;
-    }
-    .circle.active {
-      background-color: #2196f3;
-    }
     .line {
       height: 2px;
       background-color: #ccc;
@@ -106,6 +76,16 @@ block contentDash
       flex-direction: row;
     }
 
+    .vertical-table-top-space{
+      margin-top: 3rem;
+    }
+
+    .status-center{
+      display:flex;
+      justify-content: flex-start;
+      align-items:center;
+    }
+
     @media (min-width: 0px) and (max-width: 500px) {
       .order-tshirt-sizes{
         padding: .4rem .7rem;
@@ -124,23 +104,7 @@ block contentDash
       .product-image img{
         width: 100%;
       }
-      .stage {
-        margin: 1rem 0 20px 0; 
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
-        margin-bottom: 20px;
-      }
 
-      .order-progress { 
-        margin: 1rem 0 20px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
-        margin-bottom: 20px;
-      }
 
       .back-to-home{
         margin: 1rem 0;
@@ -182,24 +146,9 @@ block contentDash
       flex-direction: column;
     }
 
-  .container
-    div 
-      h1 Order Tracking
-    .order-progress
-      .stage
-        .circle.done 1
-        .stage-text Order Received
-      .stage
-        .circle(class=`${product.sendStatus === true ? "done" : " "}`) 2
-        .stage-text Processing
-      .stage
-        .circle(class=`${product.shipped === true ? "done" : " "}`) 3
-        .stage-text Shipped
-    .back-to-home 
-      a.back-to-home-link(href="/") 
-        button Home
+  
 
-  .vertical-table
+  .vertical-table.vertical-table-top-space
     .table-row
       .label Name:
       div= product.name
@@ -235,22 +184,20 @@ block contentDash
       div= product.color
     .table-row
       .label sendStatus:
-      input#update-sendStatus(type="checkbox" name="update-sendStatus" checked=product.sendStatus)
-      div= product.sendStatus
-
+      .label.status-center
+        input#update-sendStatus(type="checkbox" name="update-sendStatus" checked=product.sendStatus)
+        div= product.sendStatus
     .table-row
       .label shipped:
-      input#update-productShipping(type="checkbox" name="update-productShipping" checked=product.shipped)
-
-
-      div= product.shipped
+      .label.status-center
+        input#update-productShipping(type="checkbox" name="update-productShipping" checked=product.shipped)
+        div= product.shipped
     .table-row
       .label size:
       div(style="display:flex; flex-wrap: wrap;")
         each size in JSON.parse(product.size)
           div.order-tshirt-sizes 
             p= `${size.size}, ${size.quantity}`
-
     .back-to-home 
       button.back-to-home#updatebutton update
 
