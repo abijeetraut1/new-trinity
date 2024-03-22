@@ -102,11 +102,13 @@ header
 
 
 
-  .nav.mobile-navBar 
-    div(style="width:50%;")
-      .logo
-        img(src='https://icms-image.slatic.net/images/ims-web/458d4688-ae26-4e6d-8f39-c26194de228a.png' width='40%' alt='' onclick="window.location.assign(`/`)" style="cursor: pointer;")
-    
+  .nav.desktop-navBar(style="padding: .5rem 0;")
+    div(style="margin: 0 .75rem; cursor: pointer;")
+      .logo(style="display:flex; align-items:center")
+        //- img(src='images/logo.jpg' width='10%' alt='' onclick="window.location.assign(`/`)" style="cursor: pointer;")
+        a(href="/" style="color:rgb(255, 63, 108);")
+        h1 Kalakar
+            
     if user
       div#logout.Logout(style="width: 40%; cursor: pointer; text-align: center; color:#ff3f6c; backgroundColor: #f3f6f9;" onclick="logout()") Log Out
     else 
