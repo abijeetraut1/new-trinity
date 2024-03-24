@@ -1,0 +1,79 @@
+link(rel="stylesheet", href="/css/account_pannel.css")
+body
+    .sidebar
+        a(href="dashboard/products")
+            i.fas.fa-box
+            |  Products
+        a(href="dashboard/orders")
+            i.fas.fa-shopping-cart
+            |  Orders
+        a(href="dashboard/storefront")
+            i.fas.fa-store
+            |  Storefront
+        a(href="dashboard/coupons")
+            i.fas.fa-tags
+            |  Coupons
+        a(href="dashboard/marketing")
+            i.fas.fa-chart-bar
+            |  Marketing
+        a(href="dashboard/payout")
+            i.fas.fa-money-bill-wave
+            |  Payout
+        a(href="dashboard/refer")
+            i.fas.fa-share-alt
+            |  Refer
+        a(href="dashboard/support")
+            i.fas.fa-life-ring
+            |  Support
+        a(href="dashboard/settings")
+            i.fas.fa-cog
+            |  Settings
+
+    .content
+        .alert.alert-danger.alert-dismissible(role="alert")
+            button.close(type="button" data-dismiss="alert" aria-label="Close")
+                span(aria-hidden="true") &times;
+            strong Warning!
+            |  Better check yourself, you're not looking too good.
+
+        // row for ecommerece
+        .row
+            .col-md-2
+                .card.mb-4.shadow-lg
+                    img.card-img-top(src="product1.jpg" alt="Product 1")
+                    .card-body
+                        h5.card-title Product 1
+                        p.card-text Description of Product 1.
+                        .d-flex.justify-content-between.align-items-center
+                            .btn-group
+                                button.btn.btn-sm.btn-outline-secondary(type="button") View
+                                button.btn.btn-sm.btn-outline-secondary(type="button") Add to Cart
+                            small.text-muted $19.99
+
+        // referral program
+        .container-fluid
+            form.d-flex
+                input.form-control.me-2(type="search" value="http://kalakar.onrender.com/referral/abijeetraut2", readonly)
+
+    // Hamburger menu icon
+    .hamburger(onclick="toggleSidebar()")
+        i.fas.fa-bars.fa-2x
+
+    script.
+        function toggleSidebar() {
+            var sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+            var content = document.querySelector('.content');
+            content.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function (event) {
+            var sidebar = document.querySelector('.sidebar');
+            var hamburger = document.querySelector('.hamburger');
+            var isClickInsideSidebar = sidebar.contains(event.target);
+            var isClickInsideHamburger = hamburger.contains(event.target);
+            if (!isClickInsideSidebar && !isClickInsideHamburger) {
+                sidebar.classList.remove('active');
+                document.querySelector('.content').classList.remove('active');
+            }
+        });
