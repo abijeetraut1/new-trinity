@@ -1,0 +1,46 @@
+extends account_base
+
+block content
+    .content.col.g-5
+        <div id="alertshow" class="hide-alert alert-ctrl alert alert-warning alert-dismissible fade show position-absolute right-2" role="alert">
+            <strong>copied</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        // Hamburger menu icon
+        .hamburger(onclick="toggleSidebar()")
+            i.fas.fa-bars.fa-2x
+
+        // referral program
+        .container-fluid
+            div.row
+                div.col-9
+                    input#referalcode.form-control(type="search" value="http://kalakar.onrender.com/referral/abijeetraut2", readonly)
+                div.col-3
+                    button.form-control(onclick="copyToClipboard()") Copy
+
+
+
+    script.
+        function copyToClipboard() {
+            // Select the text field
+            var textToCopy = document.getElementById("referalcode");
+            var alertshow = document.getElementById("alertshow");
+
+            console.log(alertshow)
+            
+            // Select the text in the text field
+            textToCopy.select();
+            textToCopy.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the selected text
+            document.execCommand("copy");
+
+            alertshow.classList.remove("hide-alert");
+            alertshow.classList.add("show-alert");
+            
+            setTimeout(() => {
+                alertshow.classList.add("hide-alert");
+                alertshow.classList.remove("show-alert");
+            }, 2000);
+        }

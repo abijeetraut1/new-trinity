@@ -2,6 +2,9 @@ link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.mi
 
 header
   style.
+    a{
+      text-decoration:none;
+    }
     .desktop-navBar, .nav-items, .mobile-navBar{
       display: flex;
       align-items: center;
@@ -34,12 +37,15 @@ header
       top: 0;
       left: -100%;
       width: 100%;
-      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background-color: #222;
+      background-color: #fff;
       transition: left 0.3s ease;
+    }
+
+    .nav-links *{
+      color: #FF3F6C;
     }
 
     .mobile-nav-container, .mobile-navBar {
@@ -53,7 +59,6 @@ header
         top: 0;
         left: -100%;
         width: 20%;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -67,9 +72,17 @@ header
         display: flex;
       }
 
+      .nav-links{
+        padding-top: 3rem;
+
+      }
       .desktop-navBar{
         display: none; 
       } 
+    }
+    .content-border{
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
 
     @media (min-width: 821px) and (max-width: 2560px){
@@ -93,10 +106,13 @@ header
     .nav-links div h5{
       display: block;
       padding: 15px 20px;
-      color: #fff;
       text-decoration: none;
       width: fit-content;
       cursor: pointer;
+    }
+
+    div a i{
+      margin-right: 25px;
     }
 
 
@@ -121,29 +137,82 @@ header
           i.fa-solid.fa-bars
       .nav-links
         div
-          a(href="/") Home
+          a(href="/") 
+            <i class="fa-solid fa-house"></i>
+            span Home
         div
-          a(href="/design") Design
+          a(href="/design") 
+            <i class="fa-solid fa-pen-nib"></i>
+            span Design
+
         div
-          a(href="/ordered-list") Ordered List
+          h5 Admin Pannel
+        div
+          a(href="/account/products")
+              i.fas.fa-box
+              |  Products
+        div          
+          a(href="/account/orders")
+              i.fas.fa-shopping-cart
+              |  Orders
+        div          
+          a(href="/account/storefront")
+              i.fas.fa-store
+              |  Storefront
+        div          
+          a(href="/account/coupons")
+              i.fas.fa-tags
+              |  Coupons
+        div
+          a(href="/account/marketing")
+              i.fas.fa-chart-bar
+              |  Marketing
+        div         
+          a(href="/account/payout")
+              i.fas.fa-money-bill-wave
+              |  Payout
+        div          
+          a(href="/account/refer")
+              i.fas.fa-share-alt
+              |  Refer
+        div          
+          a(href="/account/support")
+              i.fas.fa-life-ring
+              |  Support
+        div          
+          a(href="/account/settings")
+              i.fas.fa-cog
+              |  Settings
+
         if user
           if user.role === "admin" || user.role === "sub-admin"
             div
               h5 Admin Pannel
             div
-              a(href="dashboard_products") Order Received
+              a(href="/admin/dashboard_products")
+                <i class="fa-solid fa-phone"></i>
+                span Order Received
             div
-              a(href="dashboard-dispatched") Order Dispatched
+              a(href="/admin/dashboard-dispatched") 
+                <i class="fa-solid fa-truck"></i>
+                span Order Dispatched
             div
-              a(href="dashboard-material-type") Cloth Material Type
-            div
-              a(href="dashboard-fabric") Cloth Fabric
-            div
-              a(href="dashboard-show-users") Appoint Admin
-            div
-              a(href="dashboard-database-clear") Clear Database
+              a(href="/admin/dashboard-material-type") 
+                <i class="fa-solid fa-shirt"></i>
+                span Cloth Type
 
-
+            div
+              a(href="/admin/dashboard-fabric") 
+                <i class="fa-solid fa-table-cells"></i>
+                span Cloth Fabric
+            div
+              a(href="/admin/dashboard-show-users")
+                <i class="fa-solid fa-user"></i>
+                span Appoint Admin
+            div
+              a(href="/admin/dashboard-database-clear") 
+                <i class="fa-solid fa-trash"></i>
+                span Clear Database
 
 
   //- desktop only nav bar
@@ -155,6 +224,8 @@ header
           h1 Kalakar
 
     div.nav-items
+      div
+        a(href="/account/products" style="color:#ff3f6c; font-family: 'Montserrat', sans-serif;") Account
       if user
         if user.role === 'admin' || user.role === "sub-admin"
           div
@@ -162,7 +233,7 @@ header
 
       .content-border
         input#search(type='text' name='search' placeholder='search' style='outline: none; border: transparent; padding-left: 1rem;')
-        button#search-button.button(style='cursor: pointer; height: 100%; width: fit-content; padding: 0 .5rem 0 .5rem;')
+        button#search-button.button(style='cursor: pointer; border: transparent; background: transparent; height: 100%; width: fit-content; padding: 0 .5rem 0 .5rem;')
           i.bi.bi-search
 
       div
@@ -185,14 +256,6 @@ header
 script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js")
 script(src="../js/jquery-latest.js")
 
-//- script.
-//-   if(window.location.pathname.split("/")[1] === "admin"){
-//-     if(!$(`.admin-pannel-link`)[0])   $(`.admin-pannel-link`)[0].style.display = "none";
-//-   }else{
-//-     if($(`.admin-pannel-link`)[0])
-//-       $(`.admin-pannel-link`)[0].style.display = "block";
-
-//-   }
 
 script.
   const menuBtn = document.querySelector(".menu-btn");

@@ -148,3 +148,15 @@ exports.delivered = catchAsync(async (req, res, next) => {
         product
     })
 })
+
+exports.products = catchAsync(async (req, res, next) => {
+    res.status(200).render('account/products.pug', {
+        title: "Account"
+    });
+})
+
+exports.refer = catchAsync(async (req, res, next) => {
+    res.status(200).render('account/refer.pug', {
+        title: "Account"
+    });
+})

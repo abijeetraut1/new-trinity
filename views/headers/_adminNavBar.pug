@@ -45,7 +45,6 @@ style.
         top: 0;
         left: -100%;
         width: 100%;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -59,7 +58,6 @@ style.
             top: 0;
             left: -100%;
             width: 20%;
-            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -90,36 +88,43 @@ style.
 //- for mobile device
 <div class="mobile-nav">
     <div class="menu-btn">
-        <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
+        <div class="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </div>
     </div>
     <div class="nav-links">
-        <div>
-            <h5>User Page</h5>
-        </div>
-        <div>
-            <a href="/">Home</a>
-        </div>
-        <div>
-            <h5>Admin Pannel</h5>
-        </div>
-        <div>
-            <a href="/admin/dashboard_products">Order Received</a>
-        </div>
-        <div>
-            <a href="/admin/dashboard-dispatched">Order Dispatched</a>
-        </div>
-        <div>
-            <a href="/admin/dashboard-material-type">Cloth Material Type</a>
-        </div>
-        <div>
-            <a href="/admin/dashboard-fabric">Cloth Fabric</a>
-        </div>
-        <div>
-            <a href="/admin/dashboard-show-users">Appoint Admin</a>
-        </div>
-        <div>
-            <a href="/admin/dashboard-database-clear">Clear Database</a>
-        </div>
+        div
+            h5 User Page
+        div
+            a(href="/")
+                Home
+            div
+              h5 Admin Pannel
+            div
+              a(href="/admin/dashboard_products")
+                <i class="fa-solid fa-phone"></i>
+                span Order Received
+            div
+              a(href="/admin/dashboard-dispatched") 
+                <i class="fa-solid fa-truck"></i>
+                span Order Dispatched
+            div
+              a(href="/admin/dashboard-material-type") 
+                <i class="fa-solid fa-shirt"></i>
+                span Cloth Type
+
+            div
+              a(href="/admin/dashboard-fabric") 
+                <i class="fa-solid fa-table-cells"></i>
+                span Cloth Fabric
+            div
+              a(href="/admin/dashboard-show-users")
+                <i class="fa-solid fa-user"></i>
+                span Appoint Admin
+            div
+              a(href="/admin/dashboard-database-clear") 
+                <i class="fa-solid fa-trash"></i>
+                span Clear Database
     </div>
 </div>
 

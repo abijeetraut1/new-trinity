@@ -1,0 +1,61 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* popup warning */
+.show-alert {
+    display: block;
+    position: absolute;
+    right: 0;
+    margin: 0 0.4rem;
+    z-index: 9999;
+    animation: right-to-left alternate .5s ease-in-out;
+}
+
+.hide-alert{
+    display: none;
+}
+
+
+@keyframes right-to-left {
+    0% {
+        right: -50rem;
+    }
+
+    100% {
+        right: 0;
+    }
+}
+
+.sidebar {
+    padding-top: 60px;
+    transition: transform 0.3s ease-in-out;
+    display: block;
+}
+
+.sidebar a {
+    padding: 10px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(255, 63, 108);
+    display: block;
+}
+
+.sidebar a i{
+    margin: 0 20px;
+}
+
+.hamburger{
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .sidebar{
+        display: none;
+    }
+}
+
+.alert-ctrl{
+    width: fit-content;
+}
