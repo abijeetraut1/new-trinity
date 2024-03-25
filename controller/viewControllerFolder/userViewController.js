@@ -47,8 +47,11 @@ exports.buypage = catchAsync(async (req, res, next) => {
 })
 
 exports.login = catchAsync(async (req, res, next) => {
+    const referalCode = req.query.ref || "";
+
     res.status(200).render('user_pages/loginFrom.pug', {
-        title: 'Account'
+        title: 'Account', 
+        referalCode: referalCode,
     });
 })
 

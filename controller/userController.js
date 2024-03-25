@@ -48,6 +48,7 @@ exports.signup = catchAsync(async (req, res, next) => {
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
+            joinedReferalCode: req.body.referal_code,
         })
 
         createCookies(signin, res, 200);
@@ -67,13 +68,6 @@ exports.signup = catchAsync(async (req, res, next) => {
             });
         }
     }
-
-    // const signin = await user.create({
-    //     name: req.body.name,
-    //     email: req.body.email,
-    //     password: req.body.password,
-    // })
-
 });
 
 exports.login = catchAsync(async (req, res, next) => {

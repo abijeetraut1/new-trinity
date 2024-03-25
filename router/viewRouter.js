@@ -6,6 +6,8 @@ const viewController = require('../controller/viewControllerFolder/userViewContr
 
 router.get('/', authController.isUserLoggedInForHome, viewController.homepage);
 router.get('/login', viewController.login);
+router.get('/login?ref=referal', viewController.login);
+
 router.get("/forget-password", viewController.forgetPassword);
 router.get('/design', authController.isUserLoggedIn, authController.protect, viewController.designPage);
 router.get('/delivered/:id', authController.isUserLoggedIn, authController.protect, viewController.delivered);

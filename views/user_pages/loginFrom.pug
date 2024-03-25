@@ -55,33 +55,9 @@ block content
                         button#password-signup-show show
 
                     .css-form-control
-                        input#remenber.form-input-checkbox(type='checkbox' name='remember')
-                        label(for='remenber') Remember Me
-                    .css-form-control
-                        div.btn-form-submit.btn-success Sign Up
-
-        #resetPasswordDiv.form-card
-            h2.form-heading Sign Up
-            .form-body
-                .form-switch
-                    span#toLogin.btn-login(onclick="changeLogin()") Login
-                    span#btn-signUp.btn-signUp(onclick="changeSignup()") Signup
-                form
-                    .css-form-control
                         .form-control-icon
-                            i.fa-solid.fa-user
-                        input.form-input-text.signup-name(type='Name' id='name' name='name' placeholder='Name')
-                    .css-form-control
-                        .form-control-icon
-                            i.fa-solid.fa-envelope
-                        input.form-input-text.signup-email(type='email' id='email' name='email' placeholder='Email')
-                    .incorrect-email( style="color: red; display: none; font-size: 12px; padding-left: 1.2rem;")
-                        p Email Already Registered
-                    .css-form-control
-                        .form-control-icon
-                            i.fa-solid.fa-lock
-                        input.form-input-text.signup-password(type='password' id='password-signup' name='password' placeholder='Password')
-                        button#password-signup-show show
+                            <i class="fa-solid fa-user-group"></i>
+                        input.form-input-text.signup-password(type='text' id='referal-code' name='referal-code' value=`${referalCode}` placeholder='referal-code (optional)')
 
                     .css-form-control
                         input#remenber.form-input-checkbox(type='checkbox' name='remember')

@@ -27,12 +27,18 @@ const signupSchema = mongoose.Schema({
         default: false,
     },
     referalCode: String,
+    joinedReferalCode: String,
+    joinedReferalOrder: {
+        type: Number,
+        default: 0
+    },
     cutoff: {
         type: Number,
         default: 0
     },
     passwordResetToken: String,
-    passwordResetExpires: Date
+    passwordResetExpires: Date,
+
 })
 
 // hash the password
@@ -40,7 +46,7 @@ signupSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, 12);
     if (this.name.split(' ').length > 1) {
         this.referalCode = `${this.name.replaceAll(' ', '-') + "-" + Math.floor(Math.random()*100)}`;
-    }else {
+    } else {
         this.referalCode = `${this.name + "-" + Math.floor(Math.random()*100)}`;
     }
     next();

@@ -41,6 +41,7 @@ if (window.location.pathname === '/login' || window.location.pathname === '/Logi
                 const email = document.querySelector('.signup-email').value;
                 const password = document.querySelector('.signup-password').value;
                 const name = document.querySelector('.signup-name').value;
+                const referal_code = document.querySelector('#referal-code').value;
 
 
                 let sendToDb = await axios({
@@ -49,7 +50,8 @@ if (window.location.pathname === '/login' || window.location.pathname === '/Logi
                     data: {
                         email,
                         password,
-                        name
+                        name,
+                        referal_code
                     }
                 })
                 if (sendToDb.data.status === "success") {
@@ -349,13 +351,13 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
             const toll_ward = $('#toll-ward-number')[0].value;
             const land_mark = $('#land-mark')[0].value;
             const toll_name = $('#toll-name')[0].value;
-            
+
             const front = sessionStorage.getItem('designedFrontView');
             const back = sessionStorage.getItem('designedBackView');
             const material = sessionStorage.getItem('material');
             const sticker = $("#inserted-stickers")[0].files;
             const color = localStorage.getItem('tshirt-color') ? localStorage.getItem('tshirt-color') : "white";
-            
+
 
             if ((email === '') && (number === '') && (name === '') && (area === '') && (address === '') && (city === '') && (size === '')) {
                 alert('please fill the information carefully');
@@ -379,7 +381,7 @@ if (window.location.pathname.split("/")[1] === "product" && window.location.path
             designs.append("back", back);
             designs.append("material", material);
             designs.append("color", color);
-            
+
 
             for (let index = 0; index < sticker.length; index++) {
                 designs.append("sticker", sticker[index]);
