@@ -3,7 +3,7 @@ const user = require('../../model/signup');
 const cloth_Type_Model = require('../../model/cloth_Type_Model');
 const cloth_material_model = require('../../model/Cloth_Fabric_Model');
 const customDesignOrder = require("../../model/user_designed_tshirt");
-const landing_page_design_change = require("../../model/landing_page_design_change"); 
+const landing_page_design_change = require("../../model/landing_page_design_change");
 
 const jwt = require('jsonwebtoken');
 const {
@@ -50,7 +50,7 @@ exports.login = catchAsync(async (req, res, next) => {
     const referalCode = req.query.ref || "";
 
     res.status(200).render('user_pages/loginFrom.pug', {
-        title: 'Account', 
+        title: 'Account',
         referalCode: referalCode,
     });
 })
@@ -140,7 +140,7 @@ exports.designPage = catchAsync(async (req, res, next) => {
         cloth_type_price,
         cloth_material_price
     });
-    
+
 })
 
 exports.forgetPassword = catchAsync(async (req, res, next) => {
@@ -149,7 +149,9 @@ exports.forgetPassword = catchAsync(async (req, res, next) => {
 
 exports.delivered = catchAsync(async (req, res, next) => {
     const id = req.params.id;
-    const product = await customDesignOrder.findOne({_id:id});
+    const product = await customDesignOrder.findOne({
+        _id: id
+    });
     console.log('product', product)
     res.status(200).render('user_pages/send.pug', {
         product
@@ -163,8 +165,13 @@ exports.products = catchAsync(async (req, res, next) => {
 })
 
 exports.refer = catchAsync(async (req, res, next) => {
+    const refCode = res.locals.user.joinedReferalCode;
+    const referedUsers = await user.find({
+        joinedReferalCode: refCode
+    })
     res.status(200).render('account/refer.pug', {
-        title: "Refer"
+        title: "Refer",
+        totalUsers: referedUsers.length
     });
 })
 

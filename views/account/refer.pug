@@ -12,10 +12,37 @@ block content
             h4 Refer a Friend
             h3(style="color: #ff3f6c;") Refer your friends & earn <span style="font-weight: 800;"> ₹100 </span> on their first successful Invitation.
             div.row
-                div.col-5
-                    input#referalcode.form-control(type="search" value="http://kalakar.onrender.com/referral/abijeetraut2", readonly)
-                div.col-1
-                    button.form-control(onclick="copyToClipboard()" style="background-color: #ff3f6c; color: white;") Copy             
+                div.col-7
+                    input#referalcode.form-control(onclick="copyToClipboard()" type="search" value="http://kalakar.onrender.com/referral/abijeetraut2", readonly)
+                //- div.col-1
+                //-     button.form-control( style="background-color: #ff3f6c; color: white;") Copy
+                div.row.mt-3
+                    div.row
+                        div.col-2
+                            .card.col-12.border-success.mb-3
+                                .card-header.bg-primary.text-white
+                                    h5.card-title Refered Joined
+                                .card-body
+                                    h6.card-subtitle.mb-2.text-muted Total Refered
+                                    span #{totalUsers}
+                        div.col-2
+                            .card.col-12.border-success.mb-3
+                                .card-header.bg-success.text-white
+                                    h5.card-title Refered Earned
+                                .card-body
+                                    h6.card-subtitle.mb-2.text-muted Total Earned
+                                    span #{totalUsers * 100}
+                                    
+                        
+                        // Refered Earned
+                        //- div.col-2
+                        //-     .card.col-12.border-success.mb-3
+                        //-         .card-header.bg-success.text-white
+                        //-             h5.card-title Refered Earned
+                        //-         .card-body
+                        //-             h6.card-subtitle.mb-2.text-muted Total Refered
+                        //-             span #{totalUsers * 100}
+              
             
             
 
