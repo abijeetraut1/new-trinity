@@ -160,3 +160,10 @@ exports.refer = catchAsync(async (req, res, next) => {
         title: "Account"
     });
 })
+
+
+exports.settings = catchAsync(async (req, res, next) => {
+    res.status(200).render('account/setting.pug', {
+        title: "setting"
+    });
+})

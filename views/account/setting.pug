@@ -1,0 +1,32 @@
+extends account_base
+
+block content
+    .content.col.g-5
+        <div id="alertshow" class="hide-alert alert-ctrl alert alert-warning alert-dismissible fade show position-absolute right-2" role="alert">
+            <strong>copied</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <form class="col g-3">
+            <div class="row-md-6 mt-3">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="row-md-6 mt-3">
+                <label for="inputPassword4" class="form-label">Old Password</label>
+                <input type="password" class="form-control" id="inputPassword4">
+            </div>
+            <div class="row-md-6 mt-3">
+                <label for="inputPassword4" class="form-label">New Password</label>
+                <input type="password" class="form-control" id="inputPassword4">
+            </div>
+
+            <div class="row-md-6 mt-3">
+                <label for="inputPassword4" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="inputPassword4">
+            </div>
+            
+            <div class="col-12 mt-3">
+                <button type="submit" class="btn btn-primary">update</button>
+            </div>
+        </form>
