@@ -167,3 +167,10 @@ exports.settings = catchAsync(async (req, res, next) => {
         title: "setting"
     });
 })
+
+
+exports.payout = catchAsync(async (req, res, next) => {
+    res.status(200).render('account/payout.pug', {
+        title: "setting"
+    });
+})
