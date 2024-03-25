@@ -3,6 +3,7 @@ const user = require('../../model/signup');
 const cloth_Type_Model = require('../../model/cloth_Type_Model');
 const cloth_material_model = require('../../model/Cloth_Fabric_Model');
 const customDesignOrder = require("../../model/user_designed_tshirt");
+const landing_page_design_change = require("../../model/landing_page_design_change"); 
 
 const jwt = require('jsonwebtoken');
 const {
@@ -17,6 +18,8 @@ exports.homepage = catchAsync(async (req, res, next) => {
     }).sort({
         uploadDate: -1
     }).limit(8);
+
+    const landing_page = await landing_page_design_change.find();
     // // const productData = await product.find(-1).limit(4);
     // const productData = await product.find().sort({
     //     uploadDate: -1
@@ -24,6 +27,7 @@ exports.homepage = catchAsync(async (req, res, next) => {
     let totalUsers = await user.find().limit(4);
     totalUsers += 1000;
     res.status(200).render('user_pages/landing.pug', {
+        landing_page: landing_page[0],
         adminDesign,
         totalUsers,
         title: 'home'

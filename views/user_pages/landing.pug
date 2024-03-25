@@ -5,16 +5,14 @@ block content
     main.heroSection
         .heroContent
             div
-                p.design The easy way to design and sell t-shirts online
+                p.design= landing_page.highlightText
                 hr.main-hr
-                p.production
-                    | We do production, shipping and customer service -
-                    | and you keep the profit!
+                p.production= landing_page.supportingText
 
                 .button-div
                     button(onclick="window.location.assign(`/design`)" style="cursor: pointer;").heroBtn GET STARTED
         .heroImage
-            img(src='https://teeshopper.in/img/background-img.jpg' alt='')
+            img(src=`./background/${landing_page.image}` alt='no image')
     section.made-by-creators
         br
         br

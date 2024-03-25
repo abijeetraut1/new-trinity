@@ -14,6 +14,8 @@ router.get('/dashboard-material-type', authController.isAdminLoggedIn, adminPage
 router.get('/dashboard-fabric', authController.isAdminLoggedIn, adminPageViewController.tshrit_fabric);
 router.get('/dashboard-referralActivate', authController.isAdminLoggedIn, adminPageViewController.referralActivate);
 router.get("/dashboard-show-users", authController.isAdminLoggedIn, adminPageViewController.appoint_to_admin);
+router.get("/change-home-page", authController.isAdminLoggedIn, adminPageViewController.change_image_page_layout);
 router.get("/dashboard-database-clear", authController.isAdminLoggedIn, adminPageViewController.database_clear);
+
 
 module.exports = router;

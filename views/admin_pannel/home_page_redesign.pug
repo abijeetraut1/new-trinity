@@ -1,0 +1,52 @@
+extends dashbase 
+block contentDash
+    .container-fluid.pt-4.px-4
+        .container-fluid.pt-4.px-4.admin-container
+            form
+                <div class="mb-3">
+                    <label for="highlight-text" class="form-label">Highlight Text</label>
+                    <input type="text" class="form-control" id="highlight-text" value="The easy way to design and sell t-shirts online">
+                </div>
+                <div class="mb-3">
+                    <label for="supporting-text" class="form-label">Supporting Text</label>
+                    <input type="text" class="form-control" id="supporting-text" value="We do production, shipping and customer service and you keep the profit!"></input>
+                </div>
+                <div class="mb-3">
+                    <label for="backgroundImage" class="form-label">Background Image</label>
+                    <input class="form-control" type="file" id="backgroundImage" accept="image/*">
+                </div>
+
+                <div class="mb-3">
+                    <button id="update-data" class="btn" style="background-color: #ff3f6c; color: white;">update</button>
+                </div>
+
+    script(src="../js/jquery-latest.js")
+    script.
+        $("#update-data").click(async function(event) {
+            event.preventDefault(); // Prevent default form submission
+            const highlight_text = $("#highlight-text").val();
+            const supporting_text = $("#supporting-text").val();
+            const backgroundImage = $("#backgroundImage")[0].files[0];
+
+            console.log(backgroundImage);
+
+            const formData = new FormData();
+            formData.append("highlight_text", highlight_text);
+            formData.append("supporting_text", supporting_text);
+            formData.append("backgroundImage", backgroundImage);
+
+            // Send data using Axios
+            try {
+                const response = await axios({
+                    method: "POST",
+                    url: "/api/v1/admin_data_controller/change_home_page_appearance",
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+                    data: formData
+                });
+                console.log(response.data);
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        });

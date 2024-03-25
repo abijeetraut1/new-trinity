@@ -2,6 +2,7 @@ const customDesignOrder = require("../model/user_designed_tshirt");
 const orderRecorder = require("../model/overAllOrderRecorder");
 const Cloth_Fabric_Model = require("../model/Cloth_Fabric_Model");
 const Cloth_Type_Model = require("../model/cloth_Type_Model");
+const landing_page_design_change = require("../model/landing_page_design_change");
 
 const catchAsync = require("../utils/catchAsync");
 
@@ -99,11 +100,42 @@ exports.update_productStatus = catchAsync(async (req, res) => {
     await customDesignOrder.findByIdAndUpdate({
         _id: id
     }, {
-        sendStatus:sendStatus,
-        shipped:shippingStatus
+        sendStatus: sendStatus,
+        shipped: shippingStatus
     }).then(data => {
         statusFunc(res, 200, "successfull")
     }).catch(err => {
         statusFunc(res, 500, "please refresh")
     });
+})
+
+exports.change_home_page = catchAsync(async (req, res) => {
+    const filename = req.file.filename;
+    const {
+        highlight_text,
+        supporting_text
+    } = req.body;
+
+    // find the item
+    const find_premade_designs = await landing_page_design_change.find();
+
+    if (find_premade_designs.length === 0) {
+        await landing_page_design_change.create({
+            image: filename,
+            highlightText: highlight_text,
+            supportingText: supporting_text
+        }).then(data => {
+            statusFunc(res, 200, "home page updated");
+        }).catch(err => {
+            statusFunc(res, 200, "please reload 🤷‍♂️");
+        })
+    }else{
+        find_premade_designs[0].image = filename;
+        find_premade_designs[0].highlightText = highlight_text;
+        find_premade_designs[0].supportingText = supporting_text;
+
+        find_premade_designs[0].save();
+        statusFunc(res, 200, "home page updated");
+    }
+
 })

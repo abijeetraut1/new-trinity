@@ -119,3 +119,8 @@ exports.singleProductWithId = catchAsync(async(req, res) => {
         product
     })
 })
+
+exports.change_image_page_layout = catchAsync(async(req, res) => {
+
+    res.status(200).render("admin_pannel/home_page_redesign.pug")
+})
