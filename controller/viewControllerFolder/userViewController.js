@@ -160,18 +160,22 @@ exports.delivered = catchAsync(async (req, res, next) => {
 
 exports.products = catchAsync(async (req, res, next) => {
     const userid = res.locals.user.id;
-    const products = await customDesignOrder.find({userID: userid});
+    const products = await customDesignOrder.find({
+        userID: userid,
+        sendStatus: false,
+        shipped: false,
+    });
     console.log(products)
     res.status(200).render('account/products.pug', {
         title: "Account",
-        products:products
+        products: products
     });
 })
 
 exports.refer = catchAsync(async (req, res, next) => {
     const refCode = res.locals.user.joinedReferalCode;
     const referedUsers = await user.find({
-        joinedReferalCode: refCode
+        joinedReferalCode: refCode,
     })
     res.status(200).render('account/refer.pug', {
         title: "Refer",
@@ -195,5 +199,19 @@ exports.payout = catchAsync(async (req, res, next) => {
 exports.order = catchAsync(async (req, res, next) => {
     res.status(200).render('account/orders.pug', {
         title: "order"
+    });
+})
+
+exports.recived = catchAsync(async (req, res, next) => {
+    const userid = res.locals.user.id;
+    const products = await customDesignOrder.find({
+        userID: userid,
+        sendStatus: true,
+        shipped: true
+    });
+
+    res.status(200).render('account/recived.pug', {
+        title: "order",
+        products: products
     });
 })

@@ -24,5 +24,6 @@ router.get("/account/refer", authController.isUserLoggedIn, viewController.refer
 router.get("/account/settings", authController.isUserLoggedIn, viewController.settings);
 router.get("/account/orders", authController.isUserLoggedIn, viewController.order);
 router.get("/account/payout", authController.isUserLoggedIn, viewController.payout);
+router.get("/account/recived", authController.isUserLoggedIn, viewController.recived);
 
 module.exports = router;

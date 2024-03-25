@@ -22,6 +22,12 @@ const clothSchema = mongoose.Schema({
     description: {
         type: String,
     },
+    slug: String,
+});
+
+clothSchema.pre('save', async function (next) {
+    this.slug = this.cloth_type.replaceAll(" ", "-")+price; 
+    next();
 });
 
 const clothType = new mongoose.model('cloth_type', clothSchema);
