@@ -159,8 +159,12 @@ exports.delivered = catchAsync(async (req, res, next) => {
 })
 
 exports.products = catchAsync(async (req, res, next) => {
+    const userid = res.locals.user.id;
+    const products = await customDesignOrder.find({userID: userid});
+    console.log(products)
     res.status(200).render('account/products.pug', {
-        title: "Account"
+        title: "Account",
+        products:products
     });
 })
 

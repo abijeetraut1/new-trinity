@@ -12,14 +12,16 @@ block content
 
         // row for ecommerece
         .row
-            .col-md-2
-                .card.mb-4
-                    img.card-img-top(src="product1.jpg" alt="Product 1")
-                    .card-body
-                        h5.card-title Product 1
-                        p.card-text Description of Product 1.
-                        .d-flex.justify-content-between.align-items-center
-                            .btn-group
-                                button.btn.btn-sm.btn-outline-secondary(type="button") View
-                                button.btn.btn-sm.btn-outline-secondary(type="button") Add to Cart
-                            small.text-muted $19.99
+            each product in products
+                .col-md-2
+                    .card.mb-4
+                        img.card-img-top(src=`../../images/product/upload/tshirt/front/${product.front}` alt="Product 1")
+                        .card-body
+                            h5.card-title= product.name
+                            p.card-text= product.email
+                            p.card-text= product.number
+                            .d-flex.justify-content-between.align-items-center
+                                .btn-group
+                                    a(href=`/delivered/${product.id}`)
+                                        button.btn.btn-sm.btn-outline-secondary.px-3(type="button" style="background: #FF3F6C; color:white;") View
+                                small.text-muted $19.99
