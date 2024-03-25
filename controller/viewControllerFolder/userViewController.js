@@ -157,7 +157,7 @@ exports.products = catchAsync(async (req, res, next) => {
 
 exports.refer = catchAsync(async (req, res, next) => {
     res.status(200).render('account/refer.pug', {
-        title: "Account"
+        title: "Refer"
     });
 })
 
@@ -171,6 +171,11 @@ exports.settings = catchAsync(async (req, res, next) => {
 
 exports.payout = catchAsync(async (req, res, next) => {
     res.status(200).render('account/payout.pug', {
-        title: "setting"
+        title: "payout"
+    });
+})
+exports.order = catchAsync(async (req, res, next) => {
+    res.status(200).render('account/orders.pug', {
+        title: "order"
     });
 })

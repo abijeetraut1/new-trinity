@@ -20,7 +20,7 @@ router.get('/product/:slug/order', authController.isUserLoggedIn, viewController
 router.get("/account/products", authController.isUserLoggedIn, viewController.products);
 router.get("/account/refer", authController.isUserLoggedIn, viewController.refer);
 router.get("/account/settings", authController.isUserLoggedIn, viewController.settings);
-// router.get("/account/order", authController.isUserLoggedIn, viewController.account_section);
+router.get("/account/orders", authController.isUserLoggedIn, viewController.order);
 router.get("/account/payout", authController.isUserLoggedIn, viewController.payout);
 
 module.exports = router;
