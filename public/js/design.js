@@ -585,70 +585,69 @@ if (window.innerWidth <= 360) {
 const sellThis = document.querySelector('#saveProductDesign');
 var divToCapture = document.getElementById('product');
 
-// // sell this button events
-// if (!($("#for-admin-only")[0])) {
+// for normal users when ordering a design
+if (!($("#for-admin-only")[0])) {
 
-//     document.querySelector('#sellThis').addEventListener('click', el => {
-//         $('.design-time-notification')[0].style.display = "block";
+    document.querySelector('#sellThis').addEventListener('click', el => {
+        $('.design-time-notification')[0].style.display = "block";
 
-//         parentElement.style.borderColor = 'transparent';
-//         if (document.querySelector('.tshirt-text')) {
-//             document.querySelector('.tshirt-text').style.borderColor = 'transparent';
-//         }
+        parentElement.style.borderColor = 'transparent';
+        if (document.querySelector('.tshirt-text')) {
+            document.querySelector('.tshirt-text').style.borderColor = 'transparent';
+        }
 
-//         html2canvas(divToCapture).then(function (canvas) {
-//             html2canvas(document.getElementById("product")).then(function (canvas) {
-//                 var img = canvas.toDataURL('image/png');
-//                 sessionStorage.setItem(`designed${$('.btn-toggle')[0].innerText}View`, img); // jun view set bhako xa tai ko image linxa
+        html2canvas(divToCapture).then(function (canvas) {
+            html2canvas(document.getElementById("product")).then(function (canvas) {
+                var img = canvas.toDataURL('image/png');
+                sessionStorage.setItem(`designed${$('.btn-toggle')[0].innerText}View`, img); // jun view set bhako xa tai ko image linxa
 
-//                 if (!($('.btn-toggle')[0].innerText === 'Front')) {
+                if (!($('.btn-toggle')[0].innerText === 'Front')) {
 
-//                     $('.front').css("display", "block");
-//                     $('.back').css("display", "none");
-//                     productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_front.png")`;
+                    $('.front').css("display", "block");
+                    $('.back').css("display", "none");
+                    productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_front.png")`;
 
-//                     html2canvas(divToCapture).then(function (canvass) {
-//                         html2canvas(document.getElementById("product")).then(function (canvass) {
-//                             var backImg = canvass.toDataURL('image/png');
-//                             sessionStorage.setItem('designedFrontView', backImg); // save the tshirt front view in the local storage
-//                             productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_back.png")`;
+                    html2canvas(divToCapture).then(function (canvass) {
+                        html2canvas(document.getElementById("product")).then(function (canvass) {
+                            var backImg = canvass.toDataURL('image/png');
+                            sessionStorage.setItem('designedFrontView', backImg); // save the tshirt front view in the local storage
+                            productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_back.png")`;
 
-//                             if (sessionStorage.getItem("designedBackView") && sessionStorage.getItem("designedFrontView")) {
-//                                 window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
-//                             }
-//                         });
-//                     });
-//                 }
+                            if (sessionStorage.getItem("designedBackView") && sessionStorage.getItem("designedFrontView")) {
+                                window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
+                            }
+                        });
+                    });
+                }
 
-//                 if (!($('.btn-toggle')[0].innerText === 'Back')) {
-//                     $('.front').css("display", "none");
-//                     $('.back').css("display", "block");
-//                     productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_back.png")`;
-//                     html2canvas(divToCapture).then(function (canvass) {
-//                         html2canvas(document.getElementById("product")).then(function (canvass) {
-//                             var backImg = canvass.toDataURL('image/png');
+                if (!($('.btn-toggle')[0].innerText === 'Back')) {
+                    $('.front').css("display", "none");
+                    $('.back').css("display", "block");
+                    productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_back.png")`;
+                    html2canvas(divToCapture).then(function (canvass) {
+                        html2canvas(document.getElementById("product")).then(function (canvass) {
+                            var backImg = canvass.toDataURL('image/png');
 
-//                             sessionStorage.setItem('designedBackView', backImg); // save the tshirt front view in the local storage
-//                             productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_front.png")`;
+                            sessionStorage.setItem('designedBackView', backImg); // save the tshirt front view in the local storage
+                            productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_front.png")`;
 
-//                             if (sessionStorage.getItem("designedBackView") && sessionStorage.getItem("designedFrontView")) {
-//                                 window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
-//                             }
-//                         });
-//                     });
-//                 }
+                            if (sessionStorage.getItem("designedBackView") && sessionStorage.getItem("designedFrontView")) {
+                                window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
+                            }
+                        });
+                    });
+                }
 
-//             });
-//         });
+            });
+        });
 
-//         return;
-//     })
-// }
+        return;
+    })
+}
 
 var divToCapture = document.getElementById('product');
 
-// will be updated later
-// send the image and content to database
+// for admins to design tshirt
 if ($("#for-admin-only")[0]) {
     document.getElementById('saveProductDesign').addEventListener('click', async el => {
         const title = document.getElementById('ptitle').value;
