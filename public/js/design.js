@@ -154,7 +154,6 @@ chooserProduct.addEventListener('click', el => {
     change_T_shirt.forEach(el => {
         el.addEventListener('click', (e) => {
             const image = el.parentNode.querySelector(`.productCard center img`).src;
-            var chooseProductType = document.querySelectorAll(`.productCard center img`);
             var separator = 'product_img/';
             const index = image.indexOf(separator);
             const selectedImage = image.slice(index + separator.length);
@@ -166,7 +165,6 @@ chooserProduct.addEventListener('click', el => {
             switch (selectedImage) {
                 case 'hsrn_tshirt_front.png':
                     $("#sideViewOpt").css('display', 'block');
-                    console.log(el.value)
 
                     changePosition(110, 145);
                     sessionStorage.setItem('selected_type', el.value);
@@ -211,6 +209,7 @@ chooserProduct.addEventListener('click', el => {
                     $("#sideViewOpt").css('display', 'block');
 
                     changePosition(150, 135);
+                    alert(el.value)
                     sessionStorage.setItem('selected_type', el.value);
                     resetButton(btn);
                     break;
