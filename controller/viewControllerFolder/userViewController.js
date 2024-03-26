@@ -1,14 +1,11 @@
 const product = require('../../model/product');
 const user = require('../../model/signup');
 const cloth_Type_Model = require('../../model/cloth_Type_Model');
-const cloth_material_model = require('../../model/Cloth_Fabric_Model');
+const fabric_model = require('../../model/Cloth_Fabric_Model');
 const customDesignOrder = require("../../model/user_designed_tshirt");
 const landing_page_design_change = require("../../model/landing_page_design_change");
 
 const jwt = require('jsonwebtoken');
-const {
-    promisify
-} = require('util');
 const catchAsync = require('../../utils/catchAsync');
 
 
@@ -66,9 +63,11 @@ exports.orderPage = catchAsync(async (req, res, next) => {
 })
 
 exports.DesignorderPage = catchAsync(async (req, res, next) => {
-    const viewPrice = await cloth_Type_Model.findOne({
-        type: req.params.material
+    const viewPrice = await fabric_model.findOne({
+        slug: req.params.material
     });
+
+    console.log(viewPrice);
 
     const districtsOfNepal = [
         // Province No. 1
@@ -103,10 +102,8 @@ exports.DesignorderPage = catchAsync(async (req, res, next) => {
 
 
     districtsOfNepal.sort();
-
-    console.log(viewPrice);
     res.status(200).render('user_pages/DesignorderPage.pug', {
-        viewPrice,
+        price: viewPrice.price,
         districtsOfNepal,
         states
     });
@@ -131,7 +128,7 @@ exports.track_order = catchAsync(async (req, res, next) => {
 
 exports.designPage = catchAsync(async (req, res, next) => {
     const cloth_type_price = await cloth_Type_Model.find({});
-    const cloth_material_price = await cloth_material_model.find({});
+    const cloth_material_price = await fabric_model.find({});
 
     console.log(cloth_type_price)
     console.log(cloth_material_price)

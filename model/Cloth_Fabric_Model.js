@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const materialSchema = mongoose.Schema({
     price: {
         type: Number,
+        required: true,
     },
     fabric: {
         type: String,
@@ -13,7 +14,7 @@ const materialSchema = mongoose.Schema({
 });
 
 materialSchema.pre('save', async function (next) {
-    this.slug = this.fabric.replaceAll(" ", "-")+price; 
+    this.slug = this.fabric.replaceAll(" ", "-");
     next();
 });
 

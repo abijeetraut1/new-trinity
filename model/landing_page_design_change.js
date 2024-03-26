@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 
 const landing_page_schema = mongoose.Schema({
-    image: {
-        type: String,
-    },
     highlightText: {
         type: String,
     },

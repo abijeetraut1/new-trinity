@@ -4,12 +4,15 @@ $('.bi-search').css("font-size", "2.2rem")
 
 const clothType = document.querySelector('#cost-selector');
 $("#base_cost")[0].innerHTML = `&#8377; ${clothType.value}`;
-sessionStorage.setItem("material", $("#cost-selector option:selected").text());
+
+// for by default when code loads for the first time
+sessionStorage.setItem("material", $("#cost-selector option:selected")[0].getAttribute("data-slug"));
+
+// $("#cost-selector option:selected").text()
 
 function clickChange() {
-    sessionStorage.setItem('material', $("#cost-selector option:selected").text());
+    sessionStorage.setItem('material', $("#cost-selector option:selected")[0].getAttribute("data-slug"));
     $("#base_cost")[0].innerHTML = `&#8377; ${clothType.value}`;
-
 }
 
 if (window.location.pathname === '/design') {
@@ -23,8 +26,7 @@ if (window.location.pathname === '/design') {
 
 if (window.innerWidth <= 1200) {
     alert('PLEASE USE THE DESKTOP TO DESIGN \n Enable Desktop Site on your Browser')
-} 
-
+}
 
 
 const productColorChooser = document.querySelectorAll('#product_color_chooser div');
@@ -489,12 +491,7 @@ const addText = document.querySelector('#addText');
 addText.addEventListener('click', el => {
     let createRemovalbeDiv = document.createElement(`p`);
 
-
-
     createRemovalbeDiv.classList.add('tshirt-text', `${$('.btn-toggle')[0].innerText.toLowerCase()}`);
-
-
-
 
     createRemovalbeDiv.innerHTML = 'TEXT';
 
@@ -614,7 +611,7 @@ if (!($("#for-admin-only")[0])) {
                             var backImg = canvass.toDataURL('image/png');
                             sessionStorage.setItem('designedFrontView', backImg); // save the tshirt front view in the local storage
                             productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_back.png")`;
-                            
+
                             if (sessionStorage.getItem("designedBackView") && sessionStorage.getItem("designedFrontView")) {
                                 window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
                             }
@@ -632,7 +629,7 @@ if (!($("#for-admin-only")[0])) {
 
                             sessionStorage.setItem('designedBackView', backImg); // save the tshirt front view in the local storage
                             productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_front.png")`;
-                            
+
                             if (sessionStorage.getItem("designedBackView") && sessionStorage.getItem("designedFrontView")) {
                                 window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
                             }
@@ -659,13 +656,14 @@ if ($("#for-admin-only")[0]) {
         const slug = document.getElementById('chooseUrl').value;
         const markupPrice = document.getElementById('markupPrice').value;
 
-        let data = {
-            title,
-            description,
-            slug,
-            markupPrice,
-            tags
-        }
+
+        const data = new FormData();
+        data.append("title", title);
+        data.append("description", description);
+        data.append("slug", slug);
+        data.append("markupPrice", markupPrice);
+        data.append("tags", tags);
+
 
 
         parentElement.childNodes.forEach((el, i) => {
@@ -677,14 +675,62 @@ if ($("#for-admin-only")[0]) {
                     let letterSpacing = document.querySelector("#rotate_val_textspacing").value;
                     let rotateText = document.querySelector("#rotate_val").value;
 
-                    // attach those item with other objects
-                    console.log(fontColor, fontSize, letterSpacing, rotateText)
+                    data.append("fontColor", fontColor);
+                    data.append("fontSize", fontSize);
+                    data.append("letterSpacing", letterSpacing);
+                    data.append("rotateText", rotateText);
+                    data.append("frontImage", tags);
+                    data.append("backImage", tags);
+
+
                     data.fontColor = fontColor;
                     data.fontSize = fontSize;
                     data.letterSpacing = letterSpacing;
                     data.rotateText = rotateText;
                     data.frontImage = sessionStorage.getItem('designedFrontView');
                     data.backImage = sessionStorage.getItem('designedBackView');
+
+                    var divToCapture = document.getElementById('product');
+
+                    html2canvas(divToCapture).then(function (canvas) {
+                        var formData = new FormData();
+
+                        // Append the canvas element directly to FormData
+                        formData.append("image", canvas.toDataURL('image/png'));
+
+                        if (!($('.btn-toggle')[0].innerText === 'Front')) {
+                            $('.front').css("display", "block");
+                            $('.back').css("display", "none");
+                            productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_front.png")`;
+
+                            html2canvas(divToCapture).then(function (canvass) {
+                                formData.append("image", canvass.toDataURL('image/png'));
+                                window.appendChild(document.createElement("img").src = canvass.toDataURL('image/png'))
+
+                                if (sessionStorage.getItem("designedBackView") && sessionStorage.getItem("designedFrontView")) {
+                                    window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
+                                }
+                            });
+                        }
+
+                        if (!($('.btn-toggle')[0].innerText === 'Back')) {
+                            $('.front').css("display", "none");
+                            $('.back').css("display", "block");
+                            productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_back.png")`;
+
+                            html2canvas(divToCapture).then(function (canvass) {
+                                formData.append("image", canvass.toDataURL('image/png'));
+
+                                if (sessionStorage.getItem("designedBackView") && sessionStorage.getItem("designedFrontView")) {
+                                    window.location.assign(`/product/order/${sessionStorage.getItem('material')}`)
+                                }
+                            });
+                        }
+
+                        // Now you can use formData for further processing or sending it to the server
+                    });
+
+
 
                 } else if (el.classList[0] === 'newImg') {
                     data.sticker = sessionStorage.getItem('image');
@@ -697,12 +743,18 @@ if ($("#for-admin-only")[0]) {
         const postData = await axios({
             method: "POST",
             url: "/api/v1/product/design/upload",
-            data
-        })
+            headers: {
+                "Content-Type": "multipart/form-data"
+            },
+            data: data
+        });
+
+        console.log(postData)
+
         if (postData.data.status = "success") {
             sessionStorage.removeItem('image');
 
-            window.location.assign(`${window.origin}/product/${slug}`)
+            // window.location.assign(`${window.origin}/product/${slug}`)
         } else {
             alert('plese fill up the information carefully');
         }

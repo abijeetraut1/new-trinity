@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const signupModel = require("./model/signup");
 const clothTypeModel = require("./model/cloth_Type_Model");
 const clothMaterialModel = require("./model/Cloth_Fabric_Model");
-
+const landing_page = require("./model/landing_page_design_change.js");
 
 process.on('uncaughtException', (err) => {
     console.log('UNCAUGHT EXCEPTION CAUGHT 💥💥💥');
@@ -28,8 +28,7 @@ mongoose.connect(connectionInfo).then(data => {
     console.log('FAILED TO CONNECT');
 });
 
-const clothingItems = [
-    {
+const clothingItems = [{
         back: 'full_sleeve_back',
         front: 'full_sleeve_front',
         cloth_type: "full_sleeve",
@@ -104,12 +103,32 @@ const clothingItems = [
 
 
 const material = [{
+    price: 500,
     fabric: "polyster",
-    price: 500
 }, {
+    price: 800,
     fabric: "cotton",
-    price: 800
 }];
+
+const highlightText = "The easy way to design and sell t-shirts online";
+const supportingText = "We do production, shipping and customer service - and you keep the profit!";
+
+(async () => {
+    // highlightText
+    try {
+        await landing_page.create({
+            highlightText: highlightText,
+            supportingText: supportingText
+        })
+        console.log("landing page text seeded");
+    } catch (err) {
+        if (err.code === 11000) {
+            console.log("Admin already seeded");
+        } else {
+            console.log("Please restart the server");
+        }
+    }
+})();
 
 // admin seeding
 (async () => {
@@ -150,6 +169,7 @@ clothingItems.forEach(async el => {
 
 
 material.forEach(async el => {
+    console.log(el.price, el.fabric)
     await clothMaterialModel.create({
         price: el.price,
         fabric: el.fabric,

@@ -532,6 +532,19 @@ if (window.location.pathname.split('/')[2] === 'order') {
         // Append containerDiv to orderAddDiv
         orderAddDiv.appendChild(containerDiv);
     });
-
-
 }
+
+// view mode control
+$("#view-Mode").click(() => {
+    if($("#view-Mode")[0].getAttribute("data-mode") === "view"){
+        $("#view-Mode")[0].innerText = "Edit";
+        $("#view-Mode")[0].setAttribute("data-mode", "design");        
+        $("#productDiv").css("border", "none");
+        $(".clicked-item").css("border", "none");        
+    }else if($("#view-Mode")[0].getAttribute("data-mode") === "design"){
+        $("#view-Mode")[0].innerText = "View";
+        $("#view-Mode")[0].setAttribute("data-mode", "view");
+        $("#productDiv").css("border", "2px solid black");
+        $(".clicked-item").css("border", "2px dashed rgba(0, 0, 0, 0.3)");
+    }
+})

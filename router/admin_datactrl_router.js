@@ -12,7 +12,7 @@ const upload = multer({
     storage
 })
 
-
+// for home page image upload
 var starage = n_multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "public/background");
