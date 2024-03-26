@@ -2,17 +2,67 @@ extends base
 
 block content
     script(src="./js/forall.js")
-    main.heroSection
+    style.
+        video {
+            width: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.7) contrast(0.7);
+        }
+
+        .heroContent{
+            position:absolute;
+            top: 50%;
+            left: 5%;
+            color:white;
+        }
+
+        .heroContent div p{
+            color: white;
+        }
+
+        @media screen and (max-width: 1280px){
+            .heroContent{
+                position: absolute;
+                top: 10%;
+                left: 5%;
+            }
+
+            .heroContent div *{
+                color: white;
+            }
+        }
+        @media (min-width: 584px) and (max-width: 1280px){
+            .heroContent{
+                position: absolute;
+                top: 15%;
+                left: 5%;
+            }
+        }   
+        @media (min-width: 712px) and (max-width: 1280px){
+            .heroContent{
+                position: absolute;
+                top: 20%;
+                left: 5%;
+            }
+        }     
+
+    .container-fluid.p-0.hero-section
+        div
+            // Video element
+            <video autoplay loop muted>
+                <source src="./video/cover_vid.mp4" type="video/mp4" />
+            </video> 
+
         .heroContent
             div
                 p.design= landing_page.highlightText
                 hr.main-hr
                 p.production= landing_page.supportingText
-
                 .button-div
-                    button(onclick="window.location.assign(`/design`)" style="cursor: pointer;").heroBtn GET STARTED
-        .heroImage
-            img(src=`./background/${landing_page.image}` alt='no image')
+                    button.heroBtn(onclick="window.location.assign('/design')" style="cursor: pointer;") GET STARTED
+
+
     section.made-by-creators
         br
         br
@@ -34,29 +84,6 @@ block content
                             a(href=`product/${productAdmin.slug}`)
                                 button.buy-button BUY
                         br
-
-
-    //- section.made-by-creators
-    //-     br
-    //-     br
-    //-     h1 Designed By User 
-    //-     .made-by-creator-container
-    //-         each product in productData
-    //-             .made-by-creators-div
-    //-                 .product-image
-    //-                     img(src=`./images/product/upload/tshirt/front/${product.front}.png` alt='')
-    //-                 hr.hr
-    //-                 .product-information
-    //-                     br
-    //-                     p= product.title
-    //-                     br
-    //-                     br
-    //-                     .product-price-and-buy(style="display: flex; align-items: baseline;")
-    //-                         //- - let price = &#x930;&#x941;&lrm
-    //-                         p.price= product.price
-    //-                         a(href=`product/${product.slug}`)
-    //-                             button.buy-button BUY
-    //-                     br
 
     br
     br
@@ -99,6 +126,12 @@ block content
     section.fast-delivery-img
         img(src='./../images/fast_delivery.png' alt='')
     br
+    
+    .container-fluid.p-0
+            <video autoplay loop muted>
+                <source src="./video/mearch_branding.mp4" type="video/mp4" />
+            </video> 
+    
     section.contact-us-today
         p Contact Us Today!
     section.contact-form
@@ -123,5 +156,5 @@ block content
                 input(type='number' name='' id='' placeholder='number' style="padding-left:.5rem;")
                 textarea(name='' id='' cols='30' rows='10' placeholder='message' style="height: 10vh; padding-left:.5rem;")
                 button.contact-submit(type='submit') Submit
-                
+
     script(src='./../js/index.js')

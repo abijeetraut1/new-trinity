@@ -684,7 +684,6 @@ ol .cart {
 
     .heroContent div .design {
         font-size: 27px;
-        color: #333;
         font-weight: 600;
         /* width: 90%; */
         width: calc(103% - 1%);
@@ -692,7 +691,6 @@ ol .cart {
 
     .heroContent div .production {
         font-size: 16px;
-        color: #333;
         font-weight: 300;
         /* width: 90%; */
         width: calc(103% - 1%);
