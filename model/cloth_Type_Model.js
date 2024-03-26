@@ -26,7 +26,7 @@ const clothSchema = mongoose.Schema({
 });
 
 clothSchema.pre('save', async function (next) {
-    this.slug = this.cloth_type.replaceAll(" ", "-")+price; 
+    this.slug = this.cloth_type.replaceAll(" ", "-"); 
     next();
 });
 
