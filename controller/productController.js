@@ -16,18 +16,7 @@ const {
 require('dotenv').config({
     path: './config.env'
 });
-const {
-    Vonage
-} = require('@vonage/server-sdk')
-const vonage = new Vonage({
-    apiKey: process.env.API_KEY,
-    apiSecret: process.env.API_SECRET
-})
 
-
-
-const from = "Vonage APIs"
-const to = process.env.ALERT_NUMBER;
 
 // multer configuration
 const multerStorage = multer.memoryStorage();
