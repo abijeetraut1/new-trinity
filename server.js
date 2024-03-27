@@ -159,7 +159,6 @@ clothingItems.forEach(async el => {
     }).then((data) => {
         console.log("Cloth_Type seeded successfully");
     }).catch(err => {
-        console.log(err)
         if (err.code === 11000) {
             console.log("Cloth_Type already seeded");
         } else {
