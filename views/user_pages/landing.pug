@@ -79,7 +79,7 @@ block content
             each productAdmin in adminDesign
                 .made-by-creators-div
                     .product-image
-                        img(src=`./images/product/upload/tshirt/front/${productAdmin.front}.png` alt='')
+                        img(src=`./images/product/upload/tshirt/front/${productAdmin.front}` alt='IMAGE CANNOT LOAD')
                     hr.hr
                     .product-information
                         br
@@ -87,7 +87,6 @@ block content
                         br
                         br
                         .product-price-and-buy(style="display: flex; align-items: baseline;")
-                            //- - let price = &#x930;&#x941;&lrm
                             p.price= productAdmin.price
                             a(href=`product/${productAdmin.slug}`)
                                 button.buy-button BUY

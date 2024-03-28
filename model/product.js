@@ -53,7 +53,7 @@ const uploadSchema = mongoose.Schema({
 uploadSchema.pre('save', function (next) {
     this.tags = this.tags[0].split(',');
     this.uploadDate = Date.now();
-    console.log(this.tags);
+    this.slug = this.slug.replaceAll(" ", "-");
     next();
 })
 

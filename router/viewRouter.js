@@ -15,7 +15,7 @@ router.get('/ordered-list', authController.isUserLoggedIn, viewController.track_
 // router.get('/searched/:params', viewController.search);
 
 router.get('/product/order/:material', authController.isUserLoggedIn, viewController.DesignorderPage);
-// router.get('/product/:slug', authController.isUserLoggedIn, viewController.buypage);
+router.get('/product/:slug', authController.isUserLoggedIn, viewController.buypage);
 router.get('/product/:slug/order', authController.isUserLoggedIn, viewController.orderPage);
 
 // account section

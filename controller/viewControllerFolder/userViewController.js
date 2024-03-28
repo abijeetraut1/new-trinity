@@ -23,6 +23,9 @@ exports.homepage = catchAsync(async (req, res, next) => {
     // });
     let totalUsers = await user.find().limit(4);
     totalUsers += 1000;
+
+    console.log(adminDesign)
+    
     res.status(200).render('user_pages/landing.pug', {
         landing_page: landing_page[0],
         adminDesign,

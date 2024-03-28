@@ -97,27 +97,33 @@ exports.getItem = catchAsync(async (req, res, next) => {
 });
 
 saveSticker = async (imageBase64, tshirtName) => {
-    const base64Image = imageBase64;
-    const matches = base64Image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-    const type = matches[1];
-    const data = Buffer.from(matches[2], 'base64');
+    try {
+        const base64Image = imageBase64;
+        const matches = base64Image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+        const type = matches[1];
+        const data = Buffer.from(matches[2], 'base64');
 
-    let file = await sharp(data)
-        // .resize(727, 900) // 727 * 900 
-        .toFormat('jpeg')
-        .jpeg({
-            quality: 90
-        })
-        .toFile(`./public/images/product/upload/${tshirtName}`);
+        let file = await sharp(data)
+            // .resize(727, 900) // 727 * 900 
+            .toFormat('jpeg')
+            .jpeg({
+                quality: 90
+            })
+            .toFile(`./public/images/product/upload/${tshirtName}`);
+
+    } catch (err) {
+        console.log(err.message)
+    }
 }
 
 
 // when user gives the order 
 exports.uploadDesign = catchAsync(async (req, res, next) => {
+    console.log(req.body)
     const token = req.cookies.jwt;
     const cookiesId = await promisify(jwt.verify)(token, process.env.jwtPassword);
 
-    let tshirtName = `${Date.now() + '-' + Math.round(Math.random() * 1E9)+".png"}-${Date.now()}`;
+    let tshirtName = `${Date.now() + '-' + Math.round(Math.random() * 1E9)}-${Date.now()}`;
     let designInfo;
 
     saveSticker(req.body.frontImage, `/tshirt/front/${tshirtName}_front.png`);
@@ -132,8 +138,8 @@ exports.uploadDesign = catchAsync(async (req, res, next) => {
         fontSize: req.body.fontSize,
         letterSpacing: req.body.letterSpacing,
         rotateText: req.body.rotateText,
-        front: `${tshirtName}_front`,
-        back: `${tshirtName}_back`,
+        front: `${tshirtName}_front.png`,
+        back: `${tshirtName}_back.png`,
         sticker: `${tshirtName}`
     }
     if (req.body.sticker != 'null') {
@@ -142,14 +148,7 @@ exports.uploadDesign = catchAsync(async (req, res, next) => {
     }
 
     designInfo = await product.create(data);
-
-
-    // await vonage.sms.send({
-    //     to,
-    //     from,
-    //     text: `${req.body.name} send an order contact no = ${req.body.contact} \n \n`
-    // })
-
+    console.log(designInfo)
 
     res.status(200).json({
         status: 'success',

@@ -650,12 +650,14 @@ var divToCapture = document.getElementById('product');
 // for admins to design tshirt
 if ($("#for-admin-only")[0]) {
     document.getElementById('saveProductDesign').addEventListener('click', async el => {
+        $("#productDiv").css("border", "none");
+        $(".clicked-item").css("border", "none");
+
         const title = document.getElementById('ptitle').value;
         const description = document.getElementById('pdescription').value;
         const tags = document.getElementById('tags').value;
         const slug = document.getElementById('chooseUrl').value;
         const markupPrice = document.getElementById('markupPrice').value;
-
 
         const data = {
             title: title,
@@ -665,22 +667,21 @@ if ($("#for-admin-only")[0]) {
             tags: tags,
         }
 
+        
         html2canvas(divToCapture).then(function (canvas) {
             html2canvas(document.getElementById("product")).then(function (canvas) {
                 var img = canvas.toDataURL('image/png');
                 sessionStorage.setItem(`designed${$('.btn-toggle')[0].innerText}View`, img); // jun view set bhako xa tai ko image linxa
 
                 if (!($('.btn-toggle')[0].innerText === 'Front')) {
-
                     $('.front').css("display", "block");
                     $('.back').css("display", "none");
                     productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_front.png")`;
 
                     html2canvas(divToCapture).then(function (canvass) {
                         html2canvas(document.getElementById("product")).then(function (canvass) {
-                            var backImg = canvass.toDataURL('image/png');
-                            sessionStorage.setItem('designedFrontView', backImg); // save the tshirt front view in the local storage
-                            productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_back.png")`;
+                            var frontImg = canvass.toDataURL('image/png');
+                            sessionStorage.setItem('designedFrontView', frontImg); // save the tshirt front view in the local storage
                         });
                     });
                 }
@@ -692,14 +693,10 @@ if ($("#for-admin-only")[0]) {
                     html2canvas(divToCapture).then(function (canvass) {
                         html2canvas(document.getElementById("product")).then(function (canvass) {
                             var backImg = canvass.toDataURL('image/png');
-
                             sessionStorage.setItem('designedBackView', backImg); // save the tshirt front view in the local storage
-                            productImageDisplay.style.backgroundImage = `url("product_img/${sessionStorage.getItem('selected_type')}_front.png")`;
-
                         });
                     });
                 }
-
             });
         });
 
@@ -712,41 +709,47 @@ if ($("#for-admin-only")[0]) {
                     let letterSpacing = document.querySelector("#rotate_val_textspacing").value;
                     let rotateText = document.querySelector("#rotate_val").value;
 
-
                     data.fontColor = fontColor;
                     data.fontSize = fontSize;
                     data.letterSpacing = letterSpacing;
                     data.rotateText = rotateText;
-                    data.frontImage = sessionStorage.getItem('designedFrontView');
-                    data.backImage = sessionStorage.getItem('designedBackView');
-
 
                 } else if (el.classList[0] === 'newImg') {
                     data.sticker = sessionStorage.getItem('image');
-                    data.frontImage = sessionStorage.getItem('designedFrontView');
-                    data.backImage = sessionStorage.getItem('designedBackView');
                 }
             }
         })
 
-        const postData = await axios({
-            method: "POST",
-            url: "/api/v1/product/design/upload",
-            headers: {
-                "Content-Type": "multipart/form-data"
-            },
-            data: data
-        });
 
-        console.log(postData)
+        setTimeout(async () => {
+            if (sessionStorage.designedBackView && sessionStorage.designedFrontView) {
+                data.frontImage = sessionStorage.getItem('designedFrontView');
+                data.backImage = sessionStorage.getItem('designedBackView');
+                
+                console.log(data)
 
-        if (postData.data.status = "success") {
-            sessionStorage.removeItem('image');
+                const postData = await axios({
+                    method: "POST",
+                    url: "/api/v1/product/design/upload",
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    },
+                    data: data
+                });
+    
+                console.log(postData)
+    
+                if (postData.data.status = "success") {
+                    sessionStorage.removeItem('image');
+    
+                    // window.location.assign(`${window.origin}/product/${slug}`)
+                } else {
+                    alert('plese fill up the information carefully');
+                }
+            }
 
-            // window.location.assign(`${window.origin}/product/${slug}`)
-        } else {
-            alert('plese fill up the information carefully');
-        }
+        }, 5000);
+
         // console.log(postData);
     })
 }

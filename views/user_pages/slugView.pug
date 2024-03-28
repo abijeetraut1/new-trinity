@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./../css/style.css">
 </head>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Montserrat" rel="stylesheet">
-//- ./../js/js.js
+
 <script src="./../js/jquery-latest.js"></script>
 
 <body>
@@ -45,12 +45,11 @@
                     //- <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            img(src=`/images/product/upload/tshirt/front/${products.front}.png` alt=`${products.title}_front`)#display_product_img_front
+                            img(src=`/images/product/upload/tshirt/front/${products.front}` alt=`${products.title}_front`)#display_product_img_front
                         </div>
 
                         <div class="item">
-                            img(src=`/images/product/upload/tshirt/back/${products.back}.png` alt=`${products.title}_back`)#display_product_img_back
-                            //- <img src="/images/product/upload/tshirt/its-ok-1677940706916.png" alt="Cute Panda Shirt - Back" id="display_product_img_back">
+                            img(src=`/images/product/upload/tshirt/back/${products.back}` alt=`${products.title}_back`)#display_product_img_back
                         </div>
 
                     </div>
@@ -147,103 +146,14 @@
                 <br /><br />
                 <span>Machine-wash</span>
                 <br /><br />
-                //- <script type="text/javascript">
-                //-     var ad_width = "728px";
-                //-     var ad_height = "90px";
-                //-     if (window.innerWidth < 728) {
-                //-         ad_width = "320px";
-                //-         ad_height = "100px";
-                //-     }
-                //- </script>
                 <h5><b>Product ID</b></h5>
                 <hr />
+                <h5><b>Slug</b></h5>
                 span.product_id= products.slug 
-                <br /><br />
+                <br />
+                <hr/>
                 <h5><b>Tags</b></h5>
-                <hr />
                 span= products.tags 
-
-            </div>
-            <div class="col-lg-1 col-md-1">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-1 col-md-1">
-
-            </div>
-            <div class="col-lg-5 col-md-5">
-                <br />
-                <h5><b>Share This</b></h5>
-                <hr />
-                //- <!-- AddToAny BEGIN -->
-                <div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-icon-color="#999"
-                    | data-a2a-title="Hi guys, checkout my new design Cute Panda Shirt - TeeShopper 😍😍">
-                    <a class="a2a_button_facebook"></a>
-                    <a class="a2a_button_whatsapp"></a>
-                    <a class="a2a_button_facebook_messenger"></a>
-                    <a class="a2a_button_google_plus"></a>
-                    <a class="a2a_button_twitter"></a>
-                    <a class="a2a_button_linkedin"></a>
-                    <a class="a2a_button_copy_link"></a>
-                    <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-                </div>
-                //- <!-- AddToAny END -->
-                <br /><br />
-                <h5 id="more_products_label" style="display:none;"><b>More products</b></h5>
-                <hr id="more_products_hr" style="display:none;" />
-                <div class="more_products row">
-
-                </div>
-
-
-            </div>
-            <div class="col-lg-1 col-md-1">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-1 col-md-1">
-
-            </div>
-            <div class="col-lg-10 col-md-10" style="text-align:center">
-                <br /><br />
-                <!-- <img src="img/service_info_banner.png" width="100%" /> -->
-                <br />
-            </div>
-            <div class="col-lg-1 col-md-1">
-
-            </div>
-        </div>
-    </div>
-
-
-    
-
-    
-
-   
-
-
-    
-    <div id="cartModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">My Bag</h4>
-                </div>
-                <div class="modal-body cartProducts" style="height:400px; overflow-y:scroll">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success continue_shopping" data-dismiss="modal"
-                        | style="font-size:12px; border:none; background:#fff; color:#5cb85c;">Continue Shopping</button>
-                    <a href="multiCheckout"><button type="button" class="btn btn-default" style="font-size:13px;">Secure
-                        | Checkout <span class="glyphicon glyphicon-heart"></span></button></a>
-                </div>
             </div>
         </div>
     </div>
